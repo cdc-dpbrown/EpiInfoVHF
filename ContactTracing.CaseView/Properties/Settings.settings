@@ -1,0 +1,49 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ContactTracing.CaseView.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WindowWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="WindowHeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">700</Value>
+    </Setting>
+    <Setting Name="WindowTop" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="WindowLeft" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="WindowState" Type="System.Windows.WindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="HtmlPrintoutTitle" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VIRAL HEMORRHAGIC FEVER</Value>
+    </Setting>
+    <Setting Name="Culture" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Region" Type="ContactTracing.Core.Enums.RegionEnum" Scope="User">
+      <Value Profile="(Default)">International</Value>
+    </Setting>
+    <Setting Name="WindowTitle" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Epi Info™ VHF</Value>
+    </Setting>
+    <Setting Name="Heading" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Epi Info™ Viral Hemorrhagic Fever Application</Value>
+    </Setting>
+    <Setting Name="NewColumns" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Team&lt;/string&gt;
+  &lt;string&gt;ContactParish &lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ContactEntryFormName_International" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ContactEntryForm8</Value>
+    </Setting>
+    <Setting Name="ContactEntryFormName_USA" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ContactEntryForm12</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

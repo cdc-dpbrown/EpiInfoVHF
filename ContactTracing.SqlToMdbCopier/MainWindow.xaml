@@ -1,0 +1,74 @@
+﻿<Window x:Class="ContactTracing.SqlToMdbCopier.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Create MDB File Copy from SQL Server Database" SizeToContent="WidthAndHeight" >
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo ProgressState="{Binding TaskbarProgressState}" ProgressValue="{Binding TaskbarProgressValue}" />
+    </Window.TaskbarItemInfo>
+    <Border Background="{StaticResource LightBackgroundBrush}"
+            Padding="20">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                    <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                    <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="CREATE MDB FILE COPY" IsHitTestVisible="False" />
+                </StackPanel>
+
+                <StackPanel Height="14" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="VHF project file:" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="tboxProjectFileName" Width="550" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" Text="{Binding ProjectFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Button x:Name="btnProjectBrowse" Grid.Column="1" VerticalAlignment="Stretch" Height="Auto" Content="Browse" Click="btnProjectBrowse_Click" />
+                </Grid>
+
+                <StackPanel Height="14" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Region:" />
+                <TextBox Width="150" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" HorizontalAlignment="Left" Text="International" />
+
+                <StackPanel Height="14" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Language:" />
+                <TextBox Width="150" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" HorizontalAlignment="Left" Text="en-US" />
+
+                <StackPanel Height="14" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Country:" />
+                <TextBox Width="150" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" HorizontalAlignment="Left" Text="Sierra Leone" />
+
+
+                <StackPanel Height="14" />
+                
+                <TextBlock TextWrapping="Wrap" MaxWidth="600" HorizontalAlignment="Left">Click OK to generate an MDB file copy of the project. This process may take up to 30 minutes to complete. French language databases are unsupported at this time.</TextBlock>
+
+                <StackPanel Height="14" />
+                
+                <UniformGrid Grid.Row="1" VerticalAlignment="Bottom" Rows="1" Columns="4" Width="Auto" Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                    <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <Button HorizontalAlignment="Stretch" 
+                            Width="Auto" 
+                            Grid.Row="0" 
+                            Grid.Column="2" 
+                            Margin="0, 0, 5, 0" 
+                            x:Name="btnOK" 
+                            Command="{Binding StartImportCommand}"
+                            Click="btnOK_Click" 
+                            Content="Start Copying"/>
+                    <Button HorizontalAlignment="Stretch" Width="Auto" Grid.Row="0" Grid.Column="3" Margin="5, 0, 0, 0" x:Name="btnCancel" Click="btnCancel_Click" Content="Close"/>
+                </UniformGrid>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

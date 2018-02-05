@@ -1,0 +1,481 @@
+﻿<Window x:Class="ContactTracing.SyncFileViewer.SyncFileViewerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ContactTracing.SyncFileViewer"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:xlinq="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq" 
+        Title="Sync File Viewer (64-bit)" Height="650" Width="525">
+    <Window.Resources>
+        <Style TargetType="DataGrid">
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="CanUserDeleteRows" Value="False" />
+            <Setter Property="CanUserReorderColumns" Value="False" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" Margin="0" Padding="10" Background="White">
+            <Grid>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Margin="0, 5, 5, 5" FontSize="24" Text="VHF Sync File Viewer" FontWeight="Light" />
+                
+                <Grid Grid.Column="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Grid.Column="0" Grid.Row="0" Margin="1" Foreground="White">Sync file:</TextBlock>
+                    <TextBox Grid.Column="0" Grid.Row="1" Padding="2" IsEnabled="False" Text="{Binding SyncFileName}" />
+                    <Button x:Name="btnBrowse" Grid.Column="1" Grid.Row="1" Width="100" Margin="10, 0, 0, 0" Click="btnBrowse_Click" >Browse</Button>
+
+
+                </Grid>
+            </Grid>
+        </Border>
+
+        <DockPanel Grid.Row="1" Background="Transparent">
+            
+        </DockPanel>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Cases">
+                <Border Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <!--<RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />-->
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock FontSize="24" FontWeight="Light">Cases</TextBlock>
+                            <StackPanel Width="5" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="(" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="{Binding CaseData.Elements.Count, FallbackValue=0}" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text=")" />
+                        </StackPanel>
+
+                        <DataGrid x:Name="dgAllCases" 
+                                  AutoGenerateColumns="False"
+                                  Grid.Row="1" 
+                                  DataContext="{Binding CaseData}" 
+                                  VirtualizingPanel.VirtualizationMode="Recycling" 
+                                  VirtualizingPanel.IsVirtualizing="True" 
+                                  ItemsSource="{Binding Path=Elements[Record]}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="GUID" Binding="{Binding Path=Attribute[Id].Value}"/>
+                                <DataGridTextColumn Header="RecStatus" Binding="{Binding Path=Attribute[RecStatus].Value}"/>
+                                <DataGridTextColumn Header="LastSaved" Binding="{Binding Path=Attribute[LastSaveTime].Value}"/>
+                                
+                                <DataGridTextColumn Header="Case Id" Binding="{Binding Path=Element[ID].Value}"/>
+                                <DataGridTextColumn Header="Last name" Binding="{Binding Path=Element[Surname].Value}"/>
+                                <DataGridTextColumn Header="First name" Binding="{Binding Path=Element[OtherNames].Value}"/>
+                                <DataGridTextColumn Header="Epi case def" Binding="{Binding Path=Element[EpiCaseDef].Value}"/>
+                                <DataGridTextColumn Header="Date onset" Binding="{Binding Path=Element[DateOnset].Value}"/>
+
+                                <DataGridTextColumn Header="Current status" Binding="{Binding Path=Element[StatusAsOfCurrentDate].Value}"/>
+                                <DataGridTextColumn Header="Status report" Binding="{Binding Path=Element[StatusReport].Value}"/>
+                                <DataGridTextColumn Header="Age" Binding="{Binding Path=Element[Age].Value}"/>
+                                <DataGridTextColumn Header="Gender" Binding="{Binding Path=Element[Gender].Value}"/>
+                                
+                                
+                                <DataGridTextColumn Header="Adm1 (res)" Binding="{Binding Path=Element[DistrictRes].Value}"/>
+                                <DataGridTextColumn Header="Adm2 (res)" Binding="{Binding Path=Element[SCRes].Value}"/>
+                                <DataGridTextColumn Header="Adm3 (res)" Binding="{Binding Path=Element[ParishRes].Value}"/>
+                                <DataGridTextColumn Header="Adm4 (res)" Binding="{Binding Path=Element[VillageRes].Value}"/>
+
+                                <DataGridTextColumn Header="Adm1 (onset)" Binding="{Binding Path=Element[DistrictOnset].Value}"/>
+                                <DataGridTextColumn Header="Adm2 (onset)" Binding="{Binding Path=Element[SCOnset].Value}"/>
+                                <DataGridTextColumn Header="Adm4 (onset)" Binding="{Binding Path=Element[VillageOnset].Value}"/>
+                                
+                                
+                                
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                        
+                        <!--<TextBlock Grid.Row="2" FontSize="24" FontWeight="Light">Contacts of this case</TextBlock>
+
+                        <DataGrid Grid.Row="3" x:Name="dgContactsOfCase" />-->
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="Contacts">
+                <Border Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <!--<RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />-->
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock FontSize="24" FontWeight="Light">Contacts</TextBlock>
+                            <StackPanel Width="5" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="(" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="{Binding ContactData.Elements.Count, FallbackValue=0}" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text=")" />
+                        </StackPanel>
+
+                        <DataGrid x:Name="dgAllContacts" 
+                                  AutoGenerateColumns="False"
+                                  Grid.Row="1" 
+                                  DataContext="{Binding ContactData}" 
+                                  VirtualizingPanel.VirtualizationMode="Recycling" 
+                                  VirtualizingPanel.IsVirtualizing="True" 
+                                  ItemsSource="{Binding Path=Elements[Record]}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="GUID" Binding="{Binding Path=Attribute[Id].Value}"/>
+                                <DataGridTextColumn Header="RecStatus" Binding="{Binding Path=Attribute[RecStatus].Value}"/>
+                                <DataGridTextColumn Header="LastSaved" Binding="{Binding Path=Attribute[LastSaveTime].Value}"/>
+
+                                <DataGridTextColumn Header="Last name" Binding="{Binding Path=Element[ContactSurname].Value}"/>
+                                <DataGridTextColumn Header="First name" Binding="{Binding Path=Element[ContactOtherNames].Value}"/>
+
+                                <DataGridTextColumn Header="Gender" Binding="{Binding Path=Element[ContactGender].Value}"/>
+                                <DataGridTextColumn Header="Age" Binding="{Binding Path=Element[ContactAge].Value}"/>
+                                <DataGridTextColumn Header="Team" Binding="{Binding Path=Element[Team].Value}"/>
+                                <DataGridTextColumn Header="Head household" Binding="{Binding Path=Element[ContactHeadHouse].Value}"/>
+                                <DataGridTextColumn Header="Village" Binding="{Binding Path=Element[ContactVillage].Value}"/>
+                                <DataGridTextColumn Header="SC" Binding="{Binding Path=Element[ContactSC].Value}"/>
+                                <DataGridTextColumn Header="District" Binding="{Binding Path=Element[ContactDistrict].Value}"/>
+                                <DataGridTextColumn Header="LC1" Binding="{Binding Path=Element[LC1].Value}"/>
+                                <DataGridTextColumn Header="Phone" Binding="{Binding Path=Element[ContactPhone].Value}"/>
+
+                                <DataGridTextColumn Header="HCW worker" Binding="{Binding Path=Element[ContactHCW].Value}"/>
+                                <DataGridTextColumn Header="HCW facility" Binding="{Binding Path=Element[ContactHCWFacility].Value}"/>
+
+                                <DataGridTextColumn Header="Risk level" Binding="{Binding Path=Element[RiskLevel].Value}"/>
+                                <DataGridTextColumn Header="Final outcome" Binding="{Binding Path=Element[FinalOutcome].Value}"/>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="Lab Samples">
+                <Border Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <!--<RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />-->
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock FontSize="24" FontWeight="Light">Lab Samples</TextBlock>
+                            <StackPanel Width="5" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="(" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="{Binding LabData.Elements.Count, FallbackValue=0}" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text=")" />
+                        </StackPanel>
+
+                        <DataGrid x:Name="dgAllLabs" 
+                                  AutoGenerateColumns="False"
+                                  Grid.Row="1" 
+                                  DataContext="{Binding LabData}" 
+                                  VirtualizingPanel.VirtualizationMode="Recycling" 
+                                  VirtualizingPanel.IsVirtualizing="True" 
+                                  ItemsSource="{Binding Path=Elements[Record]}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="GUID" Binding="{Binding Path=Attribute[Id].Value}"/>
+                                <DataGridTextColumn Header="RecStatus" Binding="{Binding Path=Attribute[RecStatus].Value}"/>
+                                <DataGridTextColumn Header="LastSaved" Binding="{Binding Path=Attribute[LastSaveTime].Value}"/>
+                                <DataGridTextColumn Header="FKEY" Binding="{Binding Path=Attribute[FKEY].Value}"/>
+
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=Element[ID].Value}"/>
+                                <DataGridTextColumn Header="Last name" Binding="{Binding Path=Element[SurnameLab].Value}"/>
+                                <DataGridTextColumn Header="First name" Binding="{Binding Path=Element[OtherNameLab].Value}"/>
+
+                                <DataGridTextColumn Header="Sample type" Binding="{Binding Path=Element[SampleType].Value}"/>
+                                <DataGridTextColumn Header="UGSPBLog" Binding="{Binding Path=Element[UGSPBLog].Value}"/>
+                                <DataGridTextColumn Header="DaysAcute" Binding="{Binding Path=Element[DaysAcute].Value}"/>
+                                <DataGridTextColumn Header="Date collected" Binding="{Binding Path=Element[DateSampleCollected].Value}"/>
+                                <DataGridTextColumn Header="Date tested" Binding="{Binding Path=Element[DateSampleTested].Value}"/>
+                                <DataGridTextColumn Header="FieldLabSpecID" Binding="{Binding Path=Element[FieldLabSpecID].Value}"/>
+                                <DataGridTextColumn Header="Sample interpret" Binding="{Binding Path=Element[SampleInterpret].Value}"/>
+
+                                
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="Relationships">
+                <Border Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock FontSize="24" FontWeight="Light">Links</TextBlock>
+                            <StackPanel Width="5" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="(" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="{Binding LinksData.Elements.Count, FallbackValue=0}" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text=")" />
+                        </StackPanel>
+
+                        <DataGrid x:Name="dgAllLinks" 
+                                  AutoGenerateColumns="False"
+                                  Grid.Row="1" 
+                                  DataContext="{Binding LinksData}" 
+                                  VirtualizingPanel.VirtualizationMode="Recycling" 
+                                  VirtualizingPanel.IsVirtualizing="True" 
+                                  ItemsSource="{Binding Path=Elements[Link]}">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="FromRecord" Binding="{Binding Path=Element[FromRecordGuid].Value}"/>
+                                <DataGridTextColumn Header="ToRecord" Binding="{Binding Path=Element[ToRecordGuid].Value}"/>
+                                <DataGridTextColumn Header="FromView" Binding="{Binding Path=Element[FromViewId].Value}"/>
+                                <DataGridTextColumn Header="ToView" Binding="{Binding Path=Element[ToViewId].Value}"/>
+                                
+                                
+                                <DataGridTextColumn Header="Last contact date" Binding="{Binding Path=Element[LastContactDate].Value}"/>
+                                <DataGridTextColumn Header="Contact type" Binding="{Binding Path=Element[ContactType].Value}"/>
+                                <DataGridTextColumn Header="Relationship type" Binding="{Binding Path=Element[RelationshipType].Value}"/>
+                                <DataGridTextColumn Header="Tentative" Binding="{Binding Path=Element[Tentative].Value}"/>
+                                <DataGridTextColumn Header="Is est contact dt" Binding="{Binding Path=Element[IsEstimatedContactDate].Value}"/>
+                                
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="Followups">
+                <Border Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock FontSize="24" FontWeight="Light">Follow-ups</TextBlock>
+                            <StackPanel Width="5" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="(" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text="{Binding FollowUpsData.Elements.Count, FallbackValue=0}" />
+                            <TextBlock FontSize="24" FontWeight="Light" Text=")" />
+                        </StackPanel>
+
+                        <DataGrid x:Name="dgAllFollowUps" 
+                                  AutoGenerateColumns="False"
+                                  Grid.Row="1" 
+                                  DataContext="{Binding FollowUpsData}" 
+                                  VirtualizingPanel.VirtualizationMode="Recycling" 
+                                  VirtualizingPanel.IsVirtualizing="True" 
+                                  ItemsSource="{Binding Path=Elements[ContactFollowUp]}">
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="Contact GUID" Binding="{Binding Path=Element[ContactGUID].Value}"/>
+                                <DataGridTextColumn Header="Date followup" Binding="{Binding Path=Element[FollowUpDate].Value}"/>
+                                <DataGridTextColumn Header="Status on date" Binding="{Binding Path=Element[StatusOnDate].Value}"/>
+
+                                <DataGridTextColumn Header="Temp1" Binding="{Binding Path=Element[Temp1].Value}"/>
+                                <DataGridTextColumn Header="Temp2" Binding="{Binding Path=Element[Temp2].Value}"/>
+                                
+                                <DataGridTextColumn Header="Note" Binding="{Binding Path=Element[Note].Value}"/>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </Grid>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="Analysis">
+                <Border Padding="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock FontSize="24" FontWeight="Light">Analysis</TextBlock>
+                            <StackPanel Width="5" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Margin="0, 10, 0, 0">
+
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Source database type:" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Date generated:" />
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Date generated (UTC):" />
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Region:" />
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Source Epi Info 7 version:" />
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="Source VHF version:" />
+                                <TextBlock Grid.Row="6" Grid.Column="0" Text="Internal file ID:" />
+
+                                <TextBlock Grid.Row="7" Grid.Column="0" Text="LastSaveTime min value:" />
+                                <TextBlock Grid.Row="8" Grid.Column="0" Text="LastSaveTime min value:" />
+
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding SourceDatabase, FallbackValue='Unknown'}" />
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding DateGenerated, FallbackValue='Unknown'}" />
+                                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding DateGeneratedUtc, FallbackValue='Unknown'}" />
+
+                                <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding Region, FallbackValue='Unknown'}" />
+                                
+                                <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding EpiVersion, FallbackValue='Unknown'}" />
+                                <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding VhfVersion, FallbackValue='Unknown'}" />
+                                <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding FileID, FallbackValue='Unknown'}" />
+
+                                <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding StartDate, FallbackValue='Unknown'}" />
+                                <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding EndDate, FallbackValue='Unknown'}" />
+                            </Grid>
+
+                            <StackPanel Height="20" />
+                            
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="Epi Case Definitions (not null)" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="EpiCaseDef = 0" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="EpiCaseDef = 1" />
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="EpiCaseDef = 2" />
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="EpiCaseDef = 3" />
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="EpiCaseDef = 4" />
+                                <TextBlock Grid.Row="5" Grid.Column="0" FontWeight="SemiBold" Text="EpiCaseDef TOTAL" />
+                                
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding AnalysisViewModel.EpiCaseDef0, FallbackValue=...}" />
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding AnalysisViewModel.EpiCaseDef1, FallbackValue=...}" />
+                                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding AnalysisViewModel.EpiCaseDef2, FallbackValue=...}" />
+                                <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding AnalysisViewModel.EpiCaseDef3, FallbackValue=...}" />
+                                <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding AnalysisViewModel.EpiCaseDef4, FallbackValue=...}" />
+                                <TextBlock Grid.Row="5" Grid.Column="2" FontWeight="SemiBold" Text="{Binding AnalysisViewModel.EpiCaseDefT, FallbackValue=...}" />
+                            </Grid>
+
+                            <StackPanel Height="20" />
+
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="Final Lab Classifications (not null)" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="FinalLabClass = 0" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="FinalLabClass = 1" />
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="FinalLabClass = 2" />
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="FinalLabClass = 3" />
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="FinalLabClass = 4" />
+                                <TextBlock Grid.Row="5" Grid.Column="0" Text="FinalLabClass = 5" />
+                                <TextBlock Grid.Row="6" Grid.Column="0" FontWeight="SemiBold" Text="FinalLabClass TOTAL" />
+
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding AnalysisViewModel.FinalLabClass0, FallbackValue=...}" />
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding AnalysisViewModel.FinalLabClass1, FallbackValue=...}" />
+                                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding AnalysisViewModel.FinalLabClass2, FallbackValue=...}" />
+                                <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding AnalysisViewModel.FinalLabClass3, FallbackValue=...}" />
+                                <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding AnalysisViewModel.FinalLabClass4, FallbackValue=...}" />
+                                <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding AnalysisViewModel.FinalLabClass5, FallbackValue=...}" />
+                                <TextBlock Grid.Row="6" Grid.Column="2" FontWeight="SemiBold" Text="{Binding AnalysisViewModel.FinalLabClassT, FallbackValue=...}" />
+                            </Grid>
+
+                            <StackPanel Height="20" />
+
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="RecStatus (not null)" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="RecStatus = 0" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="RecStatus = 1" />
+
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding AnalysisViewModel.RecStatus0, FallbackValue=...}" />
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding AnalysisViewModel.RecStatus1, FallbackValue=...}" />
+                            </Grid>
+
+                            <StackPanel Height="20" />
+
+                        </StackPanel>
+                        
+                    </Grid>
+                </Border>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Window>

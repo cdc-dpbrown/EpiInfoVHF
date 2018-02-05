@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="ContactTracing.Sms.SmsSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="650">
+    <Grid>
+        <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+            <StackPanel Margin="40, 20, 40, 20">
+
+                <StackPanel>
+                    <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                    <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="SMS SERVER SETTINGS" />
+                </StackPanel>
+
+                <StackPanel Height="4" />
+
+                <TextBlock FontSize="17" Foreground="#444444" FontWeight="Light" 
+                           Text="Message Settings:" />
+                <StackPanel Margin="0, 4, 0, 4">
+                    <CheckBox 
+                        Foreground="#444444"
+                        FontSize="13"
+                        IsChecked="{Binding Project.SmsModule.SendsReadReceipts, Mode=TwoWay}"
+                        Content="Send read receipts" />
+
+                    <StackPanel Height="3" />
+                    
+                    <CheckBox 
+                        Foreground="#444444"
+                        FontSize="13"
+                        IsChecked="{Binding Project.SmsModule.AllowsSelfRegistration, Mode=TwoWay}"
+                        Content="Allow senders to self-register" />
+
+                    <StackPanel Height="3" />
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock 
+                            Foreground="#444444"
+                            FontSize="13"
+                            Margin="0, 0, 6, 0"
+                            Text="Self registration code:" />
+                    <TextBox 
+                        Width="100"
+                        Foreground="#444444"
+                        FontSize="13"
+                        Text="{Binding Project.SmsModule.SelfRegistrationCode, Mode=TwoWay}"
+                         />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Height="8" />
+
+                <TextBlock FontSize="17" Foreground="#444444" FontWeight="Light" Text="Custom AT Startup Commands:" />
+                <TextBox x:Name="txtAT" 
+                         Text="{Binding Project.SmsModule.StartupCommands, Mode=TwoWay}"
+                         Width="Auto"
+                         Foreground="#444444"
+                         VerticalScrollBarVisibility="Visible"
+                         AcceptsReturn="True" AcceptsTab="False" FontSize="14" HorizontalAlignment="Stretch" 
+                         Height="100"/>
+                
+                <StackPanel Height="8" />
+
+                <TextBlock FontSize="17" Foreground="#444444" FontWeight="Light"  Text="Authorized Senders:" />
+                <DataGrid x:Name="dgAuthorizedSenders" Height="320" Width="600"
+                          ItemsSource="{Binding Project.SmsModule.AuthorizedSmsSenders, Mode=TwoWay}"
+                          VirtualizingStackPanel.IsVirtualizing="True"
+                          CanUserAddRows="True"
+                          CanUserDeleteRows="True"
+                          CanUserResizeRows="False"
+                          CanUserReorderColumns="False"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="False"
+                          VirtualizingStackPanel.VirtualizationMode="Recycling"
+                          Style="{StaticResource DataGridDemoStyle}"
+                          VerticalAlignment="Stretch"
+                          AutoGenerateColumns="True"
+                          >
+                </DataGrid>
+
+                <Button HorizontalAlignment="Right"
+                        Height="22" 
+                        Width="100"
+                                    Margin="10, 4, 0, 10" 
+                                    Command="{Binding AddAuthorizedSenderCommand}"
+                                    CommandParameter="555 555 5555"
+                                    Content="Add User"/>
+                <!--<ListBox x:Name="lbProjects" VerticalAlignment="Stretch" Height="183" ItemsSource="{Binding Projects}">
+                    <ListBox.DataContext>
+                        <local:ProjectListViewModel />
+                    </ListBox.DataContext>
+                </ListBox>-->
+
+                <StackPanel Height="4" />
+
+                <UniformGrid Rows="1" Columns="4" Width="Auto" Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                    <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <Button HorizontalAlignment="Stretch" Width="Auto" 
+                                    Grid.Row="0" Grid.Column="2" 
+                                    Margin="10, 0, 0, 0" 
+                                    Command="{Binding SaveSettingsCommand}"
+                                    Content="Save"/>
+                    
+                    <Button HorizontalAlignment="Stretch" Width="Auto" 
+                                    Grid.Row="0" Grid.Column="3" 
+                                    Margin="10, 0, 0, 0" 
+                                    Command="{Binding ToggleSettingsCommand}"
+                                    CommandParameter="{StaticResource False}"
+                                    Content="Cancel"/>
+                </UniformGrid>
+                <StackPanel Height="4" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

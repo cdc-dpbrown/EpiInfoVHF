@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ContactTracing.CaseView.EpiDataHelper">
+    <Position X="4.5" Y="0.75" Width="3.25" />
+    <Members>
+      <Property Name="BoundaryAggregation" Hidden="true" />
+      <Property Name="BoundriesAtLevel" Hidden="true" />
+      <Property Name="CancelIssueListGeneration" Hidden="true" />
+      <Property Name="CaseCollection" Hidden="true" />
+      <Property Name="CaseCollectionView" Hidden="true" />
+      <Property Name="CaseDataSelectCommand" Hidden="true" />
+      <Property Name="CaseFormId" Hidden="true" />
+      <Property Name="CasesWithoutContactsCollectionView" Hidden="true" />
+      <Property Name="ContactCollection" Hidden="true" />
+      <Property Name="ContactCollectionView" Hidden="true" />
+      <Property Name="ContactDataSelectCommand" Hidden="true" />
+      <Property Name="ContactForm" Hidden="true" />
+      <Property Name="ContactFormId" Hidden="true" />
+      <Property Name="ContactLinkCollection" Hidden="true" />
+      <Property Name="ContactTeams" Hidden="true" />
+      <Property Name="ConvertCaseToContactWithExistingSources" Hidden="true" />
+      <Property Name="ConvertCaseToContactWithNewSource" Hidden="true" />
+      <Property Name="ConvertContactToCase" Hidden="true" />
+      <Property Name="Countries" Hidden="true" />
+      <Property Name="CurrentCaseLinkCollection" Hidden="true" />
+      <Property Name="CurrentContactLinkCollection" Hidden="true" />
+      <Property Name="CurrentExposureCollection" Hidden="true" />
+      <Property Name="IsolatedCollectionView" Hidden="true" />
+      <Property Name="IsSendingServerUpdates" Hidden="true" />
+      <Property Name="IsShowingCaseReportForm" Hidden="true" />
+      <Property Name="IsShowingDataExporter" Hidden="true" />
+      <Property Name="IsShowingError" Hidden="true" />
+      <Property Name="IssueCollection" Hidden="true" />
+      <Property Name="IssueList" Hidden="true" />
+      <Property Name="IsSuperUser" Hidden="true" />
+      <Property Name="IsUsingDeprecatedVersion" Hidden="true" />
+      <Property Name="IsUsingOutdatedVersion" Hidden="true" />
+      <Property Name="IsWaitingOnOtherClients" Hidden="true" />
+      <Property Name="LabFormId" Hidden="true" />
+      <Property Name="LabTable" Hidden="true" />
+      <Property Name="LoadStatus" Hidden="true" />
+      <Property Name="MacAddress" Hidden="true" />
+      <Property Name="MoveToFirstCaseRecordCommand" Hidden="true" />
+      <Property Name="MoveToLastCaseRecordCommand" Hidden="true" />
+      <Property Name="MoveToNextCaseRecordCommand" Hidden="true" />
+      <Property Name="MoveToPreviousCaseRecordCommand" Hidden="true" />
+      <Property Name="PollRate" Hidden="true" />
+      <Property Name="PopulateLabRecordsForCase" Hidden="true" />
+      <Property Name="PrevFollowUpCollection" Hidden="true" />
+      <Property Name="RefreshAgeGroupData" Hidden="true" />
+      <Property Name="RefreshOnTick" Hidden="true" />
+      <Property Name="RemoveCaselessContactsCommand" Hidden="true" />
+      <Property Name="RemoveExtraneousPageTableRecordsCommand" Hidden="true" />
+      <Property Name="RepairMetaFieldsTableCommand" Hidden="true" />
+      <Property Name="RepopulateCollectionsCommand" Hidden="true" />
+      <Property Name="RequestIssueListGeneration" Hidden="true" />
+      <Property Name="SearchCases" Hidden="true" />
+      <Property Name="SearchCasesText" Hidden="true" />
+      <Property Name="SearchContacts" Hidden="true" />
+      <Property Name="SearchContactsText" Hidden="true" />
+      <Property Name="SearchExistingCases" Hidden="true" />
+      <Property Name="SearchExistingCasesText" Hidden="true" />
+      <Property Name="SearchExistingContacts" Hidden="true" />
+      <Property Name="SearchExistingContactsText" Hidden="true" />
+      <Property Name="SearchIsoCases" Hidden="true" />
+      <Property Name="SearchIsoCasesText" Hidden="true" />
+      <Property Name="ShowCasesForContact" Hidden="true" />
+      <Property Name="ShowContactsForCase" Hidden="true" />
+      <Property Name="ShowContactsForDate" Hidden="true" />
+      <Property Name="ShowExposedCasesForCase" Hidden="true" />
+      <Property Name="ToggleAdminBoundaryFieldEditorCommand" Hidden="true" />
+      <Property Name="ToggleShortCaseReportFormCommand" Hidden="true" />
+      <Property Name="UpdateCaseContactLink" Hidden="true" />
+      <Property Name="UpdateCaseExposureLink" Hidden="true" />
+      <Property Name="UpdateContact" Hidden="true" />
+      <Property Name="UpdateDaily" Hidden="true" />
+      <Property Name="UpdateOrAddCase" Hidden="true" />
+      <Property Name="UpdateOrAddContact" Hidden="true" />
+      <Property Name="UpdateTimer" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="ContactTracing.CaseView.EpiDataHelper.CaseDataPopulatedHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EpiDataHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="ContactTracing.CaseView.EpiDataHelper.InitialSetupRunHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EpiDataHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="ContactTracing.CaseView.EpiDataHelper.CaseDeletedHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EpiDataHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="ContactTracing.CaseView.EpiDataHelper.DuplicateIdDetectedHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EpiDataHelper.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>nb/zf/9/ZfrfuP7Tvmbzf8PPsy+nf/y/dd77MKv/vT8=</HashCode>
+      <FileName>EpiDataHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContactTracing.Controls.NewOutbreak">
+    <Position X="1.5" Y="1" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

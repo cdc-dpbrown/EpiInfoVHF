@@ -1,0 +1,245 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.FilterSortDropdown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             IsEnabled="{Binding IsWaitingOnOtherClients, Converter={StaticResource BooleanInverter}}"
+             mc:Ignorable="d" 
+             d:DesignHeight="436" d:DesignWidth="607" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Thickness x:Key="margin" Left="0" Top="2" Bottom="2" Right="0" />
+        <Style TargetType="TextBox" x:Key="DefaultTextBoxStyle">
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="FullTextBoxStyle">
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="BorderBrush" Value="Black" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}"
+            Padding="20" Margin="0,0,0,-81">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="col1" Width="Auto" MinWidth="565" />
+                <ColumnDefinition Width="0*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="47">
+                <Button Style="{StaticResource PanelCloseButtonStyle}"  Click="btnClose_Click" RenderTransformOrigin="1.286,0.375" Width="40" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="{x:Static p:Resources.PrintFilterSortTitle}" Height="48" Margin="0,0,43,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" x:Name="svPrimary" Visibility="Visible" HorizontalAlignment="Stretch" Margin="0,1,0,-10" Grid.Row="1" Grid.RowSpan="2" Height="430" VerticalAlignment="Top" >
+                <StackPanel Margin="0, 0, 10, 0">
+                    <StackPanel Height="347" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Grid Width="560">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" MinWidth="9" />
+                                <ColumnDefinition Width="176*" />
+                                <ColumnDefinition Width="Auto" MinWidth="9" />
+                                <ColumnDefinition Width="33"/>
+                                <ColumnDefinition Width="55*" />
+                                <ColumnDefinition Width="Auto" MinWidth="8" />
+                                <ColumnDefinition Width="204*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="8" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock  Grid.Row="0" Grid.Column="0" x:Name="SortOption" Text="Sort by:" Style="{StaticResource Heading2}"/>
+                            <TextBlock Grid.Row="1"  Grid.Column="2" x:Name="tbSortContactVariable" Text="Contact Variable" />
+
+                            <!--sort-->
+                            <ComboBox Grid.Row="2" Grid.Column="2" x:Name="cmdSort_1" Margin="{StaticResource margin}" HorizontalAlignment="Stretch" Grid.ColumnSpan="1" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <TextBlock Grid.Row="3"  Grid.Column="0" x:Name="tbsort_2" Text="then" HorizontalAlignment="Right" VerticalAlignment="Center" Height="16" Margin="0,5" Width="24" />
+                            <ComboBox Grid.Row="3" Grid.Column="2" x:Name="cmdSort_2" Margin="{StaticResource margin}" HorizontalAlignment="Stretch" Grid.ColumnSpan="1" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <TextBlock Grid.Row="4"  Grid.Column="0"  x:Name="tbsort_3" Text="then" HorizontalAlignment="Right" VerticalAlignment="Center" Height="16" Margin="0,5" Width="24" />
+                            <ComboBox Grid.Row="4"  Grid.Column="2" x:Name="cmdSort_3" Margin="{StaticResource margin}" HorizontalAlignment="Stretch" Grid.ColumnSpan="1" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+
+                            <!--sort opton-->
+                            <TextBlock Grid.Row="1"  Grid.Column="5" Grid.ColumnSpan="3" x:Name="tbIsAggregateSort" Text="Advanced Settings" VerticalAlignment="Bottom" Height="16" />
+                            <ComboBox Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" x:Name="cmdIsAggregateSort" Margin="{StaticResource margin}" HorizontalAlignment="Stretch" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3" x:Name="cmdIsInclusive" Margin="{StaticResource margin}" HorizontalAlignment="Stretch" SelectedValuePath="Key"  DisplayMemberPath="Value" RenderTransformOrigin="-0.335,0.75"/>
+
+                            <!--filter-->
+                            <TextBlock  Grid.Row="6" Grid.Column="0" x:Name="FilterOption" Text="Filter by:" Style="{StaticResource Heading2}" />
+                            <TextBlock Grid.Row="7" Grid.Column="2" x:Name="tbFilterContactVariableText" Text="Contact Variable" />
+
+                            <!--1-->
+                            <ComboBox Grid.Row="8" Grid.Column="2" x:Name="filter_var_1"  Margin="{StaticResource margin}"  SelectionChanged="filterVar_SelectionChanged" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="8" Grid.Column="4"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" x:Name="filter_op_1"  Margin="{StaticResource margin}" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="8" Grid.Column="7" x:Name="filter_val_1"  Margin="{StaticResource margin}"/>
+
+                            <!--2-->
+                            <ComboBox Grid.Row="9" Grid.Column="0" x:Name="filter_combine_2" Margin="{StaticResource margin}" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="9" Grid.Column="2" x:Name="filter_var_2" Margin="{StaticResource margin}" SelectionChanged="filterVar_SelectionChanged" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="9" Grid.Column="4" x:Name="filter_op_2" Margin="{StaticResource margin}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch"   SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="9" Grid.Column="7" x:Name="filter_val_2" Margin="{StaticResource margin}"/>
+
+                            <!--3-->
+                            <ComboBox Grid.Row="10" Grid.Column="0" x:Name="filter_combine_3" Margin="{StaticResource margin}" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="10" Grid.Column="2" x:Name="filter_var_3" Margin="{StaticResource margin}" SelectionChanged="filterVar_SelectionChanged" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="10" Grid.Column="4" x:Name="filter_op_3" Margin="{StaticResource margin}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="10" Grid.Column="7" x:Name="filter_val_3" Margin="{StaticResource margin}"/>
+
+                            <!--4-->
+                            <ComboBox Grid.Row="11" Grid.Column="0" x:Name="filter_combine_4" Margin="{StaticResource margin}" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="11" Grid.Column="2" x:Name="filter_var_4" Margin="{StaticResource margin}" SelectionChanged="filterVar_SelectionChanged" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="11" Grid.Column="4" x:Name="filter_op_4" Margin="{StaticResource margin}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="11" Grid.Column="7" x:Name="filter_val_4" Margin="{StaticResource margin}"/>
+
+                            <!--5-->
+                            <ComboBox Grid.Row="12" Grid.Column="0" x:Name="filter_combine_5" Margin="{StaticResource margin}" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="12" Grid.Column="2" x:Name="filter_var_5" Margin="{StaticResource margin}" SelectionChanged="filterVar_SelectionChanged" SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="12" Grid.Column="4" x:Name="filter_op_5" Margin="{StaticResource margin}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch"  SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <ComboBox Grid.Row="12" Grid.Column="7" x:Name="filter_val_5" Margin="{StaticResource margin}"/>
+
+                            <!--contact added on or after-->
+                            <ComboBox Grid.Row="13" Grid.Column="0" x:Name="filter_combine_6" Margin="{StaticResource margin}" SelectedValuePath="Key" DisplayMemberPath="Value"/>
+                            <TextBlock Grid.Row="13" Grid.Column="2" Grid.ColumnSpan="4"  x:Name="cmbFilterOptionAddedAfterText" Text="Contact added on or after" Margin="0,6" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="16"/>
+                            <DatePicker Grid.Row="13" Grid.Column="7" x:Name="cmbFilterOptionAddedAfter_Date" Margin="{StaticResource margin}" SelectedDateChanged="filterVar_SelectedDateChanged" />
+
+                            <!--contact not seen on or after-->
+                            <ComboBox Grid.Row="14" Grid.Column="0" x:Name="filter_combine_7" Margin="{StaticResource margin}"  SelectedValuePath="Key"  DisplayMemberPath="Value"/>
+                            <TextBlock Grid.Row="14" Grid.Column="2" Grid.ColumnSpan="4" x:Name="cmbFilterOptionSeenAfterTxt" Text="Contact not seen on or after" Margin="0,6" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="16" />
+                            <DatePicker Grid.Row="14" Grid.Column="7" x:Name="cmbFilterOptionSeenAfter_Date" Margin="{StaticResource margin}" SelectedDateChanged="filterVar_SelectedDateChanged" />
+
+                            <!--<ComboBox Grid.Row="8" Margin="{StaticResource margin}" x:Name="checkBoxSortOptionOne" Grid.Column="2" HorizontalAlignment="Left" Width="182" />-->
+                            <!--<TextBlock x:Name="tblockVillageRes" Grid.Column="0" Grid.Row="8" Text="{x:Static p:Resources.ContactFormVillage}" />
+                            <TextBlock x:Name="tblockDistrictRes" Grid.Column="0" Grid.Row="6" Text="{x:Static p:Resources.PrintedFormDistrictRes}" />
+                            <TextBlock x:Name="tblockSCRes" Grid.Column="0" Grid.Row="7" Text="{x:Static p:Resources.PrintedFormSubCountyRes}" />
+                            <StackPanel Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="4" Margin="0, 0, 0, 6"/>
+
+                            <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" Grid.ColumnSpan="2" />-->
+
+                            <!--<ComboBox Margin="{StaticResource margin}" ItemsSource="{Binding Villages}" x:Name="cmbVillage" Grid.Column="2" IsEditable="True" HorizontalAlignment="Left" Grid.Row="8" Width="182" />
+                            <ComboBox Margin="{StaticResource margin}" ItemsSource="{Binding Districts}" x:Name="cmbDistrict" Grid.Column="2" IsEditable="True" HorizontalAlignment="Left" Grid.Row="6" Width="182" SelectionChanged="cmbDistrict_SelectionChanged" />
+                            <ComboBox Margin="{StaticResource margin}" x:Name="cmbSubCounty" Grid.Column="2" IsEditable="True" HorizontalAlignment="Left" Grid.Row="7" Width="182" />
+
+                            <TextBlock x:Name="tbFilterTeam" Grid.Row="16" Grid.Column="0" Text="Team:" />
+                            <ComboBox x:Name="cmbFilterTeam" Grid.Row="16" Margin="{StaticResource margin}" ItemsSource="{Binding ContactTeams}" Grid.Column="2" IsEditable="True" HorizontalAlignment="Left" Width="182" SelectionChanged="cmbDistrict_SelectionChanged" />
+                            <TextBlock x:Name="tbFilterFacility" Grid.Row="17" Grid.Column="0" Text="Facility:" />
+                            <ComboBox x:Name="cmbFilterFacility" Grid.Row="17" Margin="{StaticResource margin}" ItemsSource="{Binding Facilities}" Grid.Column="2" IsEditable="True" HorizontalAlignment="Left" Width="182" SelectionChanged="cmbDistrict_SelectionChanged" />-->
+
+                            <!--<TextBlock x:Name="tbFilterAdded" Grid.Row="13" Grid.Column="0" Text="Added Since:" />
+                            <DatePicker x:Name="dateFilterAdded" Grid.Row="13" Margin="{StaticResource margin}" Grid.Column="2" HorizontalAlignment="Left" Width="182" />
+                            <TextBlock x:Name="tbFilterSeen" Grid.Row="14" Grid.Column="0" Text="Seen Since:" />
+                            <DatePicker x:Name="dateFilterSeen" Grid.Row="14" Margin="{StaticResource margin}" Grid.Column="2" HorizontalAlignment="Left" Width="182" />-->
+
+                            <!--<TextBox Visibility="Collapsed" IsEnabled="False" Margin="0,2,0,4" x:Name="txtRiskLevel" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="14" Width="140" Grid.RowSpan="2" />
+                            -->
+                            <!--<TextBox Margin="{StaticResource margin}" x:Name="txtFinalOutcome" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="14" Width="120" />-->
+                            <!--
+
+                            <TextBlock Visibility="Collapsed" Grid.Row="17" Text="{x:Static p:Resources.HTMLColHeaderNotes}" />
+                            <TextBox Visibility="Collapsed" x:Name="txtNotes" Margin="0,2,0,-46" HorizontalAlignment="Left" Width="230" Grid.Column="2" Grid.Row="17" Grid.ColumnSpan="2" Grid.RowSpan="4"/>-->
+                        </Grid>
+                        <!--<Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto"  MinWidth="12"  />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto"  MinWidth="12" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <ComboBox Grid.Row="0" Grid.Column="0" x:Name="cmbFilterOptionSixAndOr" Margin="{StaticResource margin}" >
+                                <ComboBoxItem>and</ComboBoxItem>
+                                <ComboBoxItem>or</ComboBoxItem>
+                            </ComboBox>
+                            <TextBlock Grid.Row="0" Grid.Column="2" x:Name="tbFilterAdded" Text="Added Since:" />
+                            <DatePicker Grid.Row="0" Grid.Column="4"  x:Name="dateFilterAdded" Margin="{StaticResource margin}" HorizontalAlignment="Left"/>
+                            <ComboBox Grid.Row="0" Grid.Column="0" x:Name="cmbFilterOptionSevenAndOr" Margin="{StaticResource margin}" >
+                                <ComboBoxItem>and</ComboBoxItem>
+                                <ComboBoxItem>or</ComboBoxItem>
+                            </ComboBox>
+                            <DatePicker Grid.Row="1" Grid.Column="2"   x:Name="dateFilterSeen" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+
+                        </Grid>-->
+                        <!--<TextBlock Margin="0, 10, 0, 4" x:Name="tblockSourceCase" Style="{StaticResource Heading2}"
+                           Text="Daily Report" />-->
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <!--<StackPanel Grid.Row="1" Grid.Column="0" Margin="0, 0, 0, 0" x:Name="panelRelationshipInfo" Visibility="Collapsed">
+                <TextBlock Margin="0, 10, 0, 0" x:Name="tblockRelationship" Style="{StaticResource Heading2}"
+                       Text="{x:Static p:Resources.RelationshipInformation}" />
+
+                <StackPanel x:Name="panelRelationship" Margin="0,0,10,0" Height="Auto" HorizontalAlignment="Left" Visibility="Visible" Orientation="Horizontal">
+                    <StackPanel>
+                        <Label Content="{x:Static p:Resources.DateLastContact}"/>
+                        <DatePicker x:Name="dateContact" Width="170" HorizontalAlignment="Left"></DatePicker>
+                        -->
+            <!--<Calendar x:Name="calendarContact" HorizontalAlignment="Left" SelectedDate="" />-->
+            <!--
+
+                        <CheckBox Margin="0, 10, 0, 4" x:Name="cbxEstimated" Content="{x:Static p:Resources.DateEstimated}"/>
+
+                        <Label Content="{x:Static p:Resources.ContactRelationship}"/>
+                        <TextBox x:Name="txtRelationship" HorizontalAlignment="Left" Width="180"></TextBox>
+
+                        <Label Content="{x:Static p:Resources.ContactType}"/>
+                        <StackPanel>
+                            <CheckBox x:Name="cbxCon1" Margin="0,2,0,0" Content="{x:Static p:Resources.TypeTouchedFluid}"/>
+                            <CheckBox x:Name="cbxCon2" Margin="0,2,0,0" Content="{x:Static p:Resources.TypePhysicalContact}"/>
+                            <CheckBox x:Name="cbxCon3" Margin="0,2,0,0" Content="{x:Static p:Resources.TypeSharedClothes}"/>
+                            <CheckBox x:Name="cbxCon4" Margin="0,2,0,0" Content="{x:Static p:Resources.TypeSameRoom}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>-->
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" Width="270" RenderTransformOrigin="0.204,0.467" Margin="0,386,0,0" Height="36" VerticalAlignment="Top">
+                <Button Margin="5,5,5,4" x:Name="btnSave" MinWidth="120" Content="Print" IsEnabled="{Binding IsLoadingProjectData, Converter={StaticResource BooleanInverter}}" Click="btnPrint_Click" Width="111" />
+                <Button Margin="5,6,5,4" x:Name="btnCancel" MinWidth="120" Content="Cancel" Click="btnCancel_Click" />
+            </StackPanel>
+
+            <!--<Rectangle x:Name="rectangleSplitter" Grid.Column="1" Width="1" HorizontalAlignment="Left" Grid.Row="1" Margin="0, 1, 0, 1" Stroke="Gray" Fill="Transparent" StrokeThickness="1" StrokeDashArray="1.5 1.5 1.3" />-->
+        </Grid>
+    </Border>
+</UserControl>

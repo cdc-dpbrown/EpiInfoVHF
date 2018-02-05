@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.DailyFollowUpCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localconverters="clr-namespace:ContactTracing.CaseView.Converters"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             mc:Ignorable="d" 
+             x:Name="FollowUpCard"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <localconverters:FollowUpStatusToBackgroundConverter x:Key="FollowUpStatusToBackgroundConverter" />
+        <localconverters:FollowUpStatusToTooltipTextConverter x:Key="FollowUpStatusToTooltipTextConverter" />
+        <localconverters:DayStringPrefix x:Key="DayStringPrefix" />
+        <localconverters:TempStringFormatter x:Key="TempStringFormatter" />
+    </UserControl.Resources>
+    <Grid TextBlock.TextAlignment="Left">
+        <Border Background="{StaticResource LightBackgroundBrush}" 
+                BorderBrush="{StaticResource AccentBrush}" 
+                BorderThickness="1" 
+                Padding="20">
+            
+            <StackPanel>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Background="{Binding Status, Converter={StaticResource FollowUpStatusToBackgroundConverter}, FallbackValue='Green'}" />
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock FontSize="24" Margin="0, 0, 0, 5" HorizontalAlignment="Left" FontWeight="SemiBold" Text="{Binding Day, Converter={StaticResource DayStringPrefix}, FallbackValue='Day'}" />
+                        <TextBlock FontSize="12" Margin="0, 0, 0, 5" HorizontalAlignment="Left" FontWeight="Normal" Text="{Binding Date, StringFormat='d'}" />
+                        <TextBlock FontSize="12" Margin="0, 0, 0, 0" HorizontalAlignment="Left" FontWeight="Normal" Text="{Binding Status, Converter={StaticResource FollowUpStatusToTooltipTextConverter}}"/>
+                    </StackPanel>
+                </Grid>
+                
+                <StackPanel Height="10" />
+
+                <TextBlock HorizontalAlignment="Left" FontWeight="Normal" FontSize="16" Foreground="#333333" Text="Contact name:"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left" FontSize="13" Text="{Binding ContactVM.OtherNames}" />
+                    <StackPanel Width="6" />
+                    <TextBlock HorizontalAlignment="Left" FontSize="13" Text="{Binding ContactVM.Surname}" />
+                </StackPanel>
+
+                <StackPanel Height="10" Visibility="{Binding Path=IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=FollowUpCard}" />
+
+                <!--<TextBlock HorizontalAlignment="Left" FontWeight="Normal" FontSize="16" Foreground="#333333" Text="Health care worker?"/>
+                <TextBlock HorizontalAlignment="Left" FontSize="13" Text="{Binding ContactVM.HCW}" />
+
+                <StackPanel Height="10" />-->
+
+                <TextBlock Visibility="{Binding Path=IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=FollowUpCard}" HorizontalAlignment="Left" FontWeight="Normal" FontSize="16" Foreground="#333333" Text="Temperature 1:"/>
+                <TextBlock Visibility="{Binding Path=IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=FollowUpCard}" HorizontalAlignment="Left" FontSize="13" Text="{Binding Temp1, Converter={StaticResource TempStringFormatter}}" />
+
+                <StackPanel Visibility="{Binding Path=IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=FollowUpCard}" Height="10" />
+
+                <TextBlock Visibility="{Binding Path=IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=FollowUpCard}" HorizontalAlignment="Left" FontWeight="Normal" FontSize="16" Foreground="#333333" Text="Temperature 2:"/>
+                <TextBlock Visibility="{Binding Path=IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=FollowUpCard}" HorizontalAlignment="Left" FontSize="13" Text="{Binding Temp2, Converter={StaticResource TempStringFormatter}}" />
+
+
+            </StackPanel>
+            
+        </Border>
+    </Grid>
+</UserControl>

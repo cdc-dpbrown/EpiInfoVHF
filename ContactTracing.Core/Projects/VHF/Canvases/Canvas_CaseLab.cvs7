@@ -1,0 +1,47 @@
+﻿<DashboardCanvas>
+  <dashboardHelper>
+    <projectPath>C:\TFSCode\Epi Info 7\build\debug\Projects\UgandaVHFOutbreak\UgandaVHFOutbreak.prj</projectPath>
+    <viewName>CaseInformationForm</viewName>
+    <advancedDataFilterCondition>
+    </advancedDataFilterCondition>
+    <useAdvancedDataFilterCondition>False</useAdvancedDataFilterCondition>
+    <relatedDataConnections>
+      <relatedDataConnection>
+        <projectPath>C:\TFSCode\Epi Info 7\build\debug\Projects\UgandaVHFOutbreak\UgandaVHFOutbreak.prj</projectPath>
+        <viewName>LaboratoryResultsForm</viewName>
+        <connectionString>
+        </connectionString>
+        <tableName>
+        </tableName>
+        <parentKeyField>GlobalRecordId</parentKeyField>
+        <childKeyField>FKEY</childKeyField>
+        <useUnmatched>True</useUnmatched>
+        <sameDataSource>True</sameDataSource>
+      </relatedDataConnection>
+    </relatedDataConnections>
+    <dataFilters recordProcessScope="undeleted" />
+    <dashboardRules />
+  </dashboardHelper>
+  <Gadgets />
+  <OutputSettings>
+    <showCanvasSummaryInfo>True</showCanvasSummaryInfo>
+    <showGadgetHeadings>True</showGadgetHeadings>
+    <showGadgetSettings>True</showGadgetSettings>
+    <useAlternatingColors>False</useAlternatingColors>
+    <tableFontSize>13</tableFontSize>
+    <customHeading>
+    </customHeading>
+    <customSummary>
+    </customSummary>
+    <customConclusion>
+    </customConclusion>
+    <customTableFontFamily>
+    </customTableFontFamily>
+    <canvasHeight>8000</canvasHeight>
+    <sortGadgets>True</sortGadgets>
+  </OutputSettings>
+  <CanvasSettings>
+    <editMode>True</editMode>
+    <layoutMode>free</layoutMode>
+  </CanvasSettings>
+</DashboardCanvas>

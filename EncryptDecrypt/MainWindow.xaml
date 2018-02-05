@@ -1,0 +1,21 @@
+﻿<Window x:Class="EncryptDecrypt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Connection String Encryption/Decryption" Height="180" Width="525">
+    <Grid>
+        <StackPanel>
+            <Label>Connection String (plaintext)</Label>
+            <TextBox x:Name="plainText"></TextBox>
+            <StackPanel Height="2" />
+            <Label>Connection String (ciphertext)</Label>
+            <TextBox x:Name="cipherText"></TextBox>
+            <StackPanel Height="10" />
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnEncrypt" Content="Encrypt" Width="120" HorizontalAlignment="Left" Click="btnEncrypt_Click" />
+                <StackPanel Width="10" />
+                <Button x:Name="btnDecrypt" Content="Decrypt" Width="120" HorizontalAlignment="Left" Click="btnDecrypt_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

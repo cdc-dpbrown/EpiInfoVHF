@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.SqlToMdbCopier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="700">
+    <Grid>
+        <Border Background="{StaticResource LightBackgroundBrush}" BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+            Padding="20">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                    <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                    <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="CREATE MDB FILE COPY" IsHitTestVisible="False" />
+                </StackPanel>
+                <StackPanel Height="14" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Region:" />
+                <TextBox Width="150" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" HorizontalAlignment="Left" Text="International" />
+
+                <StackPanel Height="14" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Language:" />
+                <TextBox Width="150" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" HorizontalAlignment="Left" Text="en-US" />
+
+                <StackPanel Height="14" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Country:" />
+                <TextBox Width="150" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" HorizontalAlignment="Left" Text="Sierra Leone" />
+
+
+                <StackPanel Height="14" />
+
+                <TextBlock TextWrapping="Wrap" MaxWidth="600" HorizontalAlignment="Left">Click OK to generate an MDB file copy of the project. This process may take up to 30 minutes to complete. French language databases are unsupported at this time.</TextBlock>
+
+                <StackPanel Height="14" />
+
+                <UniformGrid Grid.Row="1" VerticalAlignment="Bottom" Rows="1" Columns="4" Width="Auto" Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                    <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <Button HorizontalAlignment="Stretch" 
+                            Width="Auto" 
+                            Grid.Row="0" 
+                            Grid.Column="2" 
+                            Margin="0, 0, 5, 0" 
+                            x:Name="btnOK" 
+                            Command="{Binding CreateMDBCommand}"
+                            Click="btnOK_Click" 
+                            Content="Start Copying"/>
+                        <Button HorizontalAlignment="Stretch" Width="Auto" Grid.Row="0" Grid.Column="3" Margin="5, 0, 0, 0" x:Name="btnCancel" Command="{Binding CancelCommand}" Content="Close"/>
+                </UniformGrid>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+    <DockPanel Grid.RowSpan="100" Background="#66000000" x:Name="panelDataExport" Visibility="{Binding IsShowingCopyProgress, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" >
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+                <StackPanel Margin="40, 20, 40, 20">
+
+                    <StackPanel>
+                        <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                        <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="COPYING DATA TO MDB" />
+                    </StackPanel>
+
+                    <StackPanel Height="10" />
+                    <ProgressBar Width="520" HorizontalAlignment="Stretch" Height="16" Foreground="#558FFF" Minimum="0" Maximum="{Binding MaxProgressValue}" Value="{Binding ProgressValue, FallbackValue=0}" />
+                    <StackPanel Height="4" />
+
+                    <!--<TextBlock TextWrapping="Wrap" Text="{Binding MinorSyncStatus, FallbackValue=...}" />
+                            <StackPanel Height="6" />
+
+                            <ProgressBar Width="520" HorizontalAlignment="Stretch" Height="16" Foreground="#558FFF" Minimum="0" Maximum="1" Value="{Binding MajorProgressValue, FallbackValue=0}" />
+                            <StackPanel Height="4" />-->
+
+                            <TextBlock TextWrapping="Wrap" Text="{Binding CopyStatus, FallbackValue=...}" />
+                    <!--<TextBlock TextWrapping="Wrap" Text="{Binding RecordsExported, FallbackValue=...}" />-->
+                    <StackPanel Height="4" />
+
+
+                    <Button Width="90" Margin="4, 4, 0, 0" 
+                                HorizontalAlignment="Right"
+                                x:Name="panelDataExportOKButton" 
+                                Command="{Binding StopCopyCommand}"
+                                Content="OK" />
+                </StackPanel>
+            </Border>
+        </DockPanel>
+    </DockPanel>
+    </Grid>
+</UserControl>

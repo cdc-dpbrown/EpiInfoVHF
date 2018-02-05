@@ -1,0 +1,268 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.ExportSyncFile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Converts="clr-namespace:ContactTracing.CaseView.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="750">
+    <UserControl.Resources>        
+        <Converts:BindingProxy x:Key="proxy" Data="{Binding}" />        
+    </UserControl.Resources>
+    <Grid>
+        <Border Background="{StaticResource LightBackgroundBrush}" BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" 
+            Padding="20">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                        <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                        <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="DATA EXPORT OPTIONS" IsHitTestVisible="False" />
+                    </StackPanel>
+
+                    <StackPanel Height="14" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Sync File Name and Location:" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="tboxFileName" Width="Auto" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" Text="{Binding SyncFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button x:Name="btnBrowse" Grid.Column="1" VerticalAlignment="Stretch" Height="Auto" Content="Browse" Click="btnBrowse_Click" />
+                    </Grid>
+                    <StackPanel Visibility="{Binding Data.ShowExportOptions, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource proxy},FallbackValue=Collapsed}">
+                    <StackPanel Height="14" />
+
+                    <RadioButton x:Name="includeCasesContacts" GroupName="N1" Content="Include case and contact data" IsChecked="{Binding IncludeCasesAndContacts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <StackPanel Height="4" />
+                    <RadioButton x:Name="includeCasesOnly" GroupName="N1"  Content="Include case data only" IsChecked="{Binding IncludeCasesOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <!--<StackPanel Height="4" />
+                    <RadioButton x:Name="includeContactsOnly" GroupName="N1" Content="Include contact data only" />-->
+
+                    <StackPanel Height="18" />
+
+                    <!--<CheckBox Content="Filter data" IsChecked="False" x:Name="checkboxFilterData" Unchecked="checkboxFilterData_Unchecked" />
+                    <StackPanel Height="4" />
+                    <Grid IsEnabled="{Binding ElementName=checkboxFilterData, Path=IsChecked}" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Case Variable" />
+
+                        <ComboBox x:Name="cmbVariableName1" Width="120" Grid.Row="1" Grid.Column="1" Margin="0, 0, 4, 0">
+                            <ComboBoxItem Content="DistrictRes" />
+                            <ComboBoxItem Content="DistrictOnset" />
+                            <ComboBoxItem Content="SCRes" />
+                            <ComboBoxItem Content="SCOnset" />
+                            <ComboBoxItem Content="ID" />
+                        </ComboBox>
+                        <ComboBox x:Name="cmbOperator1" Width="120" Grid.Row="1" Grid.Column="2" SelectedIndex="0" Margin="0, 0, 4, 0">
+                            <ComboBoxItem Content="equals" />
+                            <ComboBoxItem Content="contains" />
+                        </ComboBox>
+                        <TextBox x:Name="tboxValue1"  Width="120" Grid.Row="1" Grid.Column="3" Margin="0, 0, 0, 0" />
+
+                        <ComboBox x:Name="cmbLogicalOperator" Grid.Row="2" Grid.Column="0" Margin="0, 4, 4, 0" SelectedIndex="0" Width="50">
+                            <ComboBoxItem Content="" />
+                            <ComboBoxItem Content="and" />
+                            <ComboBoxItem Content="or" />
+                        </ComboBox>
+
+                        <ComboBox x:Name="cmbVariableName2" Width="120" Grid.Row="2" Grid.Column="1" Margin="0, 4, 4, 0" IsEnabled="{Binding ElementName=cmbLogicalOperator, Path=SelectedIndex, Converter={StaticResource CountToEnabledConverter}}">
+                            <ComboBoxItem Content="DistrictRes" />
+                            <ComboBoxItem Content="DistrictOnset" />
+                            <ComboBoxItem Content="SCRes" />
+                            <ComboBoxItem Content="SCOnset" />
+                            <ComboBoxItem Content="ID" />
+                        </ComboBox>
+                        <ComboBox x:Name="cmbOperator2" Width="120" Grid.Row="2" Grid.Column="2" SelectedIndex="0" Margin="0, 4, 4, 0"  IsEnabled="{Binding ElementName=cmbLogicalOperator, Path=SelectedIndex, Converter={StaticResource CountToEnabledConverter}}">
+                            <ComboBoxItem Content="equals" />
+                            <ComboBoxItem Content="contains" />
+                        </ComboBox>
+                        <TextBox x:Name="tboxValue2"  Width="120" Grid.Row="2" Grid.Column="3" Margin="0, 4, 0, 0"  IsEnabled="{Binding ElementName=cmbLogicalOperator, Path=SelectedIndex, Converter={StaticResource CountToEnabledConverter}}" />
+                    </Grid>-->
+
+                    <!--<StackPanel Height="18" />-->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                            <CheckBox Content="Only export records updated since " IsChecked="{Binding ApplyLastSaveFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" />
+                    <StackPanel Height="4" />
+                    <StackPanel Orientation="Horizontal" IsEnabled="{Binding ApplyLastSaveFilter}" Grid.Column="1" Margin="11,-4,-213,4">
+                        <!--<TextBlock VerticalAlignment="Center" Text="Include only records last updated between" Margin="0, 0, 4, 0" />
+                        <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding StartDate, Mode=OneWay}" />
+                        <TextBlock VerticalAlignment="Center" Text="and" Margin="4, 0, 4, 0" />
+                        <DatePicker SelectedDate="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding EndDate, Mode=OneWay}" />-->
+                                <DatePicker SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding StartDate, Mode=OneWay}" Grid.Column="1"/>
+                            <!--<TextBlock VerticalAlignment="Center" Text="and" Margin="4, 0, 4, 0" />-->
+                        <!--<DatePicker SelectedDate="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding EndDate, Mode=OneWay}" />-->
+                    </StackPanel>
+                        </Grid>
+
+                        <StackPanel Height="18" />
+
+                    <CheckBox Content="Filter data" IsChecked="{Binding ApplyFilters, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="checkboxFilterData" Unchecked="checkboxFilterData_Unchecked" />
+                    <StackPanel Height="4" />
+                    <Grid IsEnabled="{Binding ElementName=checkboxFilterData, Path=IsChecked}" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Case Variable" />
+
+                        <ComboBox x:Name="cmbVariableName1" Width="120" ItemsSource="{Binding FilterableFields}" SelectedValue="{Binding FilterField1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="0, 0, 4, 0" />
+                        <ComboBox x:Name="cmbOperator1" Width="120" Grid.Row="1" Grid.Column="2" SelectedIndex="0" Margin="0, 0, 4, 0" ItemsSource="{Binding FilterOperators}" SelectedValue="{Binding FilterOperator1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox x:Name="tboxValue1" Text="{Binding FilterValue1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Grid.Row="1" Grid.Column="3" Margin="0, 0, 0, 0" />
+
+                        <!--<TextBlock Grid.Row="2" Grid.Column="0" Text="and" Margin="0, 4, 4, 0" />-->
+                        <ComboBox x:Name="cmbLogicalOperator" ItemsSource="{Binding FilterJoinTypes}" SelectedValue="{Binding FilterJoinType}" Grid.Row="2" Grid.Column="0" Margin="0, 4, 4, 0" SelectedIndex="0" Width="50" />
+
+                        <ComboBox x:Name="cmbVariableName2" ItemsSource="{Binding FilterableFields}" SelectedValue="{Binding FilterField2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Grid.Row="2" Grid.Column="1" Margin="0, 4, 4, 0" IsEnabled="{Binding ElementName=cmbLogicalOperator, Path=SelectedIndex, Converter={StaticResource CountToEnabledConverter}}" />
+                        <ComboBox x:Name="cmbOperator2" Width="120" ItemsSource="{Binding FilterOperators}" SelectedValue="{Binding FilterOperator2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="2" SelectedIndex="0" Margin="0, 4, 4, 0"  IsEnabled="{Binding ElementName=cmbLogicalOperator, Path=SelectedIndex, Converter={StaticResource CountToEnabledConverter}}" />
+
+                        <TextBox x:Name="tboxValue2" Text="{Binding FilterValue2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Grid.Row="2" Grid.Column="3" Margin="0, 4, 0, 0"  IsEnabled="{Binding ElementName=cmbLogicalOperator, Path=SelectedIndex, Converter={StaticResource CountToEnabledConverter}}" />
+                    </Grid>
+
+                    <StackPanel Height="18" />
+
+                    <CheckBox Content="De-identify data" x:Name="checkboxDeidentifyData" IsChecked="{Binding DeIdentifyData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <StackPanel Height="18" />
+
+                    <!--<TextBlock>Record processing scope:</TextBlock>
+                    <ComboBox x:Name="cmbRecordProcessingScope" 
+                              Width="200" 
+                              HorizontalAlignment="Left" 
+                              SelectedIndex="0" 
+                              SelectedValue="{Binding RecordScope, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              ItemsSource="{StaticResource RecordProcessingScopeListString}" 
+                              DisplayMemberPath="DisplayString"
+                              SelectedValuePath="ValueString">
+                        </ComboBox>-->
+
+                </StackPanel>
+                </StackPanel>
+                
+                <UniformGrid Grid.Row="1" VerticalAlignment="Bottom" Rows="1"  Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                    <TextBlock Grid.Row="0" Grid.Column="0" ></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <Button HorizontalAlignment="Stretch" Visibility="{Binding Data.ShowExportOptions, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource proxy},FallbackValue=Collapsed}"
+                            Width="Auto" 
+                            Grid.Row="0" 
+                            Grid.Column="2" 
+                            Margin="0, 0, 5, 0" 
+                            x:Name="btnExport" 
+                            Click="btnExport_Click"
+                            Command="{Binding StartExportCommand}"
+                            Content="Export"/>
+                    <Button HorizontalAlignment="Stretch" Width="170" Grid.Row="0" Grid.Column="3" Margin="5, 0, 0, 0" x:Name="btnCancel" Command="{Binding CancelCommand}" Content="Close"/>
+                </UniformGrid>               
+            </Grid>
+        </Border>
+
+        <DockPanel Grid.RowSpan="100" Background="#66000000" x:Name="panelDataExport" Visibility="{Binding IsShowingExportProgress, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}" >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+                    <StackPanel Margin="40, 20, 40, 20" MinWidth="520" >
+
+                        <StackPanel>
+                            <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                            <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="EXPORTING DATA" />
+                        </StackPanel>
+
+                        <StackPanel Height="10" />
+
+                        <StackPanel Visibility="{Binding IsDataSyncing, Converter={StaticResource BooleanToCollapsedConverter}, FallbackValue=Visible}">
+                            
+                            <Grid>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" VerticalAlignment="Top" Visibility="{Binding HasExportErrors, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                <Ellipse Grid.Column="0" Fill="Red"  Width="24" Height="24" />
+                                    <Path  Stretch="Fill" Height="14" Width="14" Fill="White" Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z " />
+                                </Grid>
+
+                                <Grid Grid.Column="0" VerticalAlignment="Top" Visibility="{Binding HasExportErrors, Converter={StaticResource BooleanToCollapsedConverter}, FallbackValue=Visible}">
+                                    <Ellipse Grid.Column="0" Fill="Green"  Width="24" Height="24" />
+                                    <Path  Stretch="Fill" Height="14" Width="14" Fill="White" Data="F1 M 23.7501,33.25L 34.8334,44.3333L 52.2499,22.1668L 56.9999,26.9168L 34.8334,53.8333L 19.0001,38L 23.7501,33.25 Z" />
+                                </Grid>
+
+                                <StackPanel Grid.Column="2" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding MajorSyncStatus, FallbackValue=...}" FontWeight="SemiBold" FontSize="14" />
+                                    
+                                    <StackPanel Height="8" />
+                                    
+                                    <TextBlock Text="{Binding TimeElapsed, FallbackValue='...'}" />
+
+                                    <StackPanel Height="4" />
+
+                                    <TextBlock Text="{Binding RecordsExported, FallbackValue='...'}" />
+                                </StackPanel>
+
+                            </Grid>
+                            
+                            
+                            
+                            <Button Width="90" Margin="4, 4, 0, 0" 
+                                    HorizontalAlignment="Right"
+                                    x:Name="panelDataExportOKButton" 
+                                    Command="{Binding CancelCommand}"
+                                    Content="Close" />
+                        </StackPanel>
+
+                        <StackPanel Visibility="{Binding IsDataSyncing, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                            <ProgressBar Width="520" HorizontalAlignment="Stretch" Height="16" Foreground="#558FFF" Minimum="0" Maximum="1" Value="{Binding MinorProgressValue, FallbackValue=0}" />
+                            <StackPanel Height="4" />
+
+                            <TextBlock TextWrapping="Wrap" Text="{Binding MinorSyncStatus, FallbackValue=...}" />
+                            <StackPanel Height="6" />
+
+                            <ProgressBar Width="520" HorizontalAlignment="Stretch" Height="16" Foreground="#558FFF" Minimum="0" Maximum="1" Value="{Binding MajorProgressValue, FallbackValue=0}" />
+                            <StackPanel Height="4" />
+
+                            <TextBlock TextWrapping="Wrap" Text="{Binding MajorSyncStatus, FallbackValue=...}" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding RecordsExported, FallbackValue=...}" />
+                            <StackPanel Height="4" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

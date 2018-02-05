@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:own="clr-namespace:ContactTracing.CaseView">
+    <SolidColorBrush x:Key="cellColumnHeaderColorBrush" Color="#629DD1" />
+    <SolidColorBrush x:Key="cellRowHeaderColorBrush" Color="#629DD1" />
+    <SolidColorBrush x:Key="cellColorBrush" Color="#B0CDE8" />
+    <SolidColorBrush x:Key="cellAltColorBrush" Color="#D8E6F3" />
+    <SolidColorBrush x:Key="headerSeparatorBrush" Color="#2976CB" />
+    <SolidColorBrush x:Key="cellBorderBrush" Color="White" />
+    <Thickness x:Key="headerSeparatorThickness" Bottom="0" Left="0" Top="0" Right="0" />
+
+    <VisualBrush 
+      x:Key="cellHatchBrush" 
+      TileMode="Tile" Viewport="0,0,10,10" 
+      ViewportUnits="Absolute" Viewbox="0,0,10,10"    
+      ViewboxUnits="Absolute">
+        <VisualBrush.Visual>
+            <Canvas>
+                <Rectangle Width="10" Height="10" />
+                <Path Stroke="Gray" Data="M 0 0 l 10 10" />
+                <!--<Path Stroke="Purple" Data="M 0 10 l 10 -10" />-->
+            </Canvas>
+        </VisualBrush.Visual>
+    </VisualBrush>
+
+    <SolidColorBrush x:Key="AnalysisBackgroundBrush" Color="White" />
+
+    <Style TargetType="Border" x:Key="borderColumnHeaderStyle">
+        <Setter Property="Background" Value="{StaticResource cellColumnHeaderColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource cellBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1,1,1,4" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="borderRowHeaderStyle">
+        <Setter Property="Background" Value="{StaticResource cellRowHeaderColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource cellBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1,1,4,1" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="borderCellStyle">
+        <Setter Property="Background" Value="{StaticResource cellColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource cellBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1,1,1,1" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="borderCellAltStyle">
+        <Setter Property="Background" Value="{StaticResource cellAltColorBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource cellBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1,1,1,1" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="separatorStyle">
+        <Setter Property="BorderBrush" Value="{StaticResource cellBorderBrush}" />
+        <Setter Property="BorderThickness" Value="{StaticResource headerSeparatorThickness}" />
+        <Setter Property="Visibility" Value="Collapsed" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="styleTableTitle">
+        <Setter Property="Foreground" Value="#444444" />
+        <Setter Property="FontSize" Value="14pt" />
+        <Setter Property="TextDecorations" Value="Underline" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Setter Property="Margin" Value="4, 4, 4, 4" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="styleTableDateHeading">
+        <Setter Property="Text" Value="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{}{0:dd-MMM-yyyy HH:mm}'}" />
+        <Setter Property="Foreground" Value="#444444" />
+        <Setter Property="FontSize" Value="13pt" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Setter Property="Margin" Value="8, 4, 4, 4" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="styleHeader">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="10pt" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="Margin" Value="4, 4, 4, 4" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="styleBody">
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontSize" Value="10pt" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="TextAlignment" Value="Right" />
+        <Setter Property="Margin" Value="4, 4, 4, 4" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style TargetType="TextBlock" x:Key="styleRowHeader">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="10pt" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Setter Property="Margin" Value="4, 4, 4, 4" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+</ResourceDictionary>

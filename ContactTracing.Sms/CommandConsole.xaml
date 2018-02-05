@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="ContactTracing.Sms.CommandConsole"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ContactTracing.Sms"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="590" d:DesignWidth="600">
+    <Grid>
+        <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+            <StackPanel Margin="40, 20, 40, 20">
+
+                <StackPanel>
+                    <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                    <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="AT COMMAND DIAGNOSTICS" />
+                </StackPanel>
+
+                <StackPanel Height="4" />
+
+                <TextBlock FontSize="17" Foreground="#444444" FontWeight="Light" 
+                           Text="Status:" />
+
+                <ListBox x:Name="lbCommands" 
+                         IsTabStop="False" 
+                         FontFamily="Lucida Console, Monospace" 
+                         FontSize="15" 
+                         ItemsSource="{Binding DiagnosticCommandResults}" 
+                         VerticalAlignment="Stretch" 
+                         Height="400">
+                </ListBox>
+                
+                <StackPanel Height="4" />
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <!--<ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />-->
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="txtCommand" TabIndex="1" Grid.Column="0" FontSize="17" FontFamily="Lucida Console, Monospace">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding IssueATCommand}" CommandParameter="{Binding ElementName=txtCommand, Path=Text}" Key="Return" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <!--<StackPanel Width="4" Grid.Column="1" />
+                    <Button Grid.Column="2"
+                            Command="{Binding IssueATCommand}"
+                            CommandParameter="{Binding ElementName=txtCommand, Path=Text}"
+                            >SEND</Button>-->
+                </Grid>
+
+                <StackPanel Height="20" />
+
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button TabIndex="2" Command="{Binding ClearConsoleCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="140">Clear</Button>
+                    <StackPanel Width="10" />
+                    <Button TabIndex="3" Command="{Binding ToggleConsoleCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="140">Close Console</Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

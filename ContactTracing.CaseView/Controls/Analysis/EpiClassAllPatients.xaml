@@ -1,0 +1,222 @@
+﻿<analysis:AnalysisOutputBase x:Class="ContactTracing.CaseView.Controls.Analysis.EpiClassAllPatients"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:own="clr-namespace:ContactTracing.CaseView"
+                             xmlns:analysis="clr-namespace:ContactTracing.CaseView.Controls.Analysis"
+             mc:Ignorable="d" 
+             d:DesignHeight="220" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="AnalysisStyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Style="{StaticResource styleTableTitle}" Text="{x:Static p:Resources.AnalysisEpiClassAllPatients}" />
+            <TextBlock x:Name="tblockCurrentDate" Style="{StaticResource styleTableDateHeading}" />
+        </StackPanel>
+        
+        <Grid x:Name="grdMain" Grid.Row="1" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                 <RowDefinition Height="0"        x:Name="PUIRowDef"    />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                  <!--<ColumnDefinition Width="Auto" />-->
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="3" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="4" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="5" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="6" Style="{StaticResource borderColumnHeaderStyle}" />
+
+            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="1" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="1" Grid.Column="4" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="1" Grid.Column="5" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="1" Grid.Column="6" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="2" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="2" Grid.Column="4" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="2" Grid.Column="5" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="2" Grid.Column="6" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="3" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="3" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="3" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="3" Grid.Column="4" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="3" Grid.Column="5" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="3" Grid.Column="6" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="4" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="4" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="4" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="4" Grid.Column="4" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="4" Grid.Column="5" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="4" Grid.Column="6" Style="{StaticResource borderCellAltStyle}" />
+
+
+            <Border Grid.Row="5" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="5" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="5" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="5" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="5" Grid.Column="4" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="5" Grid.Column="5" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="5" Grid.Column="6" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="6"  Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="6" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="6" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="6" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="6" Grid.Column="4" Style="{StaticResource borderCellStyle}" Background="{StaticResource cellHatchBrush}" />
+            <Border Grid.Row="6" Grid.Column="5" Style="{StaticResource borderCellStyle}" Background="{StaticResource cellHatchBrush}" />
+            <Border Grid.Row="6" Grid.Column="6" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="100" Style="{StaticResource separatorStyle}" />
+
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource styleHeader}" TextWrapping="WrapWithOverflow" Text="{x:Static p:Resources.AnalysisEpiClassificationWrapped}" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource styleHeader}" TextWrapping="WrapWithOverflow" Text="{x:Static p:Resources.AnalysisTotalCount}" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource styleHeader}" TextWrapping="WrapWithOverflow" Text="{x:Static p:Resources.AnalysisSymptomOnsetBefore}" />
+            <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource styleHeader}" TextWrapping="WrapWithOverflow" Text="{x:Static p:Resources.AnalysisSymptomOnsetAfter}" />
+            <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource styleHeader}" TextWrapping="WrapWithOverflow" Text="{x:Static p:Resources.Alive}" />
+            <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource styleHeader}" TextWrapping="WrapWithOverflow" Text="{x:Static p:Resources.Dead}" />
+            <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource styleHeader}" TextWrapping="WrapWithOverflow" Text="{x:Static p:Resources.AnalysisCurrentlyIso}" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource styleRowHeader}" Text="{x:Static p:Resources.Confirmed}" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource styleRowHeader}" Text="{x:Static p:Resources.Probable}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource styleRowHeader}" Text="{x:Static p:Resources.Suspect}" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource styleRowHeader}" Text="{x:Static p:Resources.PUI }" />    
+            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource styleRowHeader}" Text="{x:Static p:Resources.NotCase}" />
+            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource styleRowHeader}" FontWeight="Bold" Text="{x:Static p:Resources.AnalysisTotalAllPatientsExamined}" />
+
+            <TextBlock x:Name="tblockTotalConfirmed" Grid.Row="1" Grid.Column="1" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalProbable" Grid.Row="2" Grid.Column="1" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalSuspect" Grid.Row="3" Grid.Column="1" Style="{StaticResource styleBody}">
+            </TextBlock>
+            
+            <TextBlock x:Name="tblockTotalPUI" Grid.Row="4" Grid.Column="1" Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalNotCase" Grid.Row="5" Grid.Column="1" Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalTotal" Grid.Row="6" Grid.Column="1" Style="{StaticResource styleBody}" FontWeight="Bold">
+            </TextBlock>
+
+
+
+            <TextBlock x:Name="tblockTotalPriorConfirmed" Grid.Row="1" Grid.Column="2" Style="{StaticResource styleBody}">
+                </TextBlock>
+            <TextBlock x:Name="tblockTotalPriorProbable" Grid.Row="2" Grid.Column="2" Style="{StaticResource styleBody}">
+                </TextBlock>
+            <TextBlock x:Name="tblockTotalPriorSuspect" Grid.Row="3" Grid.Column="2" Style="{StaticResource styleBody}">
+                </TextBlock>
+            <TextBlock x:Name="tblockTotalPriorPUI"   Grid.Row="4" Grid.Column="2" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalPriorNotCase" Grid.Row="5" Grid.Column="2" Style="{StaticResource styleBody}">
+                </TextBlock>
+            <TextBlock x:Name="tblockTotalPriorTotal" Grid.Row="6" Grid.Column="2" Style="{StaticResource styleBody}" FontWeight="Bold">
+                </TextBlock>
+
+
+
+
+            <TextBlock x:Name="tblockTotalAfterConfirmed" Grid.Row="1" Grid.Column="3" Style="{StaticResource styleBody}">
+                </TextBlock>
+            <TextBlock x:Name="tblockTotalAfterProbable" Grid.Row="2" Grid.Column="3" Style="{StaticResource styleBody}">
+                </TextBlock>
+            <TextBlock x:Name="tblockTotalAfterSuspect" Grid.Row="3" Grid.Column="3" Style="{StaticResource styleBody}">
+                </TextBlock>    
+            
+            <TextBlock x:Name="tblockTotalAfterPUI"   Grid.Row="4" Grid.Column="3" Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalAfterNotCase" Grid.Row="5" Grid.Column="3" Style="{StaticResource styleBody}">
+                </TextBlock>
+            <TextBlock x:Name="tblockTotalAfterTotal" Grid.Row="6" Grid.Column="3" Style="{StaticResource styleBody}" FontWeight="Bold">
+                </TextBlock>
+
+            <TextBlock x:Name="tblockTotalAliveConfirmed" Grid.Row="1" Grid.Column="4" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalAliveProbable" Grid.Row="2" Grid.Column="4" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalAliveSuspect" Grid.Row="3" Grid.Column="4" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalAlivePUI"    Grid.Row="4"     Grid.Column="4"        Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalAliveNotCase" Grid.Row="5"       Grid.Column="4" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalAliveTotal" Visibility="Collapsed" Grid.Row="5" Grid.Column="4" Style="{StaticResource styleBody}" FontWeight="Bold">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalDeadConfirmed" Grid.Row="1" Grid.Column="5" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalDeadProbable" Grid.Row="2" Grid.Column="5" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalDeadSuspect" Grid.Row="3" Grid.Column="5" Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalDeadPUI"    Grid.Row="4"   Grid.Column="5" Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalDeadNotCase" Grid.Row="5" Grid.Column="5" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock Visibility="Collapsed" x:Name="tblockTotalDeadTotal" Grid.Row="6"  Grid.Column="5" Style="{StaticResource styleBody}" FontWeight="Bold">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalIsoConfirmed" Grid.Row="1" Grid.Column="6" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalIsoProbable" Grid.Row="2" Grid.Column="6" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalIsoSuspect" Grid.Row="3" Grid.Column="6" Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalIsoPUI"   Grid.Row="4" Grid.Column="6" Style="{StaticResource styleBody}">
+            </TextBlock>
+
+            <TextBlock x:Name="tblockTotalIsoNotCase" Grid.Row="5" Grid.Column="6" Style="{StaticResource styleBody}">
+            </TextBlock>
+            <TextBlock x:Name="tblockTotalIsoTotal" Grid.Row="6" Grid.Column="6" Style="{StaticResource styleBody}" FontWeight="Bold">
+            </TextBlock>
+        </Grid>
+
+    </Grid>
+</analysis:AnalysisOutputBase>

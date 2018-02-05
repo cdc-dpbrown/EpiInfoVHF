@@ -1,0 +1,7 @@
+<Project id="e7b7ffac-7d53-cdfb-28a4-093b0b69a629" name="base_vhf_template_us" location="C:\Workspace\epiinfovhf\EpiInfoVHF\ContactTracing.Core\Projects\VHF" description="" schemaVersion="102" epiVersion="" createDate="12/02/2014 11:07:45" useMetadataDbForCollectedData="" useBackgroundOnAllPages="False">
+  <CollectedData>
+    <Database connectionString="zHDkaR2yI5Pbh2/LYHfZ7ljYKFwMFLb6TrxCvYEORi7csqJucXA0eUm4ILZ7oROE654W1J3voXmsRe8GylKMDwZB3045nTPfCSIZLzTDHZhr9PWBQcPNrN7ShVmq02BSSHConR6NBdXHQfioB48WhPp1xW1qAOLGpyYyz4xxzMb4byQfi7q8VSX7TGahVBxjZWLFU4mkvGQZ9BY6ezvWFA==" dataDriver="Epi.Data.Office.AccessDBFactory, Epi.Data.Office" />
+  </CollectedData>
+  <Metadata source="2" />
+  <EnterMakeviewInterpreter source="Epi.Core.EnterInterpreter" />
+</Project>

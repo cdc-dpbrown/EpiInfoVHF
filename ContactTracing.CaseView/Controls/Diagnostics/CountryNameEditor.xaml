@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.Diagnostics.CountryNameEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}"
+            Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                    <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                    <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="COUNTRY VALUE EDITOR" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Height="10"/>
+
+                <DataGrid x:Name="dg" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch"
+                          VirtualizingStackPanel.IsVirtualizing="True"
+                          CanUserAddRows="True"
+                          CanUserDeleteRows="True"
+                          CanUserResizeRows="False"
+                          CanUserReorderColumns="False"
+                          CanUserResizeColumns="True"
+                          CanUserSortColumns="False"
+                            VirtualizingStackPanel.VirtualizationMode="Recycling"
+                              Style="{StaticResource DataGridDemoStyle}"
+                          AutoGenerateColumns="True">
+                </DataGrid>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.ColumnSpan="4"
+                        IsEnabled="{Binding TaskbarProgressValue, Converter={StaticResource ProgressBarStartButtonEnabledConverter}}">
+                <Button Style="{StaticResource PanelCloseButtonStyle}" Margin="0" Click="btnClose_Click" />
+            </StackPanel>
+            
+            <StackPanel Margin="0, 10, 0, 0" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Height="Auto" Click="btnSubmit_Click" Content="{x:Static p:Resources.OK}" />
+                <StackPanel Width="10" />
+                <Button Height="Auto" Click="btnClose_Click" Content="{x:Static p:Resources.Cancel}" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.Printing.DateDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:own="clr-namespace:ContactTracing.CaseView"
+             xmlns:printing="clr-namespace:ContactTracing.CaseView.Controls.Printing"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="130">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBox VerticalAlignment="Center" Margin="3, 0, 0, 0" HorizontalContentAlignment="Right" Grid.Column="0" IsReadOnly="True" BorderBrush="Black" BorderThickness="0, 0, 0, 1" MinWidth="12" Text="{Binding Day, Mode=OneTime}" />
+        <TextBlock VerticalAlignment="Center" Grid.Column="1" Margin="1, 0, 1, 0">/</TextBlock>
+        <TextBox VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="2" IsReadOnly="True" BorderBrush="Black" BorderThickness="0, 0, 0, 1" MinWidth="12" Text="{Binding Month, Mode=OneTime}" />
+        <TextBlock VerticalAlignment="Center" Grid.Column="3" Margin="1, 0, 1, 0">/</TextBlock>
+        <TextBox VerticalAlignment="Center" HorizontalContentAlignment="Right" Grid.Column="4" IsReadOnly="True" BorderBrush="Black" BorderThickness="0, 0, 0, 1" MinWidth="30" Text="{Binding Year, Mode=OneTime}" />
+
+        <TextBlock VerticalAlignment="Center" x:Name="tblockDMY" Grid.Column="5" FontSize="7pt" Margin="4, 0, 0, 0"
+                   Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type printing:DateDisplay}, Mode=FindAncestor}, Path=DayMonthYearVisibility}"
+                   Text="{x:Static p:Resources.PrintedFormDMY}" />
+    </Grid>
+</UserControl>

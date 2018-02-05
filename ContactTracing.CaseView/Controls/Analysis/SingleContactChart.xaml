@@ -1,0 +1,195 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.Analysis.SingleContactChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:localconverters="clr-namespace:ContactTracing.CaseView.Converters"
+             xmlns:controls="clr-namespace:ContactTracing.CaseView.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:own="clr-namespace:ContactTracing.CaseView"
+             mc:Ignorable="d" 
+             x:Name="ContactChart"
+             d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+
+        <localconverters:FollowUpStatusToBackgroundConverter x:Key="FollowUpStatusToBackgroundConverter" />
+        <localconverters:FollowUpStatusToTextConverter x:Key="FollowUpStatusToTextConverter" />
+        <localconverters:FollowUpStatusToTooltipTextConverter x:Key="FollowUpStatusToTooltipTextConverter" />
+        <localconverters:FollowUpStatusToRotatedPositionConverter x:Key="FollowUpStatusToRotatedPositionConverter" />
+        <localconverters:DateToBorderThicknessConverter x:Key="DateToBorderThicknessConverter" />
+        <localconverters:TodayToCollapsedConverter x:Key="TodayToCollapsedConverter" />
+        <localconverters:TodayToVisibleConverter x:Key="TodayToVisibleConverter" />
+        <localconverters:TempStringPrefix x:Key="TempStringPrefix" />
+        <localconverters:StatusToStatusTextVisibilityConverter x:Key="StatusToStatusTextVisibilityConverter" />
+        
+        <Style x:Name="tblockDefault" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="ToolTip">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="HasDropShadow" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <ContentPresenter />
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!--<VisualBrush 
+    x:Key="DotFillBrush" 
+    TileMode="Tile" 
+    Viewport="0,0,10,10" 
+    ViewportUnits="Absolute" 
+    Viewbox="0,0,12,12"
+    ViewboxUnits="Absolute">
+            <VisualBrush.Visual>
+                <Ellipse 
+        Fill="#00C0FF" 
+        Width="10" Height="10" />
+            </VisualBrush.Visual>
+        </VisualBrush>-->
+        
+
+    </UserControl.Resources>
+
+    <ItemsControl ItemsSource="{Binding FollowUpWindowViewModel.FollowUpVisits}" HorizontalAlignment="Stretch">
+        <ItemsControl.Style>
+            <Style TargetType="ItemsControl">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1" />
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemContainerStyle">
+                    <Setter.Value>
+                        <Style TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Height" Value="Auto" />
+                            <Setter Property="MinWidth" Value="32" />
+                            <Setter Property="Margin" Value="0,0,-1,2" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        </Style>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" 
+                                           FontSize="10" 
+                                           HorizontalAlignment="Center" 
+                                           Foreground="Gray"
+                                           Text="{Binding Day}" 
+                                           Visibility="{Binding Date, Converter={StaticResource TodayToCollapsedConverter}, FallbackValue=Visible}" />
+                                <TextBlock Grid.Row="0" 
+                                           FontSize="10" 
+                                           HorizontalAlignment="Center" 
+                                           Text="{x:Static p:Resources.Today}" 
+                                           Visibility="{Binding Date, Converter={StaticResource TodayToVisibleConverter}, FallbackValue=Collapsed}" />
+
+                                <Border Grid.Row="1" Height="72" Style="{StaticResource IndividualReportBorderStyle}" BorderThickness="{Binding Date, Converter={StaticResource DateToBorderThicknessConverter}}">
+                                    <StackPanel Background="{Binding Status, Converter={StaticResource FollowUpStatusToBackgroundConverter}}" 
+                                                VerticalAlignment="Stretch" 
+                                                HorizontalAlignment="Stretch"
+                                                ToolTipService.InitialShowDelay="0"
+                                                ToolTipService.ShowDuration="900000">
+                                        <StackPanel.ToolTip>
+                                            <controls:DailyFollowUpCard IsCountryUS="{Binding Path=IsCountryUS, ElementName=ContactChart}" />
+                                        </StackPanel.ToolTip>
+                                        <Canvas Height="70">
+                                            <TextBlock FontSize="10" FontWeight="SemiBold" Text="{Binding Status, Converter={StaticResource FollowUpStatusToTextConverter}, FallbackValue=''}" 
+                                                       
+                                                       Canvas.Left="8"
+                                                       Canvas.Bottom="{Binding Status, Converter={StaticResource FollowUpStatusToRotatedPositionConverter}}"
+                                                       HorizontalAlignment="Center" 
+                                                       VerticalAlignment="Center">
+                                                <TextBlock.RenderTransform>
+                                                    <RotateTransform Angle="270"  />
+                                                </TextBlock.RenderTransform>
+                                            </TextBlock>
+
+                                            <TextBlock FontSize="10" FontWeight="SemiBold" Text="{Binding Temp1, Converter={StaticResource TempStringPrefix}, ConverterParameter=1, FallbackValue=''}" 
+                                                       Canvas.Left="34"
+                                                       Canvas.Bottom="0"
+                                                       HorizontalAlignment="Center" 
+                                                       VerticalAlignment="Center"
+                                                       Visibility="{Binding Status, Converter={StaticResource StatusToStatusTextVisibilityConverter}, FallbackValue=Collapsed}">
+                                                <TextBlock.RenderTransform>
+                                                    <RotateTransform Angle="270"  />
+                                                </TextBlock.RenderTransform>
+                                            </TextBlock>
+
+                                            <TextBlock FontSize="10" FontWeight="SemiBold" Text="{Binding Temp2, Converter={StaticResource TempStringPrefix}, ConverterParameter=2, FallbackValue=''}" 
+                                                       Canvas.Left="46"
+                                                       Canvas.Bottom="0"
+                                                       HorizontalAlignment="Center" 
+                                                       VerticalAlignment="Center"
+                                                       Visibility="{Binding Status, Converter={StaticResource StatusToStatusTextVisibilityConverter}, FallbackValue=Collapsed}">
+                                                <TextBlock.RenderTransform>
+                                                    <RotateTransform Angle="270"  />
+                                                </TextBlock.RenderTransform>
+                                            </TextBlock>
+                                        </Canvas>
+                                    </StackPanel>
+                                </Border>
+
+                                <TextBlock Grid.Row="2" FontSize="10" HorizontalAlignment="Center" Text="{Binding Date, StringFormat='d/M'}" Visibility="{Binding Path=IsCountryUS, ElementName=ContactChart, Converter={StaticResource BooleanToCollapsedConverter}}" />
+                                <TextBlock Grid.Row="2" FontSize="10" HorizontalAlignment="Center" Text="{Binding Date, StringFormat='M/d'}" Visibility="{Binding Path=IsCountryUS, ElementName=ContactChart, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    
+                            </Grid>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ItemsControl.Style>
+    </ItemsControl>
+    
+    <!--<Grid x:Name="grdMain">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12" />
+            <RowDefinition Height="72" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="2" Height="1" Background="Gray" Grid.ColumnSpan="22"/>
+    </Grid>-->
+</UserControl>

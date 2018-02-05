@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="ContactTracing.Controls.ContactTracingLegend"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:ContactTracing.WPF.Properties"
+             mc:Ignorable="d" Height="Auto" Width="Auto"
+             >
+    <Border BorderThickness="2" BorderBrush="{StaticResource WindowBorderBrush}" Background="White">
+        <StackPanel>
+            <Label Padding="1" Margin="2" FontSize="8pt" Content="{x:Static p:Resources.LegendRow1}" />
+            <Label Padding="1" Margin="2" FontSize="8pt" Content="{x:Static p:Resources.LegendRow2}" />
+            <Label Padding="1" Margin="2" FontSize="8pt" Content="{x:Static p:Resources.LegendRow3}" />
+            <Label Padding="1" Margin="2" FontSize="8pt" Content="{x:Static p:Resources.LegendRow4}" />
+        </StackPanel>
+    </Border>
+</UserControl>

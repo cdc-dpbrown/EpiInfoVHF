@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.Diagnostics.DataChecker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="700"
+             Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <Thickness x:Key="margin" Left="0" Top="2" Bottom="2" Right="0" />
+    </UserControl.Resources>
+    <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}"
+            Padding="20">
+        <Grid>
+            
+
+            <StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                    <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                    <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="DATA CONSISTENCY CHECK" />
+                </StackPanel>
+
+                <StackPanel Height="10"/>
+
+                <Button x:Name="btnRunCheck" HorizontalAlignment="Left" Command="{Binding RequestIssueListGeneration}"
+                        IsEnabled="{Binding TaskbarProgressValue, Converter={StaticResource ProgressBarStartButtonEnabledConverter}}">
+                    <Button.Content>
+                        <TextBlock TextAlignment="Center" HorizontalAlignment="Center" Margin="3, 2, 3, 2" 
+                                   Text="Run Data Check" />
+                    </Button.Content>
+                </Button>
+
+                <StackPanel Height="10"/>
+                
+                <ProgressBar x:Name="progress" HorizontalAlignment="Stretch" Height="16"
+                             Foreground="#558FFF"
+                             Value="{Binding TaskbarProgressValue, Mode=OneWay}" Minimum="0" Maximum="1"
+                             />
+
+                <StackPanel Height="10"/>
+
+                <StackPanel>
+                    <TextBlock Style="{StaticResource Heading2}" Margin="0, 2, 0, 2" Text="Issues with Case Records"></TextBlock>
+                    <DataGrid x:Name="dg" ItemsSource="{Binding IssueCollection, Mode=Default, IsAsync=True, FallbackValue=...}"
+                              Style="{StaticResource DataGridDemoStyle}"
+                              IsEnabled="{Binding TaskbarProgressValue, Converter={StaticResource ProgressBarStartButtonEnabledConverter}}"
+                              CanUserReorderColumns="False"
+                              AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding ID}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ID}" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding Code}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="Code" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            
+                            <DataGridTextColumn Binding="{Binding Problem}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="Description of problem(s)" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.ColumnSpan="4"
+                        IsEnabled="{Binding TaskbarProgressValue, Converter={StaticResource ProgressBarStartButtonEnabledConverter}}">
+                <Button Style="{StaticResource PanelCloseButtonStyle}" Margin="0" Click="btnClose_Click" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

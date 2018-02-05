@@ -1,0 +1,125 @@
+﻿<analysis:AnalysisOutputBase x:Class="ContactTracing.CaseView.Controls.Analysis.OnsetLocationTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                             xmlns:analysis="clr-namespace:ContactTracing.CaseView.Controls.Analysis"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:own="clr-namespace:ContactTracing.CaseView"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="AnalysisStyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource styleTableTitle}" Text="{x:Static p:Resources.AnalysisLocationOnsetConfirmedProbable}" />
+            <TextBlock x:Name="tblockCurrentDate" Style="{StaticResource styleTableDateHeading}" />
+        </StackPanel>
+
+        <Grid x:Name="grdMain" Grid.Row="1">
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="50" />
+                <ColumnDefinition Width="Auto" MinWidth="50" />
+            </Grid.ColumnDefinitions>
+
+            <!--<Border Grid.Row="0" Grid.Column="0" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource borderColumnHeaderStyle}" />
+
+            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="3" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="3" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="4" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="4" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="5" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="5" Grid.Column="1" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="5" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="100" Style="{StaticResource separatorStyle}" />
+
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource styleHeader}">
+                District</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource styleHeader}">
+                Subcounty</TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource styleHeader}">
+                Case count</TextBlock>
+
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource styleRowHeader}" FontWeight="Bold">
+                Kibale</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource styleRowHeader}">
+                </TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource styleRowHeader}">
+                </TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource styleRowHeader}">
+                </TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource styleRowHeader}">
+                </TextBlock>
+
+
+
+            <TextBlock x:Name="tblockConfirmedAcuteCount" Grid.Row="1" Grid.Column="1" Style="{StaticResource styleRowHeader}">
+                
+            </TextBlock>
+            <TextBlock x:Name="tblockConfirmedConvalescentCount" Grid.Row="2" Grid.Column="1" Style="{StaticResource styleRowHeader}">
+                Kagadi
+            </TextBlock>
+            <TextBlock x:Name="tblockNegativeCount" Grid.Row="3" Grid.Column="1" Style="{StaticResource styleRowHeader}">
+                Natali
+            </TextBlock>
+            <TextBlock x:Name="tblockPendingCount" Grid.Row="4" Grid.Column="1" Style="{StaticResource styleRowHeader}">
+                Mjorro
+            </TextBlock>
+            <TextBlock x:Name="tblockNotSampledCount" Grid.Row="5" Grid.Column="1" Style="{StaticResource styleRowHeader}">
+                Ibanda
+            </TextBlock>
+
+            <TextBlock x:Name="tblockConfirmedAcutePercent" Grid.Row="1" Grid.Column="2" Style="{StaticResource styleBody}">
+                
+            </TextBlock>
+            
+            <TextBlock x:Name="tblockConfirmedConvalescentPercent" Grid.Row="2" Grid.Column="2" Style="{StaticResource styleBody}">
+                22
+            </TextBlock>
+            
+            <TextBlock x:Name="tblockNegativePercent" Grid.Row="3" Grid.Column="2" Style="{StaticResource styleBody}">
+                33
+            </TextBlock>
+            
+            <TextBlock x:Name="tblockPendingPercent" Grid.Row="4" Grid.Column="2" Style="{StaticResource styleBody}">
+                44
+            </TextBlock>
+            
+            <TextBlock x:Name="tblockNotSampledPercent" Grid.Row="5" Grid.Column="2" Style="{StaticResource styleBody}">
+                55
+            </TextBlock>-->
+        </Grid>
+    </Grid>
+</analysis:AnalysisOutputBase>

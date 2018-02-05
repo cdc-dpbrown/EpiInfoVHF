@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="ContactTracing.Controls.FileScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wpf="clr-namespace:ContactTracing.Controls"
+             xmlns:p="clr-namespace:ContactTracing.WPF.Properties"
+             xmlns:vm="clr-namespace:ContactTracing.ViewModel;assembly=ContactTracing.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:FileScreenViewModel />
+    </UserControl.DataContext>
+    <Grid Background="{StaticResource WindowBackgroundBrush}">
+        
+        <Grid x:Name="grdMain" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="row1" Height="58" />
+                <RowDefinition x:Name="row2" Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical"  >
+                    <Label HorizontalAlignment="Left" Margin="0, 0, 20, 0" FontSize="16" FontWeight="Bold" Foreground="#626262" Content="{x:Static p:Resources.CurrentProjects}" />
+                    <Label HorizontalAlignment="Left"   x:Name="Instructions3" Content="{x:Static p:Resources.Instructions3 }"    Margin="0, 0, 20, 10" FontSize="13" Foreground="#626262"     />
+                </StackPanel>
+            </StackPanel>
+            <ScrollViewer x:Name="svMain" Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" >
+                <Grid>
+                    <wpf:ProjectsSummaryView MaxHeight="{Binding ElementName=svMain, Path=ActualHeight}" ItemsSource="{Binding Projects}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="1"                                  
+                                  MouseLeftButtonUp="ProjectsSummaryView_MouseLeftButtonUp" />
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+        <Label x:Name="lblVersion" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="10" Grid.Row="100" Foreground="{StaticResource MediumTextBrush}" Margin="6, 0, 14, 14" />
+    </Grid>
+</UserControl>

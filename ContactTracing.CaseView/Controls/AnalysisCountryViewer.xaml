@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.AnalysisCountryViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:printing="clr-namespace:ContactTracing.CaseView.Controls.Printing"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:Controls="clr-namespace:ContactTracing.CaseView.Controls"
+             xmlns:Tabs="clr-namespace:ContactTracing.CaseView.Controls.Tabs"
+             xmlns:AnalysisControls="clr-namespace:ContactTracing.CaseView.Controls.Analysis"
+             xmlns:own="clr-namespace:ContactTracing.CaseView"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Analysis/AnalysisStyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="1" BorderBrush="#333333" Background="{StaticResource WindowBackgroundBrush}" Grid.RowSpan="3"/>
+
+        <UniformGrid Grid.Row="2" Rows="1" Columns="5" Width="Auto" Height="32" Margin="1, 5, 1, 1" HorizontalAlignment="Stretch">
+            <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="2"></TextBlock>
+            <TextBlock Grid.Row="0" Grid.Column="3"></TextBlock>
+            <Button Grid.Row="0" Width="Auto" Grid.Column="4" Margin="5" x:Name="btnClose" Click="btnClose_Click" Content="{x:Static p:Resources.Close}" />
+        </UniformGrid>
+
+        <DocumentViewer Grid.Row="1" Margin="1">
+            <FixedDocument x:Name="x2">
+                <PageContent>
+                    <FixedPage Margin="38, 30, 38, 30" IsHitTestVisible="False">
+                        <StackPanel Width="730">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateCurrent}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDateCurrent" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateGenerated}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDate" />
+                            </StackPanel>
+                            <AnalysisControls:CountryDistrictResTables x:Name="countryResTable" />
+                        </StackPanel>
+                    </FixedPage>
+                </PageContent>
+
+                <PageContent>
+                    <FixedPage Margin="38, 30, 38, 30" IsHitTestVisible="False">
+                        <StackPanel Width="730">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateCurrent}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDateCurrent2" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateGenerated}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDate2" />
+                            </StackPanel>
+                            <AnalysisControls:CountryDistrictResTables StartIndex="5" EndIndex="10" x:Name="countryResTable2" />
+                        </StackPanel>
+                    </FixedPage>
+                </PageContent>
+
+                <PageContent>
+                    <FixedPage Margin="38, 30, 38, 30" IsHitTestVisible="False">
+                        <StackPanel Width="730">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateCurrent}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDateCurrent3" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateGenerated}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDate3" />
+                            </StackPanel>
+                            <AnalysisControls:CountryDistrictResTables StartIndex="11" EndIndex="16" x:Name="countryResTable3" />
+                        </StackPanel>
+                    </FixedPage>
+                </PageContent>
+
+                <PageContent>
+                    <FixedPage Margin="38, 30, 38, 30" IsHitTestVisible="False">
+                        <StackPanel Width="730">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateCurrent}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDateCurrent4" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateGenerated}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDate4" />
+                            </StackPanel>
+                            <AnalysisControls:CountryDistrictResTables StartIndex="17" EndIndex="22" x:Name="countryResTable4" />
+                        </StackPanel>
+                    </FixedPage>
+                </PageContent>
+
+                <PageContent>
+                    <FixedPage Margin="38, 30, 38, 30" IsHitTestVisible="False">
+                        <StackPanel Width="730">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateCurrent}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDateCurrent5" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Static p:Resources.AnalysisDateGenerated}" />
+                                <StackPanel Width="5" />
+                                <TextBlock x:Name="tblockDate5" />
+                            </StackPanel>
+                            <AnalysisControls:CountryDistrictResTables StartIndex="23" EndIndex="28" x:Name="countryResTable5" />
+                        </StackPanel>
+                    </FixedPage>
+                </PageContent>
+
+                <!--<PageContent>
+                    <FixedPage Margin="38, 30, 38, 30" IsHitTestVisible="False">
+                        <StackPanel Width="730">
+                            <AnalysisControls:CountryDistrictOnsetTables x:Name="countryOnsetTable" />
+                        </StackPanel>
+                    </FixedPage>
+                </PageContent>-->
+            </FixedDocument>
+        </DocumentViewer>
+    </Grid>
+</UserControl>

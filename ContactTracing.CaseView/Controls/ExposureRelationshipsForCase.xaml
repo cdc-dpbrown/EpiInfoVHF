@@ -1,0 +1,457 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.ExposureRelationshipsForCase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ContactTracing.CaseView.Controls"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Thickness x:Key="margin" Left="0" Top="2" Bottom="2" Right="0" />
+
+    </UserControl.Resources>
+    <Border Background="{StaticResource WindowBackgroundBrush}" 
+            BorderBrush="{StaticResource WindowBorderBrush}" 
+            BorderThickness="1"
+            Padding="10">
+        <Grid>
+            <StackPanel>
+                <TextBlock Style="{StaticResource Heading1}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
+                       Text="EXPOSURE RELATIONSHIPS"/>
+                <StackPanel Height="10"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <TextBlock Margin="5, 5, 15, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}" Text="{x:Static p:Resources.SourceCases}"></TextBlock>
+
+                    <TextBlock Margin="5, 5, 0, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}">(</TextBlock>
+                    <TextBlock Margin="0, 5, 0, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}" Text="{Binding Path=CurrentSourceCaseCollection.Count}"></TextBlock>
+                    <TextBlock Margin="0, 5, 5, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}">)</TextBlock>
+                </StackPanel>
+                <DataGrid x:Name="dgSourceCases" 
+                      ItemsSource="{Binding Path=CurrentSourceCaseCollection, IsAsync=True, FallbackValue=...}"                          
+                  VirtualizingStackPanel.IsVirtualizing="True"
+                  VirtualizingStackPanel.VirtualizationMode="Recycling"
+                          CanUserReorderColumns="False"
+                          AutoGenerateColumns="False"
+                      Style="{StaticResource DataGridDemoStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderID}" Binding="{Binding ID}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderID}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderSurname}" Binding="{Binding Surname}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderSurname}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderOtherNames}" Binding="{Binding OtherNames}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderOtherNames}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding EpiCaseDef, ValidatesOnNotifyDataErrors=False, Converter={StaticResource EpiCaseClassificationConverter}}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderEpiCaseDef}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <!--<DataGridTextColumn Header="{x:Static p:Resources.ColHeaderRecStatus}" Binding="{Binding RecordStatus}" IsReadOnly="True"></DataGridTextColumn>-->
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderGender}" Binding="{Binding Gender}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderGender}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderAge}" Binding="{Binding AgeYears}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderAge}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderOnsetDate}" Binding="{Binding DateOnset, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderOnsetDate}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Binding="{Binding CurrentStatus}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderCurrentStatus}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderDeathDate}" Binding="{Binding DateDeath, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDeathDate}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderVillage}" Binding="{Binding Village}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderVillage}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderSubCounty}" Binding="{Binding SubCounty}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderSubCounty}" />-->
+                                    <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource
+                                Mode=FindAncestor,
+                                AncestorType={x:Type Window}},
+                                Path=DataContext.Adm2}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding District}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDistrict}" />-->
+                                    <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource
+                                Mode=FindAncestor,
+                                AncestorType={x:Type Window}},
+                                Path=DataContext.Adm1}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding DistrictOnset}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDistrictOnset}" />-->
+                                    <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource
+                                Mode=FindAncestor,
+                                AncestorType={x:Type Window}},
+                                Path=DataContext.Adm1Onset}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding DateIsolationCurrent, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateIso}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding DateDischargeIso, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateDischargeIso}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding FinalLabClass, Converter={StaticResource FinalLabClassificationConverter}}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderFinalLabClass}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <!--<DataGridTextColumn Header="Isolation current?" Binding="{Binding IsolationCurrent}" IsReadOnly="True"></DataGridTextColumn>-->
+                        <DataGridTextColumn Binding="{Binding DateLastContact, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateLastContact}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding ContactTypeString}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderContactType}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Relationship}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderRelationshipSourceCase}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Height="30" HorizontalAlignment="Center" Width="100">
+                    <Line HorizontalAlignment="Center"
+                          StrokeEndLineCap="Triangle"
+                          Stroke="Black"
+                          StrokeThickness="2"
+                          X1="0" X2="0" Y1="0" Y2="26" />
+
+                    <Line HorizontalAlignment="Center"
+                          StrokeEndLineCap="Triangle"
+                          Stroke="Black"
+                          StrokeThickness="22"
+                          X1="9" X2="9" Y1="17" Y2="18" />
+                </Grid>
+
+                <Border MaxWidth="700" Margin="80, 0, 80, 0" BorderThickness="1" BorderBrush="{StaticResource WindowBorderBrush}" Background="White" >
+                    <StackPanel Orientation="Vertical" Margin="0, 0, 0, 4" x:Name="panelCaseHeader">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="2" FontSize="15pt" FontWeight="Bold" Text="{Binding ID, Mode=OneTime}" Foreground="{StaticResource MediumTextBrush}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+
+                            <!--<TextBlock Margin="2" FontSize="12pt" Text="" Foreground="{StaticResource MediumTextBrush}"/>-->
+                            <TextBlock Margin="2" FontSize="12pt" Text="{Binding Surname, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <TextBlock Margin="2" FontSize="12pt" Text="{Binding OtherNames}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <StackPanel Width="12"/>
+                            <TextBlock Margin="2" FontSize="12pt" Text="{Binding Gender, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <TextBlock Margin="2" FontSize="12pt" Text="," Foreground="{StaticResource MediumTextBrush}"/>
+                            <StackPanel Width="4"/>
+                            <TextBlock Margin="2" FontSize="12pt" Text="{Binding AgeYears, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.PrintedFormDistrictRes}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <TextBlock Margin="2" FontSize="12pt" Text="{Binding District, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <StackPanel Width="12"/>
+                            <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.PrintedFormVillageRes}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <TextBlock Margin="2" FontSize="12pt" Text="{Binding Village, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <!--<StackPanel Width="12"/>
+                            <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.PrintedFormCountryRes}" Foreground="{StaticResource MediumTextBrush}"/>
+                            <TextBlock Margin="2" FontSize="12pt" Text="{Binding Country, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>-->
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Grid Height="30" Width="Auto">
+                    <Line HorizontalAlignment="Center"
+                          StrokeEndLineCap="Triangle"
+                          Stroke="Black"
+                          StrokeThickness="2"
+                          X1="0" X2="0" Y1="0" Y2="26" />
+
+                    <Line HorizontalAlignment="Center"
+                          StrokeEndLineCap="Triangle"
+                          Stroke="Black"
+                          StrokeThickness="22"
+                          X1="9" X2="9" Y1="17" Y2="18" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
+                        <TextBlock Margin="5, 5, 15, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}" Text="Exposed Cases"></TextBlock>
+
+                        <TextBlock Margin="5, 5, 0, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}">(</TextBlock>
+                        <TextBlock Margin="0, 5, 0, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}" Text="{Binding Path=CurrentExposureCollection.Count}"></TextBlock>
+                        <TextBlock Margin="0, 5, 5, 5" FontWeight="SemiBold" FontSize="16" Foreground="{StaticResource DataGridHeaderForegroundBrush}">)</TextBlock>
+                    </StackPanel>
+                </Grid>
+
+                
+                <DataGrid x:Name="dgExposures" 
+                      ItemsSource="{Binding Path=CurrentExposureCollection, IsAsync=True, FallbackValue=...}"                          
+                  VirtualizingStackPanel.IsVirtualizing="True"
+                  VirtualizingStackPanel.VirtualizationMode="Recycling"
+                          CanUserReorderColumns="False"
+                          AutoGenerateColumns="False"
+                      Style="{StaticResource DataGridDemoStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderID}" Binding="{Binding ID}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderID}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderSurname}" Binding="{Binding Surname}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderSurname}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderOtherNames}" Binding="{Binding OtherNames}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderOtherNames}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding EpiCaseDef, ValidatesOnNotifyDataErrors=False, Converter={StaticResource EpiCaseClassificationConverter}}">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderEpiCaseDef}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <!--<DataGridTextColumn Header="{x:Static p:Resources.ColHeaderRecStatus}" Binding="{Binding RecordStatus}" IsReadOnly="True"></DataGridTextColumn>-->
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderGender}" Binding="{Binding Gender}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderGender}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderAge}" Binding="{Binding AgeYears}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderAge}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderOnsetDate}" Binding="{Binding DateOnset, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderOnsetDate}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Binding="{Binding CurrentStatus}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderCurrentStatus}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderDeathDate}" Binding="{Binding DateDeath, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDeathDate}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderVillage}" Binding="{Binding Village}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderVillage}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static p:Resources.ColHeaderSubCounty}" Binding="{Binding SubCounty}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderSubCounty}" />-->
+                                    <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource
+                                Mode=FindAncestor,
+                                AncestorType={x:Type Window}},
+                                Path=DataContext.Adm2}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding District}" IsReadOnly="True" >
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDistrict}" />-->
+                                    <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource
+                                Mode=FindAncestor,
+                                AncestorType={x:Type Window}},
+                                Path=DataContext.Adm1}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding DistrictOnset}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDistrictOnset}" />-->
+                                    <TextBlock TextAlignment="Center" Text="{Binding RelativeSource={RelativeSource
+                                Mode=FindAncestor,
+                                AncestorType={x:Type Window}},
+                                Path=DataContext.Adm1Onset}" />
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding DateIsolationCurrent, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateIso}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding DateDischargeIso, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateDischargeIso}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding FinalLabClass, Converter={StaticResource FinalLabClassificationConverter}}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderFinalLabClass}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <!--<DataGridTextColumn Header="Isolation current?" Binding="{Binding IsolationCurrent}" IsReadOnly="True"></DataGridTextColumn>-->
+                        <DataGridTextColumn Binding="{Binding DateLastContact, StringFormat='dd/MM/yyyy'}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateLastContact}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding ContactTypeString}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderContactType}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Relationship}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderRelationshipSourceCase}">
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTextColumn.HeaderTemplate>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.ColumnSpan="4"
+                        IsEnabled="{Binding TaskbarProgressValue, Converter={StaticResource ProgressBarStartButtonEnabledConverter}}">
+                <Button Style="{StaticResource PanelCloseButtonStyle}" Margin="0" Click="btnClose_Click" />
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

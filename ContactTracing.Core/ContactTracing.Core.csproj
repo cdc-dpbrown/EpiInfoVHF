@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{158089EC-551A-47BC-B01C-8EFD0EF39DD1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ContactTracing.Core</RootNamespace>
+    <AssemblyName>ContactTracing.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Epi Info 7\build\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Epi Info 7\build\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Enter">
+      <HintPath>..\..\Epi Info 7\build\Release\Enter.exe</HintPath>
+    </Reference>
+    <Reference Include="Epi.Core">
+      <HintPath>..\..\Epi Info 7\build\Release\Epi.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Epi.Data.Office">
+      <HintPath>..\..\Epi Info 7\build\Release\Epi.Data.Office.dll</HintPath>
+    </Reference>
+    <Reference Include="Epi.ImportExport">
+      <HintPath>..\..\Epi Info 7\build\Release\Epi.ImportExport.dll</HintPath>
+    </Reference>
+    <Reference Include="EpiInfo.Plugin, Version=7.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Epi Info 7\build\Release\EpiInfo.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgeUnits.cs" />
+    <Compile Include="ApplicationType.cs" />
+    <Compile Include="ApplicationViewModel.cs" />
+    <Compile Include="Collections\ObservableConcurrentDictionary.cs" />
+    <Compile Include="Collections\RecordErrorDictionary.cs" />
+    <Compile Include="ComboBoxItemString.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="ContactDailyStatus.cs" />
+    <Compile Include="Converters\BooleanInverter.cs" />
+    <Compile Include="Converters\BooleanToCollapsedConverter.cs" />
+    <Compile Include="Converters\CaseClassificationToVisibilityConverter.cs" />
+    <Compile Include="Converters\CaseClassificationToDisabledConverter.cs" />
+    <Compile Include="Converters\ColonAdder.cs" />
+    <Compile Include="Converters\CountToEnabledConverter.cs" />
+    <Compile Include="Converters\EditModeToVisibilityConverter.cs" />
+    <Compile Include="Converters\MultiBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\NoToCheckedConverter.cs" />
+    <Compile Include="Converters\PCRToVisibilityConverter.cs" />
+    <Compile Include="Converters\NumberToNoConverter.cs" />
+    <Compile Include="Converters\NumberToUnknownConverter.cs" />
+    <Compile Include="Converters\PlusOneConverter.cs" />
+    <Compile Include="Converters\ProgressBarStartButtonEnabledConverter.cs" />
+    <Compile Include="Converters\NumberToYesConverter.cs" />
+    <Compile Include="Converters\IsPositiveConverter.cs" />
+    <Compile Include="Converters\LengthToVisibilityConverter.cs" />
+    <Compile Include="Converters\SampleTypeToEnabledConverter.cs" />
+    <Compile Include="Converters\SelectedItemToEnabledConverter.cs" />
+    <Compile Include="Converters\UnknownToCheckedConverter.cs" />
+    <Compile Include="Converters\UppercaseConverter.cs" />
+    <Compile Include="Converters\NoToEnabledConverter.cs" />
+    <Compile Include="Converters\YesToCheckedConverter.cs" />
+    <Compile Include="Converters\YesToEnabledConverter.cs" />
+    <Compile Include="Data\Issue.cs" />
+    <Compile Include="Data\ProjectInfo.cs" />
+    <Compile Include="Data\ServerUpdate.cs" />
+    <Compile Include="Data\SmsSenderInfo.cs" />
+    <Compile Include="Data\SmsSenderInfoCollection.cs" />
+    <Compile Include="Data\ShortMessage.cs" />
+    <Compile Include="Data\SmsStatusMessage.cs" />
+    <Compile Include="DbLogger.cs" />
+    <Compile Include="Delegates.cs" />
+    <Compile Include="Enums\AliveDead.cs" />
+    <Compile Include="Enums\Cultures.cs" />
+    <Compile Include="Enums\EpiCaseClassification.cs" />
+    <Compile Include="Enums\FinalLabClassification.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Enums\LocationType.cs" />
+    <Compile Include="Enums\RegionEnum.cs" />
+    <Compile Include="Enums\SampleInterpretation.cs" />
+    <Compile Include="Enums\SeenType.cs" />
+    <Compile Include="Enums\ServerUpdateType.cs" />
+    <Compile Include="Enums\SicknessType.cs" />
+    <Compile Include="Events\ProjectOpenedArgs.cs" />
+    <Compile Include="Events\RegionChangedEventArgs.cs" />
+    <Compile Include="Events\SmsReceivedArgs.cs" />
+    <Compile Include="Exceptions\InvalidChangesetException.cs" />
+    <Compile Include="FieldValueChange.cs" />
+    <Compile Include="ObservableObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertySupport.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="SmsModule.cs" />
+    <Compile Include="VhfProject.cs" />
+    <Compile Include="Enums\VirusTestTypes.cs" />
+    <Compile Include="XYChartData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NPOI.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\base_vhf_lab_template.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\base_vhf_template.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\base_vhf_template_fr.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Projects\VHF\base_vhf_template.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\base_vhf_lab_template.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\base_vhf_template_fr.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\base_vhf_template_us.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\Resources\ContactForm.en-US.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\Resources\ContactForm.fr-FR.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\Resources\CRF.en-US.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\Resources\CRF.fr-FR.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\Resources\OutcomeForm.en-US.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\base_vhf_template_us.prj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Projects\VHF\Canvases\Canvas_Case.cvs7">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Projects\VHF\Canvases\Canvas_CaseCP.cvs7">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Projects\VHF\Canvases\Canvas_CaseCPS.cvs7">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Projects\VHF\Canvases\Canvas_CaseCPS_US.cvs7">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Projects\VHF\Canvases\Canvas_CaseLab.cvs7">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Projects\VHF\Canvases\Canvas_Contact.cvs7">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Projects\VHF\Resources\OutcomeForm.fr-FR.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Projects\VHF\Resources\ContactForm.fr.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Projects\VHF\Resources\ContactForm.Uganda.en-US.pdf" />
+    <Content Include="Projects\VHF\Resources\CRF.fr.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Projects\VHF\Resources\CRF.Uganda.en-US.pdf" />
+    <Content Include="Projects\VHF\Resources\OutcomeForm.fr.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Projects\VHF\Resources\OutcomeForm.Uganda.en-US.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Projects\VHF\DLLs\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

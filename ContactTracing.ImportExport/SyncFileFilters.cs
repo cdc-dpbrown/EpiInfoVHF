@@ -1,0 +1,347 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
+using System.Text;
+using Epi;
+using Epi.Data;
+using Epi.ImportExport;
+using Epi.ImportExport.Filters;
+
+namespace ContactTracing.ImportExport
+{
+    /// <summary>
+    /// A class used to manage row filtering in the context of import/export operations, and
+    /// for which filters are applied directly to the underlying SQL. This class was designed
+    /// primarily for use in supporting the creation of XML data packages.
+    /// </summary>
+    public class SyncFileFilters : IEnumerable<IRowFilterCondition>
+    {
+        #region Private Members
+        private List<IRowFilterCondition> _rowFilterConditions;
+        private readonly ConditionJoinTypes _conditionJoinType = ConditionJoinTypes.And;
+        #endregion // Private Members
+
+        #region Constructors
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="dataDriver">The data driver to attach to this object</param>
+        /// <param name="joinType">Whether to use a global AND or OR to join all the conditions</param>
+        /// <param name="recordProcessingScope">Whether to include records marked for deletion</param>
+        public SyncFileFilters(IDbDriver dataDriver, ConditionJoinTypes joinType = ConditionJoinTypes.And, RecordProcessingScope recordProcessingScope = Epi.RecordProcessingScope.Undeleted)
+        {
+            // pre
+            Contract.Requires(dataDriver != null);
+
+            // post
+            Contract.Ensures(DataDriver != null);
+            Contract.Ensures(_rowFilterConditions != null);
+
+            _conditionJoinType = joinType;
+            DataDriver = dataDriver;
+            _rowFilterConditions = new List<IRowFilterCondition>();
+            RecordProcessingScope = recordProcessingScope;
+        }
+        #endregion // Constructors
+
+        #region Properties
+        /// <summary>
+        /// Gets/sets the data driver attached to this row filter object.
+        /// </summary>
+        private IDbDriver DataDriver { get; set; }
+
+        /// <summary>
+        /// Gets/sets whether to include records that are marked for deletion
+        /// </summary>
+        public RecordProcessingScope RecordProcessingScope { get; set; }
+
+        #endregion // Properties
+
+        #region Public Methods
+
+        public string GetWhereClause(View form)
+        {
+            string baseTableName = "t";
+            string whereClause = String.Empty;
+            string recStatusComparison = "[" + baseTableName + "].[RECSTATUS] = 1";
+
+            if (RecordProcessingScope == Epi.RecordProcessingScope.Both)
+            {
+                recStatusComparison = "[" + baseTableName + "].[RECSTATUS] >= 0";
+            }
+            else if (RecordProcessingScope == Epi.RecordProcessingScope.Deleted)
+            {
+                recStatusComparison = "[" + baseTableName + "].[RECSTATUS] = 0";
+            }
+
+            whereClause = " WHERE " + recStatusComparison;// +" AND (";
+
+            string logicalOperatorString = " AND ";
+            if (_conditionJoinType == ConditionJoinTypes.Or)
+            {
+                logicalOperatorString = " OR ";
+            }
+
+            bool hasFilterConditions = false;
+            WordBuilder filterSql = new WordBuilder(logicalOperatorString);
+            foreach (IRowFilterCondition rowFc in _rowFilterConditions)
+            {
+                hasFilterConditions = true;
+                filterSql.Append(rowFc.Sql);
+            }
+
+            if (hasFilterConditions)
+            {
+                whereClause = whereClause +" AND (" + filterSql + ")";
+            }
+
+            return whereClause;
+        }
+
+        /// <summary>
+        /// Generates a Query object that can be executed to return only the GlobalRecordId values matching the filter conditions. This method can only be used for Epi Info 7 forms.
+        /// </summary>
+        /// <param name="form">The form to process</param>
+        /// <returns>Query</returns>
+        public virtual Query GetGuidSelectQuery(View form, bool selectStar = false)
+        {
+            // pre
+            Contract.Requires(form != null);
+
+            // post
+            Contract.Ensures(Contract.Result<Query>() != null);
+            Contract.Ensures(!String.IsNullOrEmpty(Contract.Result<Query>().SqlStatement));
+
+            // assumes
+            Contract.Assume(DataDriver != null);
+
+            if (DataDriver == null)
+            {
+                throw new InvalidOperationException();
+            }
+            if (form == null)
+            {
+                throw new ArgumentNullException("form");
+            }
+
+            string baseTableName = "t";
+
+            string fromClause = form.FromViewSQL;
+
+            Contract.Assert(!String.IsNullOrEmpty(fromClause));
+
+            WordBuilder columns = new WordBuilder(", ");
+
+            columns.Append("[" + baseTableName + "].[GlobalRecordId]");
+            columns.Append("[" + baseTableName + "].[FKEY]");
+            columns.Append("[" + baseTableName + "].[RECSTATUS]");
+            columns.Append("[" + baseTableName + "].[FirstSaveLogonName]");
+            columns.Append("[" + baseTableName + "].[FirstSaveTime]");
+            columns.Append("[" + baseTableName + "].[LastSaveLogonName]");
+            columns.Append("[" + baseTableName + "].[LastSaveTime]");
+            
+            string recStatusComparison = "[" + baseTableName + "].[RECSTATUS] = 1";
+
+            if (RecordProcessingScope == Epi.RecordProcessingScope.Both)
+            {
+                recStatusComparison = "[" + baseTableName + "].[RECSTATUS] >= 0";
+            }
+            else if (RecordProcessingScope == Epi.RecordProcessingScope.Deleted)
+            {
+                recStatusComparison = "[" + baseTableName + "].[RECSTATUS] = 0";
+            }
+
+            string fullSql = "SELECT " + columns.ToString() + " " + fromClause + " WHERE " + recStatusComparison + " AND (";
+
+            if (selectStar)
+            {
+                fullSql = "SELECT * " + fromClause + " WHERE " + recStatusComparison + " AND (";
+            }
+
+            string logicalOperatorString = " AND ";
+            if (_conditionJoinType == ConditionJoinTypes.Or)
+            {
+                logicalOperatorString = " OR ";
+            }
+
+            WordBuilder filterSql = new WordBuilder(logicalOperatorString);
+            foreach (IRowFilterCondition rowFc in _rowFilterConditions)
+            {
+                filterSql.Append(rowFc.Sql);
+            }
+
+            Query selectQuery = DataDriver.CreateQuery(fullSql + " " + filterSql.ToString() + ")");
+
+            Contract.Assert(selectQuery != null);
+            Contract.Assert(!String.IsNullOrEmpty(selectQuery.SqlStatement));
+
+            foreach (IRowFilterCondition rowFc in _rowFilterConditions)
+            {
+                selectQuery.Parameters.Add(rowFc.Parameter);
+            }
+
+            return selectQuery;
+        }
+
+        /// <summary>
+        /// Adds a new condition to the filter
+        /// </summary>
+        /// <param name="newCondition">The condition to be added</param>
+        public virtual void Add(IRowFilterCondition newCondition)
+        {
+            // pre
+            Contract.Requires(newCondition != null);
+
+            if (this.Contains(newCondition.Description))
+            {
+                throw new InvalidOperationException("This item has already been added.");
+            }
+
+            if (this._conditionJoinType == ConditionJoinTypes.Or)
+            {
+                int numberOfTimesThisColumnIsReferenced = 0;
+                foreach (IRowFilterCondition rowFc in _rowFilterConditions)
+                {
+                    if (rowFc.ColumnName.Equals(newCondition.ColumnName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        numberOfTimesThisColumnIsReferenced++;
+                    }
+                }
+
+
+                newCondition.ParameterName = newCondition.ParameterName + numberOfTimesThisColumnIsReferenced.ToString();
+                newCondition.BuildSql();
+
+                _rowFilterConditions.Add(newCondition);
+            }
+            else
+            {
+                _rowFilterConditions.Add(newCondition);
+            }
+        }
+
+        /// <summary>
+        /// Removes a condition from the filter
+        /// </summary>
+        /// <param name="condition">The condition to be removed</param>
+        public virtual void Remove(IRowFilterCondition condition)
+        {
+            // pre
+            Contract.Requires(condition != null);
+
+            if (this.Contains(condition.Description))
+            {
+                _rowFilterConditions.Remove(condition);
+            }
+            else
+            {
+                throw new KeyNotFoundException("The condition '" + condition.Description + "' could not be found.");
+            }
+        }
+
+        /// <summary>
+        /// Clears all conditions from the filter
+        /// </summary>
+        public virtual void Clear()
+        {
+            this._rowFilterConditions.Clear();
+        }
+
+        /// <summary>
+        /// Determines whether an IRowFilterCondition is in the list of conditions, by its description
+        /// </summary>
+        /// <param name="description">The description of the condition to be searched for</param>
+        /// <returns>bool; represents whether the condition is contained in the filter</returns>
+        public virtual bool Contains(string description)
+        {
+            // pre
+            Contract.Requires(!String.IsNullOrEmpty(description));
+
+            foreach (IRowFilterCondition rowFc in this._rowFilterConditions)
+            {
+                if (rowFc.Description.Equals(description))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        #endregion // Public Methods
+
+        #region Private Methods
+        #endregion // Private Methods
+
+        #region IEnumerable Members
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public IEnumerator<IRowFilterCondition> GetEnumerator()
+        {
+            return new SyncFileFiltersEnumerator(_rowFilterConditions);
+        }
+
+        public void Dispose() { }
+
+        #endregion // IEnumerable Members
+
+        #region Classes
+        /// <summary>
+        /// Enumerator class for the data filter class
+        /// </summary>
+        protected class SyncFileFiltersEnumerator : IEnumerator<IRowFilterCondition>
+        {
+            #region Private Members
+            private List<IRowFilterCondition> _rowFilterConditions;
+            private int currentIndex;
+            #endregion Private Members
+
+            public SyncFileFiltersEnumerator(List<IRowFilterCondition> _rowFilterConditions)
+            {
+                this._rowFilterConditions = _rowFilterConditions;
+                Reset();
+            }
+
+
+            public void Reset()
+            {
+                currentIndex = -1;
+            }
+
+            public IRowFilterCondition Current
+            {
+                get
+                {
+                    return _rowFilterConditions[currentIndex];
+                }
+            }
+
+            object IEnumerator.Current
+            {
+                get
+                {
+                    return Current;
+                }
+            }
+
+            public bool MoveNext()
+            {
+                currentIndex++;
+                return currentIndex < _rowFilterConditions.Count;
+            }
+
+            public void Dispose() { }
+        }
+
+        #endregion // Classes
+    }
+}

@@ -1,0 +1,344 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.LabRecordsForCase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ContactTracing.CaseView.Controls" 
+            xmlns:Converts="clr-namespace:ContactTracing.CaseView.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Thickness x:Key="margin" Left="0" Top="2" Bottom="2" Right="0" />
+        <Converts:BindingProxy x:Key="proxy" Data="{Binding}" />
+        <Converts:DateConverter x:Key="DateConverter"/>
+    </UserControl.Resources>
+    <Border Background="{StaticResource WindowBackgroundBrush}" 
+            BorderBrush="{StaticResource WindowBorderBrush}" 
+            BorderThickness="1"
+            Padding="10">
+        <Grid>
+
+
+            <StackPanel>
+                <TextBlock Style="{StaticResource Heading1}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"
+                       Text="{x:Static p:Resources.LabRecordsViewerTitle}"/>
+
+                <StackPanel Height="10"/>
+
+                <StackPanel Orientation="Vertical" Margin="0, 0, 0, 4" x:Name="panelCaseHeader">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding ID, Mode=OneTime}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="8" />
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding Surname, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding OtherNames}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="," Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding Gender, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="," Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <!--<TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.PrintedFormAge}" Foreground="{StaticResource MediumTextBrush}"/>-->
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding AgeYears, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.AgeUnitYears}" Foreground="{StaticResource MediumTextBrush}"/>
+                    </StackPanel>
+
+                    <!--<StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" FontSize="12pt" Text="{x:Static p:Resources.PrintedFormGender}" Foreground="{StaticResource MediumTextBrush}"/>
+                        
+                        
+                        
+                    </StackPanel>-->
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding RelativeSource={RelativeSource
+                                      Mode=FindAncestor,
+                                      AncestorType={x:Type UserControl}},
+                                      Path=DataContext.Adm4,StringFormat=' {0}:', FallbackValue=Adm4}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding Village, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding RelativeSource={RelativeSource
+                                      Mode=FindAncestor,
+                                      AncestorType={x:Type UserControl}},
+                                      Path=DataContext.Adm2,StringFormat=' {0}:', FallbackValue=Adm2}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding SubCounty, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{Binding RelativeSource={RelativeSource
+                                      Mode=FindAncestor,
+                                      AncestorType={x:Type UserControl}},
+                                      Path=DataContext.Adm1,StringFormat=' {0}:' }" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding District, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.PrintedFormCountryRes}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding Country, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="Current Status:" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding CurrentStatus, Mode=OneWay}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.LabDateOnset}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding DateOnset, Mode=OneWay, StringFormat='dd/MM/yyyy'}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="{x:Static p:Resources.PrintedFormDateDeath}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding DateDeathCurrentOrFinal, Mode=OneWay, StringFormat='dd/MM/yyyy'}" Foreground="{StaticResource MediumTextBrush}"/>
+                        <StackPanel Width="12"/>
+                        <TextBlock Margin="2" FontSize="12pt" FontWeight="Bold" Text="Final Laboratory Classification:" Foreground="{StaticResource MediumTextBrush}"/>
+                        <TextBlock Margin="2" FontSize="12pt" Text="{Binding FinalLabClass, Mode=OneWay, Converter={StaticResource FinalLabClassificationConverter}}" Foreground="{StaticResource MediumTextBrush}"/>
+                    </StackPanel>
+                </StackPanel>
+                <WrapPanel Orientation="Horizontal" x:Name="panelCase">
+                    <!--<StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="2" Text="ID:"/>
+                    <TextBox Margin="2" Width="90" IsEnabled="False" Text="{Binding ID}"/>
+                    </StackPanel>-->
+
+                    <!--<StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Surname"/>
+                        <TextBox Margin="2" Width="140" IsEnabled="False" Text="{Binding Surname}"/>
+                    </StackPanel>-->
+
+                    <!--<StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="OtherNames"/>
+                        <TextBox Margin="2" Width="140" IsEnabled="False" Text="{Binding OtherNames}"/>
+                    </StackPanel>-->
+
+                    <!--<StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Gender"/>
+                        <TextBox Margin="2" Width="25" IsEnabled="False" Text="{Binding GenderAbbreviation, Mode=OneWay}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Age"/>
+                        <TextBox Margin="2" Width="25" IsEnabled="False" Text="{Binding AgeYears, Mode=OneWay}"/>
+                    </StackPanel>-->
+
+                    <!--<StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Village"/>
+                        <TextBox Margin="2" Width="140" IsEnabled="False" Text="{Binding Village}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="District"/>
+                        <TextBox Margin="2" Width="140" IsEnabled="False" Text="{Binding District}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Country"/>
+                        <TextBox Margin="2" Width="140" IsEnabled="False" Text="{Binding Country}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Date Onset"/>
+                        <TextBox Margin="2" Width="100" IsEnabled="False" Text="{Binding DateOnset, StringFormat='dd/MM/yyyy'}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Current Status"/>
+                        <TextBox Margin="2" Width="110" IsEnabled="False" Text="{Binding CurrentStatus}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Date of Death"/>
+                        <TextBox Margin="2" Width="100" IsEnabled="False" Text="{Binding DateDeathCurrentOrFinal, Mode=OneWay, StringFormat='dd/MM/yyyy'}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="2" Text="Final Lab Classification"/>
+                        <TextBox Margin="2" Width="140" IsEnabled="False" Text="{Binding FinalLabClass}"/>
+                    </StackPanel>-->
+                </WrapPanel>
+                
+                <StackPanel Height="10"/>
+
+                <StackPanel>
+                    <DataGrid x:Name="dg" ItemsSource="{Binding LabResultCollection, Mode=Default, IsAsync=True, FallbackValue=...}"
+                              Style="{StaticResource DataGridDemoStyle}"
+                              CanUserReorderColumns="False"
+                          AutoGenerateColumns="False">
+                      
+                        <DataGrid.Columns>
+
+                            <DataGridTemplateColumn Header="Actions">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:LabResultActionsRowControl DeleteRequested="LabResultActionsRowControl_DeleteRequested" DataContext="{Binding}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Binding="{Binding UVRIVSPBLogNumber}" IsReadOnly="True"  Visibility="{Binding Data.IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource proxy}}"
+>
+                                <DataGridTextColumn.HeaderTemplate >
+                                    <DataTemplate >
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderUGSPBLog}"  />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding FieldLabSpecimenID}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderFieldLabSpecID}" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding SampleType}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderSampleType}" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+<!--Binding="{Binding DateSampleCollected, StringFormat='dd/MM/yyyy'}"-->
+                            <DataGridTextColumn  IsReadOnly="True" SortMemberPath="DateSampleCollected">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Right" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateSampleCollected}" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding Converter="{StaticResource DateConverter}" >
+                                        <Binding Path="DataContext.DateSampleCollected" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="DataContext.ApplicationCulture" RelativeSource="{RelativeSource  AncestorType={x:Type Window}}"/>
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding DaysAcute}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDaysAcute}" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+
+                             <!--Binding="{Binding DateSampleTested, StringFormat='dd/MM/yyyy'}"-->
+                            <DataGridTextColumn IsReadOnly="True" SortMemberPath="DateSampleTested">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="TextAlignment" Value="Right" />
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderDateSampleTested}" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding Converter="{StaticResource DateConverter}" >
+                                        <Binding Path="DataContext.DateSampleTested" RelativeSource="{RelativeSource Self}"/>
+                                        <Binding Path="DataContext.ApplicationCulture" RelativeSource="{RelativeSource  AncestorType={x:Type Window}}"/>
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding SampleInterpretation}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderSampleInterpretation}" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <!--<DataGridTextColumn x:Name="SUDVPCR" Header="SUDV NP qRT-PCR" Binding="{Binding SUDVPCR}" IsReadOnly="True" Visibility="{Binding Path=SUDVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="SUDVPCR2" Header="SUDV qRT-PCR 2" Binding="{Binding SUDVPCR2}" IsReadOnly="True" Visibility="{Binding Path=SUDVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="SUDVAg" Header="SUDV Antigen" Binding="{Binding SUDVAg}" IsReadOnly="True" Visibility="{Binding Path=SUDVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="SUDVIgM" Header="SUDV IgM" Binding="{Binding SUDVIgM}" IsReadOnly="True" Visibility="{Binding Path=SUDVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="SUDVIgG" Header="SUDV IgG" Binding="{Binding SUDVIgG}" IsReadOnly="True" Visibility="{Binding Path=SUDVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+
+                            <DataGridTextColumn x:Name="BDBVPCR" Header="BDBV NP qRT-PCR" Binding="{Binding BDBVPCR}" IsReadOnly="True" Visibility="{Binding Path=BDBVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="BDBVPCR2" Header="BDBV VP40 qRT-PCR" Binding="{Binding BDBVPCR2}" IsReadOnly="True" Visibility="{Binding Path=BDBVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="BDBVAg" Header="BDBV Antigen" Binding="{Binding BDBVAg}" IsReadOnly="True" Visibility="{Binding Path=BDBVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="BDBVIgM" Header="BDBV IgM" Binding="{Binding BDBVIgM}" IsReadOnly="True" Visibility="{Binding Path=BDBVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="BDBVIgG" Header="BDBV IgG" Binding="{Binding BDBVIgG}" IsReadOnly="True" Visibility="{Binding Path=BDBVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />-->
+
+                            <DataGridTextColumn x:Name="EBOVPCR" Header="EBOV qRT-PCR 1" Binding="{Binding EBOVPCR}" IsReadOnly="True" Visibility="{Binding Path=EBOVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <!--<DataGridTextColumn x:Name="EBOVPCR2" Header="EBOV qRT-PCR 2" Binding="{Binding EBOVPCR2}" IsReadOnly="True" Visibility="{Binding Path=EBOVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />-->
+                            <!--<DataGridTextColumn x:Name="EBOVAg" Header="EBOV Antigen" Binding="{Binding EBOVAg}" IsReadOnly="True" Visibility="{Binding Path=EBOVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />-->
+                            <DataGridTextColumn x:Name="EBOVIgM" Header="EBOV IgM" Binding="{Binding EBOVIgM}" IsReadOnly="True" Visibility="{Binding Path=EBOVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="EBOVIgG" Header="EBOV IgG" Binding="{Binding EBOVIgG}" IsReadOnly="True" Visibility="{Binding Path=EBOVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+
+                            <!--<DataGridTextColumn x:Name="MARVPCR" Header="MARV Pol qRT-PCR" Binding="{Binding MARVPCR}" IsReadOnly="True" Visibility="{Binding Path=MARVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="MARVPCR2" Header="MARV VP40 qRT-PCR" Binding="{Binding MARVPCR2}" IsReadOnly="True" Visibility="{Binding Path=MARVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="MARVAg" Header="MARV Antigen" Binding="{Binding MARVAg}" IsReadOnly="True" Visibility="{Binding Path=MARVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="MARVIgM" Header="MARV IgM" Binding="{Binding MARVIgM}" IsReadOnly="True" Visibility="{Binding Path=MARVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="MARVIgG" Header="MARV IgG" Binding="{Binding MARVIgG}" IsReadOnly="True" Visibility="{Binding Path=MARVPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+
+                            <DataGridTextColumn x:Name="CCHFPCR" Header="CCHF Pol qRT-PCR" Binding="{Binding CCHFPCR}" IsReadOnly="True" Visibility="{Binding Path=CCHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="CCHFPCR2" Header="CCHF VP40 qRT-PCR" Binding="{Binding CCHFPCR2}" IsReadOnly="True" Visibility="{Binding Path=CCHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="CCHFAg" Header="CCHF Antigen" Binding="{Binding CCHFAg}" IsReadOnly="True" Visibility="{Binding Path=CCHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="CCHFIgM" Header="CCHF IgM" Binding="{Binding CCHFIgM}" IsReadOnly="True" Visibility="{Binding Path=CCHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="CCHFIgG" Header="CCHF IgG" Binding="{Binding CCHFIgG}" IsReadOnly="True" Visibility="{Binding Path=CCHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+
+                            <DataGridTextColumn x:Name="RVFPCR" Header="RVF Pol qRT-PCR" Binding="{Binding RVFPCR}" IsReadOnly="True" Visibility="{Binding Path=RVFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="RVFPCR2" Header="RVF VP40 qRT-PCR" Binding="{Binding RVFPCR2}" IsReadOnly="True" Visibility="{Binding Path=RVFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="RVFAg" Header="RVF Antigen" Binding="{Binding RVFAg}" IsReadOnly="True" Visibility="{Binding Path=RVFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="RVFIgM" Header="RVF IgM" Binding="{Binding RVFIgM}" IsReadOnly="True" Visibility="{Binding Path=RVFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="RVFIgG" Header="RVF IgG" Binding="{Binding RVFIgG}" IsReadOnly="True" Visibility="{Binding Path=RVFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />-->
+
+                            <!--<DataGridTextColumn x:Name="LHFPCR" Header="LHF Pol qRT-PCR" Binding="{Binding LHFPCR}" IsReadOnly="True" Visibility="{Binding LHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />-->
+                            <!--<DataGridTextColumn x:Name="LHFPCR2" Header="LHF VP40 qRT-PCR" Binding="{Binding LHFPCR2}" IsReadOnly="True" Visibility="{Binding LHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="LHFAg" Header="LHF Antigen" Binding="{Binding LHFAg}" IsReadOnly="True" Visibility="{Binding LHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="LHFIgM" Header="LHF IgM" Binding="{Binding LHFIgM}" IsReadOnly="True" Visibility="{Binding LHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />
+                            <DataGridTextColumn x:Name="LHFIgG" Header="LHF IgG" Binding="{Binding LHFIgG}" IsReadOnly="True" Visibility="{Binding LHFPCR, Converter={StaticResource PCRToVisibilityConverter}}" />-->
+
+                            <DataGridTextColumn Binding="{Binding MalariaRapidTest}" IsReadOnly="True">
+                                <DataGridTextColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock TextAlignment="Center" Text="Malaria Rapid Test" />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Binding="{Binding LabSampleTest}" IsReadOnly="True"  Visibility="{Binding Data.IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource proxy}}"
+>
+                                <DataGridTextColumn.HeaderTemplate >
+                                    <DataTemplate >
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderLabSampleTest}"  />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding FacilityLabSubmit}" IsReadOnly="True"  Visibility="{Binding Data.IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource proxy}}"
+>
+                                <DataGridTextColumn.HeaderTemplate >
+                                    <DataTemplate >
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderFacilityLabSubmit}"  />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding PersonLabSubmit}" IsReadOnly="True"  Visibility="{Binding Data.IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource proxy}}"
+>
+                                <DataGridTextColumn.HeaderTemplate >
+                                    <DataTemplate >
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderPersonLabSubmit }"  />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding PhoneLabSubmit}" IsReadOnly="True"  Visibility="{Binding Data.IsCountryUS, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource proxy}}"
+>
+                                <DataGridTextColumn.HeaderTemplate >
+                                    <DataTemplate >
+                                        <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.ColHeaderPhoneLabSubmit }"  />
+                                    </DataTemplate>
+                                </DataGridTextColumn.HeaderTemplate>
+                            </DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.ColumnSpan="4">
+                <Button Style="{StaticResource PanelCloseButtonStyle}" Margin="0" Click="btnClose_Click" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

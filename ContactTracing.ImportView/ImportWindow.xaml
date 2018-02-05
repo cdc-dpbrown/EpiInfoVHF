@@ -1,0 +1,186 @@
+﻿<Window x:Class="ContactTracing.ImportView.ImportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        SizeToContent="WidthAndHeight"
+        MinWidth="400"
+        Title="Import Sync File">
+    <Window.Resources>
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        <Color x:Key="MediumLightTextColor" A="255"     R="133 " G ="133"  B="135 "/>
+        <Color x:Key="LightTextColor" A="255"           R="244 " G ="244 " B="248 "/>
+        <Color x:Key="HighlightColor" A="255" R="0" G ="90" B="157"/>
+        <Color x:Key="DarkTextColor" A="255"            R="51 "  G ="51 "  B="53"/>
+        <Color x:Key="MediumTextColor" A="255"          R="98 "  G ="98 "  B="100 "/>
+
+        <LinearGradientBrush x:Key="LightBackgroundBrush" StartPoint="1,0" EndPoint="1,1">
+            <GradientStop Color="#EFF1F3" Offset="0" />
+            <GradientStop Color="White" Offset="0.6" />
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="DarkTextBrush" Color="{StaticResource DarkTextColor}" />
+        <SolidColorBrush x:Key="MediumTextBrush" Color="{StaticResource MediumTextColor}" />
+        <SolidColorBrush x:Key="MediumLightTextBrush" Color="{StaticResource MediumLightTextColor}" />
+        <SolidColorBrush x:Key="LightTextBrush" Color="{StaticResource LightTextColor}" />
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource HighlightColor}" />
+
+        <Style TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <!--<Setter Property="Background" Value="{StaticResource DefaultButtonBrush}" />-->
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="#F0F0F4" />
+                        <GradientStop Offset="1" Color="#E6E6EA" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#BBBBBB" />
+            <Setter Property="Foreground" Value="{StaticResource DarkTextBrush}" />
+            <!--<Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="Foreground" Value="White" />-->
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                        x:Name="BorderOuter"
+                        BorderBrush="#EFEFEF"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        >
+                            <Border x:Name="PART_Border" BorderThickness="{TemplateBinding BorderThickness}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    Background="{TemplateBinding Background}" 
+                    Padding="{TemplateBinding Padding}" 
+                    CornerRadius="0">
+                                <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center" Content="{TemplateBinding Content}" />
+                            </Border>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="PART_Border" 
+                                Value="Transparent"/>
+                                <Setter Property="Foreground" 
+                                Value="{StaticResource MediumTextBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+                    <Setter Property="Foreground" Value="{StaticResource LightTextBrush}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource AccentBrush}" />
+                    <Setter Property="Foreground" Value="{StaticResource LightTextBrush}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--<ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ContactTracing.WPF;component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+    </Window.Resources>
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo ProgressState="{Binding TaskbarProgressState}" ProgressValue="{Binding TaskbarProgressValue}" />
+    </Window.TaskbarItemInfo>
+    <Grid>
+        <Border Background="{StaticResource LightBackgroundBrush}"
+            Padding="20">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+                        <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                        <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="DATA IMPORT OPTIONS" IsHitTestVisible="False" />
+                    </StackPanel>
+
+                    <StackPanel Height="14" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="VHF project file:" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="tboxProjectFileName" Width="550" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" Text="{Binding ProjectFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button x:Name="btnProjectBrowse" Grid.Column="1" VerticalAlignment="Stretch" Height="Auto" Content="Browse" Click="btnProjectBrowse_Click" />
+                    </Grid>
+
+                    <StackPanel Height="14" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Sync file:" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="tboxFileName" Width="550" IsEnabled="False" Padding="2" Margin="0, 0, 10, 0" Text="{Binding SyncFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button x:Name="btnBrowse" Grid.Column="1" VerticalAlignment="Stretch" Height="Auto" Content="Browse" Click="btnBrowse_Click" />
+                    </Grid>
+
+
+                    <StackPanel Height="18" />
+
+                </StackPanel>
+
+                <UniformGrid Grid.Row="1" VerticalAlignment="Bottom" Rows="1" Columns="4" Width="Auto" Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                    <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                    <Button HorizontalAlignment="Stretch" 
+                            Width="Auto" 
+                            Grid.Row="0" 
+                            Grid.Column="2" 
+                            Margin="0, 0, 5, 0" 
+                            x:Name="btnOK" 
+                            Command="{Binding StartImportCommand}"
+                            Click="btnOK_Click" 
+                            Content="Import"/>
+                    <Button HorizontalAlignment="Stretch" Width="Auto" Grid.Row="0" Grid.Column="3" Margin="5, 0, 0, 0" x:Name="btnCancel" Click="btnCancel_Click" Content="Close"/>
+                </UniformGrid>
+            </Grid>
+        </Border>
+
+        <DockPanel Grid.RowSpan="100" Background="#66000000" x:Name="panelDataImport" Visibility="{Binding IsShowingImportProgress, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+                    <StackPanel Margin="40, 20, 40, 20">
+
+                        <StackPanel>
+                            <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                            <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="IMPORTING DATA" />
+                        </StackPanel>
+
+                        <StackPanel Height="10" />
+                        <ProgressBar Width="480" HorizontalAlignment="Stretch" Height="16" Foreground="#558FFF" Minimum="0" Maximum="1" Value="{Binding TaskbarProgressValue, FallbackValue=0}" />
+                        <StackPanel Height="4" />
+                        <TextBlock TextWrapping="Wrap" Text="{Binding SyncStatus, FallbackValue=...}" />
+                        <StackPanel Height="4" />
+                        <Button Width="90" Margin="4, 4, 0, 0" 
+                                HorizontalAlignment="Right"
+                                x:Name="panelDataImportOKButton" 
+                                Command="{Binding StopImportCommand}"
+                                Content="OK" />
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</Window>

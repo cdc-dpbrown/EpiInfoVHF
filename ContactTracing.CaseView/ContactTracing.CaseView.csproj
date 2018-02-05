@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A7603CE7-0794-4A07-A812-A81BE0875C17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ContactTracing.CaseView</RootNamespace>
+    <AssemblyName>CaseManagementMenu</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\TFSCode\Epi Info 7\build\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Epi Info 7\build\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6A079FC470E352BA5ACB4C56AC0741F108634124</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ContactTracing.CaseView_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentArt.Win.DataVisualization.Charting, Version=2012.1.1871.0, Culture=neutral, PublicKeyToken=9bc9f846553156bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\ComponentArt.Win.DataVisualization.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentArt.Win.DataVisualization.Common, Version=2012.1.1871.0, Culture=neutral, PublicKeyToken=9bc9f846553156bb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\ComponentArt.Win.DataVisualization.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Enter">
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\Enter.exe</HintPath>
+    </Reference>
+    <Reference Include="Epi.Core">
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\Epi.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Epi.Core.EnterInterpreter">
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\Epi.Core.EnterInterpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="Epi.Data.Office">
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\Epi.Data.Office.dll</HintPath>
+    </Reference>
+    <Reference Include="Epi.ImportExport">
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\Epi.ImportExport.dll</HintPath>
+    </Reference>
+    <Reference Include="Epi.Windows">
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\Epi.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="EpiDashboard, Version=7.1.4990.33878, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\EpiDashboard.dll</HintPath>
+    </Reference>
+    <Reference Include="EpiInfo.Plugin">
+      <HintPath>..\..\..\..\..\Desktop\Epi Info 7\EpiInfo.Plugin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="NPOI">
+      <HintPath>.\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.3\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="TcpComm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ContactTracing.Core\TcpComm\TcpComm.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AnalysisPaginator.cs" />
+    <Compile Include="Boundry.cs" />
+    <Compile Include="Controls\AnalysisCountryViewer.xaml.cs">
+      <DependentUpon>AnalysisCountryViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\AnalysisOutputBase.cs" />
+    <Compile Include="Controls\Analysis\AnalysisSectionHeader.xaml.cs">
+      <DependentUpon>AnalysisSectionHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\ConfirmedProbableTable.xaml.cs">
+      <DependentUpon>ConfirmedProbableTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\AgeInfo.xaml.cs">
+      <DependentUpon>AgeInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\CountryDistrictResTables.xaml.cs">
+      <DependentUpon>CountryDistrictResTables.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\AgeGroupChartCP.xaml.cs">
+      <DependentUpon>AgeGroupChartCP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\EpiCurveChartCPS.xaml.cs">
+      <DependentUpon>EpiCurveChartCPS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\EpiCurveChartCP.xaml.cs">
+      <DependentUpon>EpiCurveChartCP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\FinalOutcomeContactsTable.xaml.cs">
+      <DependentUpon>FinalOutcomeContactsTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\OnsetLocationTable.xaml.cs">
+      <DependentUpon>OnsetLocationTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\PatientTestedInfo.xaml.cs">
+      <DependentUpon>PatientTestedInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\DailyStats.xaml.cs">
+      <DependentUpon>DailyStats.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\EpiClassAllPatients.xaml.cs">
+      <DependentUpon>EpiClassAllPatients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\FinalOutcomeTable.xaml.cs">
+      <DependentUpon>FinalOutcomeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\LabClassAllPatients.xaml.cs">
+      <DependentUpon>LabClassAllPatients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\LastIsoInfo.xaml.cs">
+      <DependentUpon>LastIsoInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\ResidenceTable.xaml.cs">
+      <DependentUpon>ResidenceTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\SingleContactChart.xaml.cs">
+      <DependentUpon>SingleContactChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Analysis\SymptomsTable.xaml.cs">
+      <DependentUpon>SymptomsTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CaseActionsRowControl.xaml.cs">
+      <DependentUpon>CaseActionsRowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CaseExportOptions.xaml.cs">
+      <DependentUpon>CaseExportOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DailyFollowUpCard.xaml.cs">
+      <DependentUpon>DailyFollowUpCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExportCsvFile.xaml.cs">
+      <DependentUpon>ExportCsvFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExportSyncFile.xaml.cs">
+      <DependentUpon>ExportSyncFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilterSortDropdown.xaml.cs">
+      <DependentUpon>FilterSortDropdown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Diagnostics\DistrictFieldTypeEditor.xaml.cs">
+      <DependentUpon>DistrictFieldTypeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Diagnostics\CountryNameEditor.xaml.cs">
+      <DependentUpon>CountryNameEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Diagnostics\DistrictNameEditor.xaml.cs">
+      <DependentUpon>DistrictNameEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExposureRelationshipsForCase.xaml.cs">
+      <DependentUpon>ExposureRelationshipsForCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FieldValueChanges.xaml.cs">
+      <DependentUpon>FieldValueChanges.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilterSortSelectForm.xaml.cs">
+      <DependentUpon>FilterSortSelectForm.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\LabResultActionsRowControl.xaml.cs">
+      <DependentUpon>LabResultActionsRowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContactEntryForm.xaml.cs">
+      <DependentUpon>ContactEntryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContactLinkActionsRowControl.xaml.cs">
+      <DependentUpon>ContactLinkActionsRowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ConvertToContact.xaml.cs">
+      <DependentUpon>ConvertToContact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContactActionsRowControl.xaml.cs">
+      <DependentUpon>ContactActionsRowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CaseLinkActionsRowControl.xaml.cs">
+      <DependentUpon>CaseLinkActionsRowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CaseReportFormViewer.xaml.cs">
+      <DependentUpon>CaseReportFormViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Diagnostics\DataChecker.xaml.cs">
+      <DependentUpon>DataChecker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExistingCase.xaml.cs">
+      <DependentUpon>ExistingCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExistingContact.xaml.cs">
+      <DependentUpon>ExistingContact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImportFromLab.xaml.cs">
+      <DependentUpon>ImportFromLab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LabRecordsForCase.xaml.cs">
+      <DependentUpon>LabRecordsForCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MenuItemPanel.xaml.cs">
+      <DependentUpon>MenuItemPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Occupations.xaml.cs">
+      <DependentUpon>Occupations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AnalysisViewer.xaml.cs">
+      <DependentUpon>AnalysisViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PatientOutcomeFormViewer.xaml.cs">
+      <DependentUpon>PatientOutcomeFormViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Printing\CaseReportFormPage3.xaml.cs">
+      <DependentUpon>CaseReportFormPage3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Printing\CaseReportFormPage2.xaml.cs">
+      <DependentUpon>CaseReportFormPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Printing\CaseReportFormPage1.xaml.cs">
+      <DependentUpon>CaseReportFormPage1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Printing\DateDisplay.xaml.cs">
+      <DependentUpon>DateDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Printing\YesNoUnknownBoxDisplay.xaml.cs">
+      <DependentUpon>YesNoUnknownBoxDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\QuickCaseEntryForm.xaml.cs">
+      <DependentUpon>QuickCaseEntryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RecordErrors.xaml.cs">
+      <DependentUpon>RecordErrors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchBox.cs" />
+    <Compile Include="Controls\SelectEpiCaseClassification.xaml.cs">
+      <DependentUpon>SelectEpiCaseClassification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ShortCaseEntryForm.xaml.cs">
+      <DependentUpon>ShortCaseEntryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ShortLabResultForm.xaml.cs">
+      <DependentUpon>ShortLabResultForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SqlToMdbCopier.xaml.cs">
+      <DependentUpon>SqlToMdbCopier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatusSelector.xaml.cs">
+      <DependentUpon>StatusSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SubTabButton.cs" />
+    <Compile Include="Controls\TabButton.cs" />
+    <Compile Include="Controls\Tabs\AnalysisTab.xaml.cs">
+      <DependentUpon>AnalysisTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Tabs\HospitalizationTab.xaml.cs">
+      <DependentUpon>HospitalizationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UnexplainedBleeding.xaml.cs">
+      <DependentUpon>UnexplainedBleeding.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\YesNoUnknown.xaml.cs">
+      <DependentUpon>YesNoUnknown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\21-day Contact Chart\DayStringPrefix.cs" />
+    <Compile Include="Converters\21-day Contact Chart\TempStringFormatter.cs" />
+    <Compile Include="Converters\AliveDeadConverter.cs" />
+    <Compile Include="Converters\AliveDeadToEnabledConverter.cs" />
+    <Compile Include="Converters\BindingProxy.cs" />
+    <Compile Include="Converters\21-day Contact Chart\DateToBorderThicknessConverter.cs" />
+    <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\EpiCaseClassificationConverter.cs" />
+    <Compile Include="Converters\FinalLabClassificationConverter.cs" />
+    <Compile Include="Converters\FinalOutcomeConverter.cs" />
+    <Compile Include="Converters\21-day Contact Chart\FollowUpStatusToBackgroundConverter.cs" />
+    <Compile Include="Converters\21-day Contact Chart\FollowUpStatusToRotatedPositionConverter.cs" />
+    <Compile Include="Converters\21-day Contact Chart\FollowUpStatusToTextConverter.cs" />
+    <Compile Include="Converters\21-day Contact Chart\FollowUpStatusToTooltipTextConverter.cs" />
+    <Compile Include="Converters\HCWConverter.cs" />
+    <Compile Include="Converters\GenderConverter.cs" />
+    <Compile Include="Converters\LabResultConverters.cs" />
+    <Compile Include="Converters\MultiBooleanCaseWindowToEnabledConverter.cs" />
+    <Compile Include="Converters\21-day Contact Chart\TodayToCollapsedConverter.cs" />
+    <Compile Include="Converters\21-day Contact Chart\TodayToVisibleConverter.cs" />
+    <Compile Include="Converters\21-day Contact Chart\TempStringPrefix.cs" />
+    <Compile Include="Converters\StatusToStatusTextVisibilityConverter.cs" />
+    <Compile Include="Converters\TaskbarProgressStateToBooleanConverter.cs" />
+    <Compile Include="Dialogs\AuthCodeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AuthCodeDialog.designer.cs">
+      <DependentUpon>AuthCodeDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DateAnalysisDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DateAnalysisDialog.designer.cs">
+      <DependentUpon>DateAnalysisDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DateDeathDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DateDeathDialog.designer.cs">
+      <DependentUpon>DateDeathDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\NewCaseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\NewCaseDialog.designer.cs">
+      <DependentUpon>NewCaseDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DateDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DateDialog.designer.cs">
+      <DependentUpon>DateDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\NewContactDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\NewContactDialog.designer.cs">
+      <DependentUpon>NewContactDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnumDescriptionConverter.cs" />
+    <Compile Include="EpiDataHelper.cs" />
+    <Compile Include="EpiDataHelper.ImportExport.cs" />
+    <Compile Include="EpiDataHelper.PopulateCollections.cs" />
+    <Compile Include="ExportSyncFileViewModel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SqlToMdbCopierViewModel.cs" />
+    <Compile Include="TransmissionChain.cs" />
+    <Compile Include="TransmissionChainPaginator.cs" />
+    <Page Include="Controls\AnalysisCountryViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\AnalysisSectionHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\AnalysisStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\ConfirmedProbableTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\AgeInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Analysis\CountryDistrictResTables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\AgeGroupChartCP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Analysis\EpiCurveChartCPS.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Analysis\EpiCurveChartCP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\FinalOutcomeContactsTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Analysis\OnsetLocationTable.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Analysis\PatientTestedInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Analysis\DailyStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\EpiClassAllPatients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\FinalOutcomeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\LabClassAllPatients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\LastIsoInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\ResidenceTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\SingleContactChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Analysis\SymptomsTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CaseActionsRowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CaseExportOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DailyFollowUpCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExportCsvFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExportSyncFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FilterSortDropdown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Diagnostics\DistrictFieldTypeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Diagnostics\CountryNameEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Diagnostics\DistrictNameEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExposureRelationshipsForCase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FieldValueChanges.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FilterSortSelectForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LabResultActionsRowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ContactEntryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ContactLinkActionsRowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ConvertToContact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ContactActionsRowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CaseLinkActionsRowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CaseReportFormViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Diagnostics\DataChecker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExistingCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExistingContact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ImportFromLab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LabRecordsForCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MenuItemPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Occupations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\AnalysisViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PatientOutcomeFormViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Printing\CaseReportFormPage3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Printing\CaseReportFormPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Printing\CaseReportFormPage1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Printing\DateDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Printing\YesNoUnknownBoxDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\QuickCaseEntryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RecordErrors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SelectEpiCaseClassification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ShortCaseEntryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ShortLabResultForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SqlToMdbCopier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StatusSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Tabs\AnalysisTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Tabs\HospitalizationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UnexplainedBleeding.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\YesNoUnknown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\AuthCodeDialog.fr-FR.resx">
+      <DependentUpon>AuthCodeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AuthCodeDialog.resx">
+      <DependentUpon>AuthCodeDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateAnalysisDialog.en-US.resx">
+      <DependentUpon>DateAnalysisDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateAnalysisDialog.fr.resx">
+      <DependentUpon>DateAnalysisDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateAnalysisDialog.resx">
+      <DependentUpon>DateAnalysisDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateDeathDialog.en-US.resx">
+      <DependentUpon>DateDeathDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateDeathDialog.fr.resx">
+      <DependentUpon>DateDeathDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateDeathDialog.resx">
+      <DependentUpon>DateDeathDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateDialog.fr-FR.resx">
+      <DependentUpon>DateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateDialog.fr.resx">
+      <DependentUpon>DateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewCaseDialog.en-US.resx">
+      <DependentUpon>NewCaseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewCaseDialog.fr-FR.resx">
+      <DependentUpon>NewCaseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewCaseDialog.resx">
+      <DependentUpon>NewCaseDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DateDialog.resx">
+      <DependentUpon>DateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewContactDialog.en-US.resx">
+      <DependentUpon>NewContactDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewContactDialog.fr-FR.resx">
+      <DependentUpon>NewContactDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewContactDialog.fr.resx">
+      <DependentUpon>NewContactDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\NewContactDialog.resx">
+      <DependentUpon>NewContactDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="ComponentArt.Win.DataVisualization.lic" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ContactTracing.CaseView_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="App.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ContactTracing.Core\ContactTracing.Core.csproj">
+      <Project>{158089EC-551A-47BC-B01C-8EFD0EF39DD1}</Project>
+      <Name>ContactTracing.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContactTracing.ImportExport\ContactTracing.ImportExport.csproj">
+      <Project>{D6F4EFA6-8C20-40E6-A5CA-D0593C10A76B}</Project>
+      <Name>ContactTracing.ImportExport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContactTracing.ViewModel\ContactTracing.ViewModel.csproj">
+      <Project>{C3527B8D-41F3-40E6-BE4C-C18E3A3D235F}</Project>
+      <Name>ContactTracing.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContactTracing.WPF\ContactTracing.WPF.csproj">
+      <Project>{6ED26BDA-3F09-4D34-AAEA-8080E932B73D}</Project>
+      <Name>ContactTracing.WPF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\print.png" />
+    <Resource Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\word.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\USA.png" />
+    <Resource Include="Images\World.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="splashscreen2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo %25date%25 %25time%25  &gt; $(SolutionDir)\postBuild.txt
+
+set __PARING_SOURCE=VHF_Epi_Info_7_RELEASE_PAIRING_SOURCE
+echo __PARING_SOURCE=%25__PARING_SOURCE%25 &gt;&gt; $(SolutionDir)\postBuild.txt
+
+set __VHF_BUILD=__VHF_BUILD
+echo __VHF_BUILD=%25__VHF_BUILD%25 &gt;&gt; $(SolutionDir)\postBuild.txt
+
+chdir $(SolutionDir)
+chdir ..
+set __CURRENT_DIR=%25CD%25
+echo __CURRENT_DIR=%25__CURRENT_DIR%25 &gt;&gt; $(SolutionDir)\postBuild.txt
+
+rmdir /s /q %25__VHF_BUILD%25
+mkdir %25__VHF_BUILD%25
+
+xcopy /s /v /y /f "%25CURRENT_DIR%25%25__PARING_SOURCE%25" "%25CURRENT_DIR%25%25__VHF_BUILD%25" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+xcopy /s /v /y /f "$(TargetDir)Epi Info VHF.exe" "%25CURRENT_DIR%25%25__VHF_BUILD%25" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+xcopy /s /v /y /f "$(TargetDir)CaseManagementMenu.exe" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+xcopy /s /v /y /f "$(TargetDir)ContactTracing.WPF.dll" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+xcopy /s /v /y /f "$(TargetDir)ContactTracing.ImportExport.dll" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+xcopy /s /v /y /f "$(TargetDir)ContactTracing.ViewModel.dll" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+xcopy /s /v /y /f "$(TargetDir)ContactTracing.Core.dll" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+mkdir "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7\en-US"
+xcopy /s /v /y /f "$(TargetDir)\en-US" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7\en-US" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+mkdir "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7\fr"
+xcopy /s /v /y /f "$(TargetDir)\fr" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7\fr" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+mkdir "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7\fr-FR"
+xcopy /s /v /y /f "$(TargetDir)\fr-FR" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7\fr-FR" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+mkdir "%25__VHF_BUILD%25\Epi Info 7\Projects\VHF"
+xcopy /s /v /y /f "$(TargetDir)\Projects\VHF" "%25CURRENT_DIR%25%25__VHF_BUILD%25\Epi Info 7\Projects\VHF" &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+del $(SolutionDir)\ContactTracing.CaseView\ComponentArt.Win.DataVisualization.lic &gt;&gt; "$(SolutionDir)\postBuild.txt"
+
+rem call "$(SolutionDir)\postBuild.txt"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>echo %25date%25 %25time%25  &gt; $(SolutionDir)\preBuild.txt
+
+set __SUPPLEMENTAL_SOURCE=VHF_SUPPLEMENTAL_SOURCE_FILES
+echo __SUPPLEMENTAL_SOURCE::%25__SUPPLEMENTAL_SOURCE%25 &gt;&gt; $(SolutionDir)\preBuild.txt
+
+chdir $(SolutionDir)
+chdir ..
+set __CURRENT_DIR=%25CD%25
+echo __CURRENT_DIR::%25__CURRENT_DIR%25 &gt;&gt; $(SolutionDir)\preBuild.txt
+
+set __COMPONENTART_LIC=%25__CURRENT_DIR%25\%25__SUPPLEMENTAL_SOURCE%25\ComponentArt.Win.DataVisualization.lic
+echo __COMPONENTART_LIC::%25__COMPONENTART_LIC%25 &gt;&gt; $(SolutionDir)\preBuild.txt
+set __COMPONENTART_LIC_DESTINATION=$(SolutionDir)\ContactTracing.CaseView &gt;&gt; $(SolutionDir)\preBuild.txt
+xcopy /s /v /y /f %25__COMPONENTART_LIC%25 $(SolutionDir)\ContactTracing.CaseView &gt;&gt; $(SolutionDir)\preBuild.txt
+
+rem call $(SolutionDir)\preBuild.txt</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="ContactTracing.CaseView.Controls.Tabs.AnalysisTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:Controls="clr-namespace:ContactTracing.CaseView.Controls"
+             xmlns:Tabs="clr-namespace:ContactTracing.CaseView.Controls.Tabs"
+             xmlns:AnalysisControls="clr-namespace:ContactTracing.CaseView.Controls.Analysis"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:own="clr-namespace:ContactTracing.CaseView"
+             mc:Ignorable="d" 
+             d:DesignHeight="4800" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Analysis/AnalysisStyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="gridAnalysis" VerticalAlignment="Stretch">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="10,5,0,5">
+            <TextBlock Grid.Row="0"  Style="{StaticResource Heading1}" Text="{x:Static p:Resources.Analysis}" />
+            <DockPanel Height="8" />
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="10,5,10,10">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnFreeAnalysis" HorizontalAlignment="Left" Width="150" Height="24" Margin="3, 3, 3, 8" Click="btnFreeAnalysis_Click"
+                        Content="{x:Static p:Resources.FreeFormAnalysis}">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <!--<MenuItem Header="{x:Static p:Resources.AnalyzeCases}" Click="btnFreeFormCases_Click"></MenuItem>
+                            <MenuItem Header="{x:Static p:Resources.AnalyzeCasesWithLabSampleData}" Click="btnFreeFormCasesLab_Click"></MenuItem>-->
+                            <MenuItem Header="{x:Static p:Resources.AnalyzeCasesCP}" Click="btnFreeFormCasesCP_Click"></MenuItem>
+                            <MenuItem Header="{x:Static p:Resources.AnalyzeCasesCPS}" Click="btnFreeFormCasesLabCPS_Click"></MenuItem>
+                            <MenuItem Header="{x:Static p:Resources.AnalyzeAllPatients}" Click="btnFreeFormAllPatients_Click"></MenuItem>
+                            <MenuItem Header="{x:Static p:Resources.AnalyzeContacts}" Click="btnFreeFormContacts_Click"></MenuItem>
+                            <MenuItem Header="{x:Static p:Resources.AnalyzeCustom}" x:Name="mnuCustomAnalysis" Visibility="Collapsed">
+                                
+                            </MenuItem>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+                <Button x:Name="btnPrint" HorizontalAlignment="Left" Width="150" Height="24" Margin="3, 3, 3, 8" Click="btnPrint_Click" Content="{x:Static p:Resources.PrintAnalysis}" />
+
+                <Button x:Name="btnPrintCountries" HorizontalAlignment="Left" Width="150" Height="24" Margin="3, 3, 3, 8" Click="btnPrintCountries_Click" Content="{x:Static p:Resources.DistrictReport}">
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="cmenuCountries">
+                            <!--<MenuItem Header="{x:Static p:Resources.AnalyzeCases}" Click="btnFreeFormCases_Click"></MenuItem>
+                            <MenuItem Header="{x:Static p:Resources.AnalyzeCasesWithLabSampleData}" Click="btnFreeFormCasesLab_Click"></MenuItem>-->
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+
+                <!--<Button x:Name="btnPrintSitrep" HorizontalAlignment="Left" Width="150" Height="24" Margin="3, 3, 3, 8" Click="btnPrintSITREP_Click" Content="Print SITREP" Visibility="Collapsed">
+                    <Button.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="SITREP Format A" Click="mnuSitrepA_Click" Visibility="Collapsed" />
+                            <MenuItem Header="SITREP Format B" Click="mnuSitrepB_Click" />
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>-->
+
+                <!--<Button x:Name="btnPrintSitrep" Visibility="Collapsed"  HorizontalAlignment="Left" Width="150" Height="24" Margin="3, 3, 3, 8" Click="btnPrintSitrep_Click" Content="SITREP" />-->
+            </StackPanel>
+            <ScrollViewer x:Name="sv" 
+                          Background="{StaticResource AnalysisBackgroundBrush}" 
+                          PanningMode="VerticalOnly">
+                <StackPanel x:Name="sp" IsHitTestVisible="False">
+                    <TextBlock x:Name="tblockTitle" HorizontalAlignment="Center" Margin="10, 10, 10, 0" FontSize="24pt" FontWeight="Light" Text="{x:Static p:Resources.EpidemiologyReport}" />
+                    <!--<TextBlock x:Name="tblockDate" HorizontalAlignment="Center" Margin="10, 0, 10, 10" FontSize="18pt" FontWeight="Light">January 1, 2012</TextBlock>-->
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center" Margin="10, 0, 10, 10" FontSize="18pt" FontWeight="Light"  Text="{x:Static p:Resources.AnalysisDateGenerated}" />
+                        <TextBlock x:Name="tblockDate" HorizontalAlignment="Center" Margin="10, 0, 10, 10" FontSize="18pt" FontWeight="Light" Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{}{0:dd-MMM-yyyy HH:mm}'}" />
+                    </StackPanel>
+
+                    <!--<Border Style="{StaticResource borderRowHeaderStyle}">
+                        <TextBlock x:Name="tblockSummaryHeading" Foreground="White" HorizontalAlignment="Left" Margin="4" FontSize="14pt" FontWeight="DemiBold">
+                            SUMMARY OF ALL PATIENTS EXAMINED
+                        </TextBlock>
+                    </Border>-->
+                    <AnalysisControls:AnalysisSectionHeader Margin="0, 10, 0, 10" Heading="{x:Static p:Resources.AnalysisSummaryHeading}" />
+
+                    <AnalysisControls:EpiClassAllPatients Margin="0, 0, 0, 10" x:Name="analysisEpiClassAllPatients" />
+                    <AnalysisControls:LabClassAllPatients Margin="0, 0, 0, 10" x:Name="labClassAllPatients" />
+                    <AnalysisControls:PatientTestedInfo Margin="0, 0, 0, 10" x:Name="patientTestedInfo" />
+                    <!--     <AnalysisControls:DailyStats Margin="0, 0, 0, 10" x:Name="dailyStats" /> -->    
+                    <AnalysisControls:LastIsoInfo Margin="0, 0, 0, 10" x:Name="lastIsoInfo" />
+                    <AnalysisControls:EpiCurveChartCPS HorizontalAlignment="Left" Margin="0, 0, 0, 10" Width="950" x:Name="epiCurveSuspect" />
+
+                    <AnalysisControls:AnalysisSectionHeader Margin="0, 10, 0, 10" Heading="{x:Static p:Resources.AnalysisConfirmedProbableHeading}" />
+
+                    <AnalysisControls:EpiCurveChartCP HorizontalAlignment="Left" Width="950" Margin="0, 0, 0, 10" x:Name="epiCurve" />
+                    <AnalysisControls:ConfirmedProbableTable Margin="0, 0, 0, 10" x:Name="confirmedProbableTable" />
+                    <AnalysisControls:FinalOutcomeTable Margin="0, 0, 0, 10" x:Name="finalOutcomeTable" />
+                    <AnalysisControls:SymptomsTable Margin="0, 0, 0, 10" x:Name="symptomsTable" />
+                    <AnalysisControls:AgeGroupChartCP HorizontalAlignment="Left"  Margin="0, 0, 0, 10" x:Name="ageGroupChart" />
+                    <AnalysisControls:AgeInfo Margin="0, 0, 0, 10" x:Name="ageTable" />
+                    <AnalysisControls:ResidenceTable Margin="0, 0, 0, 10" x:Name="residenceTable" />
+                    <AnalysisControls:OnsetLocationTable Margin="0, 0, 0, 10" x:Name="onsetLocationTable" />
+
+                    <AnalysisControls:AnalysisSectionHeader Margin="0, 10, 0, 10" Heading="{x:Static p:Resources.AnalysisContactsHeading}" />
+
+                    <AnalysisControls:FinalOutcomeContactsTable Margin="0, 0, 0, 10" x:Name="finalOutcomeContactsTable" />
+                    
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</UserControl>

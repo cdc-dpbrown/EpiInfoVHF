@@ -1,0 +1,124 @@
+<DashboardCanvas>
+  <dashboardHelper>
+    <projectPath>C:\TFSCode\Epi Info 7\build\debug\Projects\VHF\vhf_ebolamaryland2014.prj</projectPath>
+    <viewName>CaseInformationForm</viewName>
+    <advancedDataFilterCondition>
+    </advancedDataFilterCondition>
+    <useAdvancedDataFilterCondition>False</useAdvancedDataFilterCondition>
+    <relatedDataConnections />
+    <dataFilters recordProcessScope="undeleted">
+      <filterCondition>
+        <condition>([EpiCaseDef] = '1')</condition>
+        <friendlyCondition>The value of [EpiCaseDef] is equal to 1</friendlyCondition>
+        <columnName>[EpiCaseDef]</columnName>
+        <columnType>System.String</columnType>
+        <rawColumnName>EpiCaseDef</rawColumnName>
+        <operand>=</operand>
+        <friendlyOperand>is equal to</friendlyOperand>
+        <value>'1'</value>
+        <friendlyValue>1</friendlyValue>
+        <highValue>
+        </highValue>
+        <friendlyHighValue>
+        </friendlyHighValue>
+        <lowValue>
+        </lowValue>
+        <friendlyLowValue>
+        </friendlyLowValue>
+        <isBetween>false</isBetween>
+        <isEnabled>true</isEnabled>
+        <joinType>
+        </joinType>
+      </filterCondition>
+      <filterCondition>
+        <condition>([EpiCaseDef] = '2')</condition>
+        <friendlyCondition>The value of [EpiCaseDef] is equal to 2</friendlyCondition>
+        <columnName>[EpiCaseDef]</columnName>
+        <columnType>System.String</columnType>
+        <rawColumnName>EpiCaseDef</rawColumnName>
+        <operand>=</operand>
+        <friendlyOperand>is equal to</friendlyOperand>
+        <value>'2'</value>
+        <friendlyValue>2</friendlyValue>
+        <highValue>
+        </highValue>
+        <friendlyHighValue>
+        </friendlyHighValue>
+        <lowValue>
+        </lowValue>
+        <friendlyLowValue>
+        </friendlyLowValue>
+        <isBetween>false</isBetween>
+        <isEnabled>true</isEnabled>
+        <joinType>or</joinType>
+      </filterCondition>
+      <filterCondition>
+        <condition>([EpiCaseDef] = '3')</condition>
+        <friendlyCondition>The value of [EpiCaseDef] is equal to 3</friendlyCondition>
+        <columnName>[EpiCaseDef]</columnName>
+        <columnType>System.String</columnType>
+        <rawColumnName>EpiCaseDef</rawColumnName>
+        <operand>=</operand>
+        <friendlyOperand>is equal to</friendlyOperand>
+        <value>'3'</value>
+        <friendlyValue>3</friendlyValue>
+        <highValue>
+        </highValue>
+        <friendlyHighValue>
+        </friendlyHighValue>
+        <lowValue>
+        </lowValue>
+        <friendlyLowValue>
+        </friendlyLowValue>
+        <isBetween>false</isBetween>
+        <isEnabled>true</isEnabled>
+        <joinType>or</joinType>
+      </filterCondition>
+      <filterCondition>
+        <condition>([EpiCaseDef] = '5')</condition>
+        <friendlyCondition>The value of [EpiCaseDef] is equal to 5</friendlyCondition>
+        <columnName>[EpiCaseDef]</columnName>
+        <columnType>System.String</columnType>
+        <rawColumnName>EpiCaseDef</rawColumnName>
+        <operand>=</operand>
+        <friendlyOperand>is equal to</friendlyOperand>
+        <value>'5'</value>
+        <friendlyValue>5</friendlyValue>
+        <highValue>
+        </highValue>
+        <friendlyHighValue>
+        </friendlyHighValue>
+        <lowValue>
+        </lowValue>
+        <friendlyLowValue>
+        </friendlyLowValue>
+        <isBetween>false</isBetween>
+        <isEnabled>true</isEnabled>
+        <joinType>or</joinType>
+      </filterCondition>
+    </dataFilters>
+    <dashboardRules />
+  </dashboardHelper>
+  <Gadgets />
+  <OutputSettings>
+    <showCanvasSummaryInfo>True</showCanvasSummaryInfo>
+    <showGadgetHeadings>True</showGadgetHeadings>
+    <showGadgetSettings>True</showGadgetSettings>
+    <useAlternatingColors>False</useAlternatingColors>
+    <tableFontSize>13</tableFontSize>
+    <customHeading>
+    </customHeading>
+    <customSummary>
+    </customSummary>
+    <customConclusion>
+    </customConclusion>
+    <customTableFontFamily>
+    </customTableFontFamily>
+    <canvasHeight>8000</canvasHeight>
+    <sortGadgets>True</sortGadgets>
+  </OutputSettings>
+  <CanvasSettings>
+    <editMode>True</editMode>
+    <layoutMode>free</layoutMode>
+  </CanvasSettings>
+</DashboardCanvas>

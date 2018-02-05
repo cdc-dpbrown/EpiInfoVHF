@@ -1,0 +1,256 @@
+﻿<Window x:Class="ContactTracing.Sms.SmsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpf="clr-namespace:ContactTracing.Controls;assembly=ContactTracing.WPF"
+        xmlns:local="clr-namespace:ContactTracing.Sms"
+        MinWidth="790"
+        MinHeight="580"
+        Icon="App.ico"
+        SnapsToDevicePixels="True"
+        Title="MainWindow" Height="800" Width="600">
+    
+    <Window.DataContext>
+        <local:SmsViewModel x:Name="vm" />
+    </Window.DataContext>
+
+    <Grid x:Name="root" Background="{StaticResource WindowBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="4" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Background="{StaticResource NoiseBrush}">
+            <StackPanel>
+                <StackPanel.Background>
+                    <SolidColorBrush Color="{StaticResource NoisedHighlightColor}" Opacity="0.8" />
+                </StackPanel.Background>
+                <Grid Margin="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition MinWidth="64" Width="Auto" />
+                        <ColumnDefinition MinWidth="64" Width="Auto" />
+                        <ColumnDefinition MinWidth="64" Width="Auto" />
+                        <ColumnDefinition MinWidth="64" Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Margin="24, 4, 0, 0" Style="{StaticResource Heading1}" FontWeight="Light" Foreground="White" x:Name="tblockHeading1" Text="{Binding OutbreakName}" />
+                        <TextBlock Margin="24, 4, 0, 0" FontSize="13" FontWeight="Light" Foreground="White" x:Name="tblockHeading2" Text="VHF SMS Server" />
+                    </StackPanel>
+
+                    <!--<StackPanel Grid.Column="4" HorizontalAlignment="Center" Margin="4, 0, 0, 0">
+                        <wpf:LightOnDarkCircleButton x:Name="btnConnect" Text="Connect" PathData="F1 M 25.7639,28.0031L 20.0866,22.3258C 19.4683,21.7075 19.4683,20.705 20.0866,20.0866C 20.705,19.4683 21.7075,19.4683 22.3258,20.0867L 28.0031,25.7639C 32.3443,22.5092 38.5302,22.856 42.4783,26.8042L 26.8041,42.4784C 22.856,38.5302 22.5092,32.3443 25.7639,28.0031 Z M 49.1958,33.5217C 53.144,37.4699 53.4908,43.6557 50.2361,47.9969L 55.9133,53.6742C 56.5317,54.2925 56.5317,55.295 55.9133,55.9134C 55.295,56.5317 54.2925,56.5317 53.6742,55.9134L 47.9969,50.2361C 43.6557,53.4908 37.4698,53.1441 33.5216,49.1959L 36.8804,45.8371L 34.0814,43.0381C 33.1539,42.1107 33.1539,40.6069 34.0814,39.6794C 35.0089,38.7519 36.5127,38.7519 37.4402,39.6794L 40.2392,42.4784L 42.4783,40.2392L 39.6794,37.4402C 38.7519,36.5127 38.7519,35.009 39.6794,34.0815C 40.6069,33.154 42.1106,33.154 43.0381,34.0815L 45.8371,36.8804L 49.1958,33.5217 Z" />
+                    </StackPanel>-->
+
+                    <StackPanel Grid.Column="4" HorizontalAlignment="Center" Margin="4, 0, 0, 0">
+                        <wpf:LightOnDarkCircleButton x:Name="btnSettings" Text="Settings" 
+                                                     PathData="F1 M 27.5314,21.8628L 33.0126,19.4224L 34.7616,23.3507C 36.6693,22.9269 38.6044,22.8903 40.4668,23.2026L 42.0083,19.1868L 47.6098,21.337L 46.0683,25.3528C 47.6612,26.3669 49.0747,27.6889 50.2088,29.2803L 54.1371,27.5313L 56.5776,33.0126L 52.6493,34.7616C 53.0731,36.6693 53.1097,38.6043 52.7974,40.4668L 56.8131,42.0083L 54.6629,47.6097L 50.6472,46.0683C 49.6331,47.6613 48.3111,49.0748 46.7197,50.2089L 48.4686,54.1372L 42.9874,56.5776L 41.2384,52.6493C 39.3307,53.0731 37.3957,53.1097 35.5333,52.7974L 33.9918,56.8131L 28.3903,54.6629L 29.9318,50.6472C 28.3388,49.6331 26.9252,48.3111 25.7911,46.7196L 21.8628,48.4686L 19.4224,42.9873L 23.3507,41.2383C 22.9269,39.3307 22.8903,37.3957 23.2026,35.5332L 19.1869,33.9918L 21.3371,28.3903L 25.3528,29.9318C 26.3669,28.3388 27.6889,26.9252 29.2804,25.7911L 27.5314,21.8628 Z M 34.3394,29.7781C 29.7985,31.7998 27.7564,37.1198 29.7781,41.6606C 31.7998,46.2015 37.1198,48.2436 41.6606,46.2219C 46.2015,44.2002 48.2436,38.8802 46.2219,34.3394C 44.2002,29.7985 38.8802,27.7564 34.3394,29.7781 Z "
+                                                     Command="{Binding ToggleSettingsCommand}"
+                                                     CommandParameter="{StaticResource True}"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="4, 0, 0, 0">
+                        <wpf:LightOnDarkCircleButton x:Name="btnConsole" Text="Console" 
+                                                     PathData="F1 M 17,20L 59,20L 59,56L 17,56L 17,20 Z M 20,26L 20,53L 56,53L 56,26L 20,26 Z M 23.75,31L 28.5,31L 33.25,37.5L 28.5,44L 23.75,44L 28.5,37.5L 23.75,31 Z "
+                                                     Command="{Binding ToggleConsoleCommand}"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Center" Margin="4, 0, 0, 0">
+                        <wpf:LightOnDarkCircleButton x:Name="btnDisconnect" Text="Disconnect" 
+                                                     PathData="F1 M 25.7639,28.0031L 20.0866,22.3258C 19.4683,21.7075 19.4683,20.705 20.0866,20.0866C 20.705,19.4683 21.7075,19.4683 22.3258,20.0867L 28.0031,25.7639C 32.3443,22.5092 38.5302,22.856 42.4783,26.8042L 26.8041,42.4784C 22.856,38.5302 22.5092,32.3443 25.7639,28.0031 Z M 49.1958,33.5217C 53.144,37.4699 53.4908,43.6557 50.2361,47.9969L 55.9133,53.6742C 56.5317,54.2925 56.5317,55.295 55.9133,55.9134C 55.295,56.5317 54.2925,56.5317 53.6742,55.9134L 47.9969,50.2361C 43.6557,53.4908 37.4698,53.1441 33.5216,49.1959L 36.8804,45.8371L 34.0814,43.0381C 33.1539,42.1107 33.1539,40.6069 34.0814,39.6794C 35.0089,38.7519 36.5127,38.7519 37.4402,39.6794L 40.2392,42.4784L 42.4783,40.2392L 39.6794,37.4402C 38.7519,36.5127 38.7519,35.009 39.6794,34.0815C 40.6069,33.154 42.1106,33.154 43.0381,34.0815L 45.8371,36.8804L 49.1958,33.5217 Z "
+                                                     Command="{Binding DisconnectCommand}"/>
+
+                    </StackPanel>
+
+
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="100" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <StackPanel.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#FF9D9D9D" Offset="0" />
+                        <GradientStop Color="#009D9D9D" Offset="1.0" />
+                        <!--<GradientStop Color="#00F7F7F9" Offset="1.0" />-->
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+        </StackPanel>
+
+        <ListBox Grid.Row="2" Margin="6" ItemsSource="{Binding StatusMessages, NotifyOnSourceUpdated=True}">
+
+        </ListBox>
+
+        <StackPanel Margin="6" Grid.Row="3">
+            <TextBlock Visibility="{Binding IsConnectedToModem, Converter={StaticResource BooleanToCollapsedConverter}}" FontSize="12" FontWeight="Normal">Disconnected</TextBlock>
+            <TextBlock Visibility="{Binding IsConnectedToModem, Converter={StaticResource BooleanToVisibilityConverter}}" FontSize="12" FontWeight="Normal">Connected</TextBlock>
+        </StackPanel>
+
+        <Grid Grid.RowSpan="100" Grid.ColumnSpan="100" Background="#88000000" >
+            <Grid.Visibility>
+                <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}" FallbackValue="Collapsed">
+                    <Binding Path="IsConnectedToDatabase" />
+                    <Binding Path="IsConnectedToModem" />
+                </MultiBinding>
+            </Grid.Visibility>
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+                    <StackPanel Margin="40, 20, 40, 20">
+
+                        <StackPanel>
+                            <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                            <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="CONNECT TO AN SMS MODEM" />
+                        </StackPanel>
+
+                        <StackPanel Height="4" />
+                        
+                        <StackPanel x:Name="modemConfigPanel">
+                            <StackPanel.DataContext>
+                                <local:ModemConfigInfo />
+                            </StackPanel.DataContext>
+                            
+                            <Label>COM Port</Label>
+                            <ComboBox 
+                                Width="100"
+                                HorizontalAlignment="Left"
+                                Text="{Binding ComPort}"
+                                SelectedItem="{Binding ComPort, Mode=TwoWay}"
+                                ItemsSource="{Binding ComPorts}">
+                            </ComboBox>
+
+                            <Label>Baud Rate</Label>
+                            <ComboBox 
+                                Width="100"
+                                HorizontalAlignment="Left"
+                                Text="{Binding BaudRate}"
+                                SelectedItem="{Binding BaudRate, Mode=TwoWay}"
+                                ItemsSource="{Binding BaudRates}"
+                                >
+                                <!--<ComboBox.Items>
+                                    <ComboBoxItem Content="4800" />
+                                    <ComboBoxItem Content="9600" />
+                                    <ComboBoxItem Content="19200" />
+                                    <ComboBoxItem Content="38400" />
+                                    <ComboBoxItem Content="57600" />
+                                </ComboBox.Items>-->
+                            </ComboBox>
+
+                            <!--<Label>Phone Number</Label>
+                            <TextBox HorizontalAlignment="Left" 
+                                     Text="{Binding OwnPhoneNumber}" 
+                                     Width="100" />-->
+                        </StackPanel>
+
+                        <StackPanel Height="4" />
+
+                        <UniformGrid Rows="1" Columns="4" Width="Auto" Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                            <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="2"></TextBlock>
+                            <Button HorizontalAlignment="Stretch" Width="Auto" 
+                                    Grid.Row="0" Grid.Column="3" 
+                                    Margin="0, 0, 5, 0" 
+                                    Command="{Binding ConnectModemCommand}"
+                                    CommandParameter="{Binding ElementName=modemConfigPanel, Path=DataContext}"
+                                    Content="Connect"/>
+                        </UniformGrid>
+                        <StackPanel Height="4" />
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </Grid>
+
+        <Grid Grid.RowSpan="100" Grid.ColumnSpan="100" Background="#88000000" Visibility="{Binding IsConnectedToDatabase, Converter={StaticResource BooleanToCollapsedConverter}, FallbackValue=Collapsed}" >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+                    <StackPanel Margin="40, 20, 40, 20">
+
+                        <StackPanel>
+                            <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                            <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="CONNECT TO A DATA SOURCE" />
+                        </StackPanel>
+                        
+                        <StackPanel Height="4" />
+
+                        <ListBox x:Name="lbProjects" 
+                                 VerticalAlignment="Stretch" Height="183" ItemsSource="{Binding Projects}">
+                            <ListBox.DataContext>
+                                <local:ProjectListViewModel />
+                            </ListBox.DataContext>
+                        </ListBox>
+                        
+                        <StackPanel Height="4" />
+
+                        <UniformGrid Rows="1" Columns="4" Width="Auto" Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                            <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="2"></TextBlock>
+                            <Button HorizontalAlignment="Stretch" Width="Auto" 
+                                    Grid.Row="0" Grid.Column="3" 
+                                    Margin="0, 0, 5, 0" 
+                                    IsEnabled="{Binding ElementName=lbProjects, Path=SelectedItems.Count, Converter={StaticResource CountToEnabledConverter}}"
+                                    Command="{Binding ConnectDatabaseCommand}"
+                                    CommandParameter="{Binding ElementName=lbProjects, Path=SelectedItem}"
+                                    Content="Connect"/>
+                        </UniformGrid>
+                        <StackPanel Height="4" />
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </Grid>
+
+
+        <Grid Grid.RowSpan="100" Grid.ColumnSpan="100" Background="#88000000" Visibility="{Binding IsShowingSettings, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <local:SmsSettings />
+            </DockPanel>
+        </Grid>
+
+        <Grid Grid.RowSpan="100" Grid.ColumnSpan="100" Background="#88000000" Visibility="{Binding IsShowingCommandConsole, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <local:CommandConsole Width="700" />
+            </DockPanel>
+        </Grid>
+
+
+        <Grid Grid.RowSpan="100" Grid.ColumnSpan="100" Background="#88000000" Visibility="{Binding IsShowingErrorPanel, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}" >
+            <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="1" Background="{StaticResource LightBackgroundBrush}">
+                    <StackPanel Margin="40, 20, 40, 20">
+
+                        <StackPanel>
+                            <Rectangle HorizontalAlignment="Left" Width="100" Height="6" Fill="{StaticResource AccentBrush}" />
+                            <TextBlock FontSize="24" Foreground="#444444" FontWeight="Bold" Text="ERROR" />
+                        </StackPanel>
+
+                        <StackPanel Height="4" />
+                        
+                        <TextBlock FontSize="13" TextWrapping="Wrap"
+                                   Foreground="#444444"
+                                   Text="{Binding ErrorMessage}" />
+
+                        <StackPanel Height="4" />
+                        
+                        <UniformGrid Rows="1" Columns="4" Width="Auto" Height="28" Margin="0, 15, 0, 0" HorizontalAlignment="Stretch">
+                            <TextBlock Grid.Row="0" Grid.Column="0"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="1"></TextBlock>
+                            <TextBlock Grid.Row="0" Grid.Column="2"></TextBlock>
+                            <Button HorizontalAlignment="Stretch" Width="Auto" 
+                                    Grid.Row="0" Grid.Column="3" 
+                                    Margin="0, 0, 5, 0" 
+                                    Command="{Binding HideErrorBoxCommand}"
+                                    Content="OK"/>
+                        </UniformGrid>
+                        <StackPanel Height="4" />
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

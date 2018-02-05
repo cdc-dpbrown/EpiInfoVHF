@@ -1,0 +1,304 @@
+﻿<analysis:AnalysisOutputBase x:Class="ContactTracing.CaseView.Controls.Analysis.SymptomsTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                             xmlns:analysis="clr-namespace:ContactTracing.CaseView.Controls.Analysis"
+             xmlns:p="clr-namespace:ContactTracing.CaseView.Properties"
+             xmlns:own="clr-namespace:ContactTracing.CaseView"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="400">
+    <analysis:AnalysisOutputBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="AnalysisStyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </analysis:AnalysisOutputBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Style="{StaticResource styleTableTitle}" Text="{x:Static p:Resources.AnalysisSymptomsConfirmedProbableCases}" />
+            <TextBlock x:Name="tblockCurrentDate" Style="{StaticResource styleTableDateHeading}" />
+        </StackPanel>
+        <Grid x:Name="grdMain" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource borderColumnHeaderStyle}" />
+            <Border Grid.Row="0" Grid.Column="3" Style="{StaticResource borderColumnHeaderStyle}" />
+
+            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="1" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="2" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="3" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="3" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="3" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="4" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="4" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="4" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="5" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="5" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="5" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="5" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="6" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="6" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="6" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="6" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="7" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="7" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="7" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="7" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="8" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="8" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="8" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="8" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="9" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="9" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="9" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="9" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="10" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="10" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="10" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="10" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="11" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="11" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="11" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="11" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="12" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="12" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="12" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="12" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="13" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="13" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="13" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="13" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="14" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="14" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="14" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="14" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="15" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="15" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="15" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="15" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="16" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="16" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="16" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="16" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="17" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="17" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="17" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="17" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="18" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="18" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="18" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="18" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="19" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="19" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="19" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="19" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="20" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="20" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="20" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="20" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="21" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="21" Grid.Column="1" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="21" Grid.Column="2" Style="{StaticResource borderCellStyle}" />
+            <Border Grid.Row="21" Grid.Column="3" Style="{StaticResource borderCellStyle}" />
+
+            <Border Grid.Row="22" Grid.Column="0" Style="{StaticResource borderRowHeaderStyle}" />
+            <Border Grid.Row="22" Grid.Column="1" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="22" Grid.Column="2" Style="{StaticResource borderCellAltStyle}" />
+            <Border Grid.Row="22" Grid.Column="3" Style="{StaticResource borderCellAltStyle}" />
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="100" Style="{StaticResource separatorStyle}" />
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource styleHeader}"
+                Text="{x:Static p:Resources.Symptom}" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource styleHeader}"
+                Text="{x:Static p:Resources.Present}" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource styleHeader}"
+                Text="{x:Static p:Resources.Absent}" />
+            <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource styleHeader}"
+                Text="{x:Static p:Resources.AnalysisUnknownMissing}" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomFever}" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomVomiting}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomDiarrhea}" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomFatigue}" />
+            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomAnorexia}" />
+            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomAbdPain}" />
+            <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomChestPain}" />
+            <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomMusclePain}" />
+            <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomJointPain}" />
+            <TextBlock Grid.Row="10" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomHeadache}" />
+            <TextBlock Grid.Row="11" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomCough}" />
+            <TextBlock Grid.Row="12" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomDiffBreathe}" />
+            <TextBlock Grid.Row="13" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomDiffSwallow}" />
+            <TextBlock Grid.Row="14" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomSoreThroat}" />
+            <TextBlock Grid.Row="15" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomJaundice}" />
+            <TextBlock Grid.Row="16" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomConjunctivitis}" />
+            <TextBlock Grid.Row="17" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomRash}" />
+            <TextBlock Grid.Row="18" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomHiccups}" />
+            <TextBlock Grid.Row="19" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomPainEyes}" />
+            <TextBlock Grid.Row="20" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomComa}" />
+            <TextBlock Grid.Row="21" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomConfused}" />
+            <TextBlock Grid.Row="22" Grid.Column="0" Style="{StaticResource styleRowHeader}"
+                Text="{x:Static p:Resources.AnalysisSymptomUnexplainedBleed}" />
+
+            <TextBlock x:Name="tblockPresentFever" Grid.Row="1" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentVomiting" Grid.Row="2" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentDiarrhea" Grid.Row="3" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentFatigue" Grid.Row="4" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentAnorexia" Grid.Row="5" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentAbPain" Grid.Row="6" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentChestPain" Grid.Row="7" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentMusclePain" Grid.Row="8" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentJointPain" Grid.Row="9" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentHeadache" Grid.Row="10" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentCough" Grid.Row="11" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentDiffBreath" Grid.Row="12" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentDiffSwallow" Grid.Row="13" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentSoreThroat" Grid.Row="14" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentJaundice" Grid.Row="15" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentConj" Grid.Row="16" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentSkinRash" Grid.Row="17" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentHiccups" Grid.Row="18" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentPainEye" Grid.Row="19" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentComa" Grid.Row="20" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentConfused" Grid.Row="21" Grid.Column="1" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockPresentHemorrhagic" Grid.Row="22" Grid.Column="1" Style="{StaticResource styleBody}" />
+
+
+            <TextBlock x:Name="tblockAbsentFever" Grid.Row="1" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentVomiting" Grid.Row="2" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentDiarrhea" Grid.Row="3" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentFatigue" Grid.Row="4" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentAnorexia" Grid.Row="5" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentAbPain" Grid.Row="6" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentChestPain" Grid.Row="7" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentMusclePain" Grid.Row="8" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentJointPain" Grid.Row="9" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentHeadache" Grid.Row="10" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentCough" Grid.Row="11" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentDiffBreath" Grid.Row="12" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentDiffSwallow" Grid.Row="13" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentSoreThroat" Grid.Row="14" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentJaundice" Grid.Row="15" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentConj" Grid.Row="16" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentSkinRash" Grid.Row="17" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentHiccups" Grid.Row="18" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentPainEye" Grid.Row="19" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentComa" Grid.Row="20" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentConfused" Grid.Row="21" Grid.Column="2" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockAbsentHemorrhagic" Grid.Row="22" Grid.Column="2" Style="{StaticResource styleBody}" />
+
+            <TextBlock x:Name="tblockUnknownFever" Grid.Row="1" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownVomiting" Grid.Row="2" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownDiarrhea" Grid.Row="3" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownFatigue" Grid.Row="4" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownAnorexia" Grid.Row="5" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownAbPain" Grid.Row="6" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownChestPain" Grid.Row="7" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownMusclePain" Grid.Row="8" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownJointPain" Grid.Row="9" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownHeadache" Grid.Row="10" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownCough" Grid.Row="11" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownDiffBreath" Grid.Row="12" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownDiffSwallow" Grid.Row="13" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownSoreThroat" Grid.Row="14" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownJaundice" Grid.Row="15" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownConj" Grid.Row="16" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownSkinRash" Grid.Row="17" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownHiccups" Grid.Row="18" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownPainEye" Grid.Row="19" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownComa" Grid.Row="20" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownConfused" Grid.Row="21" Grid.Column="3" Style="{StaticResource styleBody}" />
+            <TextBlock x:Name="tblockUnknownHemorrhagic" Grid.Row="22" Grid.Column="3" Style="{StaticResource styleBody}" />
+        </Grid>
+    </Grid>
+</analysis:AnalysisOutputBase>
